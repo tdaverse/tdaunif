@@ -1,0 +1,7 @@
+# Mac medatata
+.DS_Store
+
+# R metadata
+.Rproj.user
+.Rhistory
+.RData
