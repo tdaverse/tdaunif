@@ -16,7 +16,7 @@ NULL
 #' @export
 sample_torus <- function(n, r = .25, sd = 0) {
   phi <- stats::runif(n = n, min = 0, max = 2 * pi)
-  theta <- torus_density_rejection_sample(n = n, r = r)
+  theta <- drs_torus(n = n, r = r)
   res <- cbind(
     x = (1 + r * cos(theta)) * cos(phi),
     y = (1 + r * cos(theta)) * sin(phi),
@@ -24,6 +24,19 @@ sample_torus <- function(n, r = .25, sd = 0) {
   )
   if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
   res
+}
+
+# density rejection sample for a torus (conventional parameterization)
+# https://projecteuclid.org/euclid.imsc/1379942050
+drs_torus <- function(n, r) {
+  x <- c()
+  while (length(x) < n) {
+    theta <- stats::runif(n, 0, 2 * pi)
+    dens_theta <- (1 + r * cos(theta)) / (2 * pi)
+    dens_threshold <- stats::runif(n, 0, 1 / pi)
+    x <- c(x, theta[dens_theta > dens_threshold])
+  }
+  x[1:n]
 }
 
 #' @rdname tori
@@ -41,17 +54,4 @@ sample_tori_interlocked <- function(n, r = .25, sd = 0) {
   res <- rbind(res1, res2)[sample(n), , drop = FALSE]
   # add noise
   if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
-}
-
-# Diagonis, Holmes, & Shahshahani (2013)
-# https://projecteuclid.org/euclid.imsc/1379942050
-torus_density_rejection_sample <- function(n, r) {
-  x <- c()
-  while (length(x) < n) {
-    theta <- stats::runif(n, 0, 2 * pi)
-    dens_threshold <- stats::runif(n, 0, 1 / pi)
-    dens_theta <- (1 + r * cos(theta)) / (2 * pi)
-    x <- c(x, theta[dens_theta > dens_threshold])
-  }
-  x[1:n]
 }

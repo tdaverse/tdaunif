@@ -2,25 +2,28 @@
 % Please edit documentation in R/sphere.r
 \name{sphere}
 \alias{sphere}
+\alias{sample_2sphere}
 \alias{sample_sphere}
 \title{Sample (with noise) from a sphere}
 \usage{
+sample_2sphere(n, sd = 0)
+
 sample_sphere(n, d = 1, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{d}{Dimension of the sphere.}
-
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
+
+\item{d}{Dimension of the sphere.}
 }
 \description{
-This function generates uniform samples from a sphere of radius
-  1 and arbitrary dimension in 1-higher-dimensional space, optionally with
-  noise.
+These functions generate uniform samples from a sphere of radius
+  1 and dimension 2 in 3-space, or in arbitrary dimension in
+  1-higher-dimensional space, optionally with noise.
 }
 \details{
-This function is adapted from [TDA::sphereUnif()].
+The function `sample_sphere` is adapted from [TDA::sphereUnif()].
 }
 \examples{
 inst/examples/ex-sphere.r

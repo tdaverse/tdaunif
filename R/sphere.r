@@ -1,10 +1,10 @@
 #' @title Sample (with noise) from a sphere
 #'
-#' @description This function generates uniform samples from a sphere of radius
-#'   1 and arbitrary dimension in 1-higher-dimensional space, optionally with
-#'   noise.
+#' @description These functions generate uniform samples from a sphere of radius
+#'   1 and dimension 2 in 3-space, or in arbitrary dimension in
+#'   1-higher-dimensional space, optionally with noise.
 #'
-#' @details This function is adapted from [TDA::sphereUnif()].
+#' @details The function `sample_sphere` is adapted from [TDA::sphereUnif()].
 
 #' @name sphere
 #' @param n Number of observations.
@@ -12,6 +12,29 @@
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @examples inst/examples/ex-sphere.r
 NULL
+
+#' @rdname sphere
+#' @export
+sample_2sphere <- function(n, sd = 0) {
+  # generate a uniform sample from [0,1]^2
+  z <- replicate(2, runif(n = n))
+  # map this to the upper hemisphere with area preservation
+  res <- apm_hemisphere(z)
+  # reverse a .5-probability sample of z-coordinates
+  res[, 3] <- res[, 3] * ((-1) ^ rbinom(n = n, size = 1, prob = .5))
+  # add noise
+  if (sd != 0) res <- res + rmvunorm(n = n, d = d + 1, sd = sd)
+  res
+}
+
+# area-preserving map from [0,1]^2 to the upper hemisphere
+apm_hemisphere <- function(x) {
+  cbind(
+    sqrt(x[, 1] * (2 - x[, 1])) * cos(2 * pi * x[, 2]),
+    sqrt(x[, 1] * (2 - x[, 1])) * sin(2 * pi * x[, 2]),
+    1 - x[, 1]
+  )
+}
 
 #' @rdname sphere
 #' @export
