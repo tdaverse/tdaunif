@@ -2,13 +2,19 @@
 % Please edit documentation in R/circles.r
 \name{circles}
 \alias{circles}
+\alias{sample_circle_flat}
 \alias{sample_circle}
 \alias{sample_circles_interlocked}
+\alias{sample_circle_sinusoidal}
 \title{Sample (with noise) from circles}
 \usage{
+sample_circle_flat(n, sd = 0)
+
 sample_circle(n, sd = 0)
 
 sample_circles_interlocked(n, sd = 0)
+
+sample_circle_sinusoidal(n, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}

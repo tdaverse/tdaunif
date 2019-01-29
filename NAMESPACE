@@ -2,6 +2,8 @@
 
 export(sample_2sphere)
 export(sample_circle)
+export(sample_circle_flat)
+export(sample_circle_sinusoidal)
 export(sample_circles_interlocked)
 export(sample_klein)
 export(sample_klein_flat)
