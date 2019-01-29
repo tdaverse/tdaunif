@@ -2,18 +2,25 @@
 % Please edit documentation in R/tori.r
 \name{tori}
 \alias{tori}
+\alias{sample_torus_tube}
 \alias{sample_torus}
 \alias{sample_tori_interlocked}
+\alias{sample_torus_flat}
 \title{Sample (with noise) from tori}
 \usage{
-sample_torus(n, r = 0.25, sd = 0)
+sample_torus_tube(n, ar = 2, sd = 0)
 
-sample_tori_interlocked(n, r = 0.25, sd = 0)
+sample_torus(n, ar = 2, sd = 0)
+
+sample_tori_interlocked(n, ar = 2, sd = 0)
+
+sample_torus_flat(n, ar = 1, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{r}{Radius (relative to unit primary radius).}
+\item{ar}{Aspect ratio for tube torus (ratio of major and minor radii) or
+flat torus (ratio of scale factors).}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
