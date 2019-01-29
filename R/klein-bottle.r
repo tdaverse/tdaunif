@@ -14,13 +14,13 @@ NULL
 #' @rdname klein-bottle
 #' @export
 sample_klein <- function(n, r = .25, sd = 0) {
-  phi <- stats::runif(n = n, min = 0, max = 2 * pi)
-  theta <- drs_klein(n = n, r = r)
+  phi <- stats::runif(n, 0, 2*pi)
+  theta <- drs_klein(n, r)
   res <- cbind(
     w = (1 + r * cos(theta)) * cos(phi),
     x = (1 + r * cos(theta)) * sin(phi),
-    y = r * sin(theta) * cos(phi / 2),
-    z = r * sin(theta) * sin(phi / 2)
+    y = r * sin(theta) * cos(phi/2),
+    z = r * sin(theta) * sin(phi/2)
   )
   if (sd != 0) res <- res + rmvunorm(n = n, d = 4, sd = sd)
   res
@@ -31,18 +31,16 @@ sample_klein <- function(n, r = .25, sd = 0) {
 drs_klein <- function(n, r) {
   x <- c()
   while (length(x) < n) {
-    theta <- stats::runif(n, 0, 2 * pi)
-    jacobian <- jint_klein(r)
-    area_jacobian <- integrate(jacobian, 0, 2 * pi)$value
-    dens_theta <- sapply(theta, jacobian) / area_jacobian
-    max_dens <- jacobian(0) / area_jacobian
-    dens_threshold <- stats::runif(n, 0, max_dens)
-    x <- c(x, theta[dens_theta > dens_threshold])
+    theta <- stats::runif(n, 0, 2*pi)
+    jacobian <- jd_klein(r)
+    jacobian_theta <- jacobian(theta)
+    density_threshold <- stats::runif(n, 0, jacobian(0))
+    x <- c(x, theta[jacobian_theta > density_threshold])
   }
   x[1:n]
 }
 
-# integral of Klein bottle Jacobian over minor angle
-jint_klein <- function(r) {
-  function(x) r * sqrt((1 + r * cos(x)) ^ 2 + (.5 * r * sin(x)) ^ 2)
+# Jacobian determinant of Klein bottle with respect to minor angle
+jd_klein <- function(r) {
+  function(theta) r * sqrt((1 + r * cos(theta)) ^ 2 + (.5 * r * sin(theta)) ^ 2)
 }
