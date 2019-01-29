@@ -30,6 +30,3 @@ These functions generate uniform samples from Klein bottles in
 \details{
 (Details.)
 }
-\examples{
-inst/examples/ex-klein-bottle.r
-}

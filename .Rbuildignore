@@ -1,2 +1,6 @@
+# R project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
+
+# sandbox
+sandbox

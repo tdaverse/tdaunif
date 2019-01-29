@@ -11,7 +11,7 @@
 #'   radii) or flat torus-based Klein bottle (ratio of scale factors).
 #' @param bump Bump constant for the flat torus-based Klein bottle.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
-#' @examples inst/examples/ex-klein-bottle.r
+#' @example inst/examples/ex-klein-bottle.r
 NULL
 
 #' @rdname klein-bottles
@@ -19,7 +19,7 @@ NULL
 sample_klein_tube <- function(n, ar = 2, sd = 0) {
   r <- 1/ar
   theta <- rs_klein_tube(n, r)
-  phi <- stats::runif(n, 0, 2*pi)
+  phi <- runif(n, 0, 2*pi)
   res <- cbind(
     w = (1 + r * cos(theta)) * cos(phi),
     x = (1 + r * cos(theta)) * sin(phi),
@@ -39,10 +39,10 @@ sample_klein <- sample_klein_tube
 rs_klein_tube <- function(n, r) {
   x <- c()
   while (length(x) < n) {
-    theta <- stats::runif(n, 0, 2*pi)
+    theta <- runif(n, 0, 2*pi)
     jacobian <- jd_klein_tube(r)
     jacobian_theta <- jacobian(theta)
-    density_threshold <- stats::runif(n, 0, jacobian(0))
+    density_threshold <- runif(n, 0, jacobian(0))
     x <- c(x, theta[jacobian_theta > density_threshold])
   }
   x[1:n]
@@ -56,13 +56,13 @@ jd_klein_tube <- function(r) {
 #' @rdname klein-bottles
 #' @export
 sample_klein_flat <- function(n, ar = 1, bump = .1, sd = 0) {
-  theta <- stats::runif(n, 0, 2*pi)
+  theta <- runif(n, 0, 2*pi)
   phi <- rs_klein_flat(n, ar, bump)
   res <- cbind(
     w = cos(theta/2) * cos(phi) - sin(theta/2) * sin(2*phi),
     x = sin(theta/2) * cos(phi) - cos(theta/2) * sin(2*phi),
     y = ar * cos(theta) * (1 + bump * sin(phi)),
-    y = ar * sin(theta) * (1 + bump * sin(phi))
+    z = ar * sin(theta) * (1 + bump * sin(phi))
   )
   if (sd != 0) res <- res + rmvunorm(n = n, d = 4, sd = sd)
   res
@@ -73,10 +73,10 @@ sample_klein_flat <- function(n, ar = 1, bump = .1, sd = 0) {
 rs_klein_flat <- function(n, p, e) {
   x <- c()
   while (length(x) < n) {
-    phi <- stats::runif(n, 0, 2*pi)
+    phi <- runif(n, 0, 2*pi)
     jacobian <- jd_klein_flat(p, e)
     jacobian_phi <- jacobian(phi)
-    density_threshold <- stats::runif(n, 0, jacobian(0))
+    density_threshold <- runif(n, 0, jacobian(0))
     x <- c(x, phi[jacobian_phi > density_threshold])
   }
   x[1:n]
