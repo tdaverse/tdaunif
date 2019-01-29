@@ -13,16 +13,12 @@ NULL
 
 #' @rdname circles
 #' @export
-sample_circle_flat <- function(n, sd = 0) {
+sample_circle <- function(n, sd = 0) {
   theta <- stats::runif(n = n, min = 0, max = 2*pi)
   res <- cbind(x = cos(theta), y = sin(theta))
   if (sd != 0) res <- res + rmvunorm(n = n, d = 2, sd = sd)
   res
 }
-
-#' @rdname circles
-#' @export
-sample_circle <- sample_circle_flat
 
 #' @rdname circles
 #' @export
@@ -47,5 +43,15 @@ sample_circle_sinusoidal <- function(n, sd = 0) {
   x <- cos(theta); y <- sin(theta)
   res <- cbind(x = x, y = y, z = x*y)
   if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
+  res
+}
+
+#' @rdname circles
+#' @export
+sample_eight <- function(n, sd = 0) {
+  theta <- stats::runif(n = n, min = 0, max = 2*pi)
+  x <- cos(theta); y <- sin(theta)
+  res <- cbind(x = x, y = x*y)
+  if (sd != 0) res <- res + rmvunorm(n = n, d = 2, sd = sd)
   res
 }
