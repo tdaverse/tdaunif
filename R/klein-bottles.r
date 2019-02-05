@@ -11,7 +11,7 @@
 #'   radii) or flat torus-based Klein bottle (ratio of scale factors).
 #' @param bump Bump constant for the flat torus-based Klein bottle.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
-#' @example inst/examples/ex-klein-bottle.r
+#' @example inst/examples/ex-klein-bottles.r
 NULL
 
 #' @rdname klein-bottles
