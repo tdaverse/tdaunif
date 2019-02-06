@@ -16,8 +16,7 @@ NULL
 sample_circle <- function(n, sd = 0) {
   theta <- runif(n = n, min = 0, max = 2*pi)
   res <- cbind(x = cos(theta), y = sin(theta))
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 2, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 #' @rdname circles
@@ -30,10 +29,7 @@ sample_circles_interlocked <- function(n, sd = 0) {
     cbind(x = cos(theta1), y = sin(theta1), z = 0),
     cbind(x = cos(theta2) + 1, y = 0, z = sin(theta2))
   )
-  if (sd != 0) {
-    res <- res + rmvunorm(n, d = 3, sd = sd)
-  }
-  res
+  add_noise(res, sd = sd)
 }
 
 #' @rdname circles
@@ -42,8 +38,7 @@ sample_circle_sinusoidal <- function(n, sd = 0) {
   theta <- runif(n = n, min = 0, max = 2*pi)
   x <- cos(theta); y <- sin(theta)
   res <- cbind(x = x, y = y, z = x*y)
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 #' @rdname circles
@@ -52,6 +47,5 @@ sample_eight <- function(n, sd = 0) {
   theta <- runif(n = n, min = 0, max = 2*pi)
   x <- cos(theta); y <- sin(theta)
   res <- cbind(x = x, y = x*y)
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 2, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }

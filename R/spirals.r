@@ -29,8 +29,5 @@ sample_spirals <- function(n, s = 3, sd = 0) {
   # bind spirals
   res <- do.call(rbind, spirals)[sample(n), ]
   # add noise
-  if (sd != 0) {
-    res <- res + rmvunorm(n, d = 2, sd = sd)
-  }
-  res
+  add_noise(res, sd = sd)
 }

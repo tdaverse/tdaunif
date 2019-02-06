@@ -26,8 +26,7 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
     y = r * sin(theta) * cos(phi/2),
     z = r * sin(theta) * sin(phi/2)
   )
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 4, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 #' @rdname klein-bottles
@@ -64,8 +63,7 @@ sample_klein_flat <- function(n, ar = 1, bump = .1, sd = 0) {
     y = ar * cos(theta) * (1 + bump * sin(phi)),
     z = ar * sin(theta) * (1 + bump * sin(phi))
   )
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 4, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 # rejection sampler for a Klein bottle (flat torus-based parameterization)

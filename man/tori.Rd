@@ -26,7 +26,7 @@ flat torus (ratio of scale factors).}
 }
 \description{
 These functions generate uniform samples from configurations of
-  tori of primary radius 1 in 3-dimensional space, optionally with noise.
+tori of primary radius 1 in 3-dimensional space, optionally with noise.
 }
 \details{
 (Details.)

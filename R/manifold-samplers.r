@@ -30,8 +30,7 @@ make_manifold_sampler <- function(
   function(n, sd = 0) {
     param_vals <- rs(n)
     res <- parameterization(param_vals)
-    if (sd != 0) res <- res + rmvunorm(n = n, d = ncol(res), sd = sd)
-    res
+    add_noise(res, sd = sd)
   }
 }
 

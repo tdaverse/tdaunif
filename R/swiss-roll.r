@@ -19,6 +19,5 @@ sample_swiss <- function(n, w = 2, sd = 0) {
   t <- runif(n, 1, 9/2*pi)
   z <- runif(n, 0, w)
   res <- cbind(x = t*cos(t), y = t*sin(t), z = z)
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }

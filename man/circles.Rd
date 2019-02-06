@@ -23,7 +23,7 @@ sample_eight(n, sd = 0)
 }
 \description{
 These functions generate uniform samples from configurations of
-  circles of radius 1 in 2- or 3-dimensional space, optionally with noise.
+circles of radius 1 in 2- or 3-dimensional space, optionally with noise.
 }
 \details{
 (Details.)

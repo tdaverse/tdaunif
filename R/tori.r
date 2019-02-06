@@ -24,8 +24,7 @@ sample_torus_tube <- function(n, ar = 2, sd = 0) {
     y = (1 + r * cos(theta)) * sin(phi),
     z = r * sin(theta)
   )
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 #' @rdname tori
@@ -60,7 +59,7 @@ sample_tori_interlocked <- function(n, ar = 2, sd = 0) {
   # combine tori
   res <- rbind(res1, res2)[sample(n), , drop = FALSE]
   # add noise
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
+  add_noise(res, sd = sd)
 }
 
 #' @rdname tori
@@ -74,6 +73,5 @@ sample_torus_flat <- function(n, ar = 1, sd = 0) {
     y = ar * cos(phi),
     z = ar * sin(phi)
   )
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 4, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }

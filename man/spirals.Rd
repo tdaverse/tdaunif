@@ -16,10 +16,10 @@ sample_spirals(n, s = 3, sd = 0)
 }
 \description{
 This function generates uniform samples from configurations of
-  spirals in 2-dimensional space, optionally with noise.
+spirals in 2-dimensional space, optionally with noise.
 }
 \details{
-This function is adapted from [KODAMA::spirals()].
+This function is adapted from \code{\link[KODAMA:spirals]{KODAMA::spirals()}}.
 }
 \examples{
 

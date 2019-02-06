@@ -16,11 +16,11 @@ sample_swiss(n, w = 2, sd = 0)
 }
 \description{
 This function generates uniform samples from a Swiss roll in
-  3-dimensional space, optionally with noise.
+3-dimensional space, optionally with noise.
 }
 \details{
 This function is adapted from
-  [drtoolbox](https://lvdmaaten.github.io/drtoolbox/).
+\href{https://lvdmaaten.github.io/drtoolbox/}{drtoolbox}.
 }
 \examples{
 

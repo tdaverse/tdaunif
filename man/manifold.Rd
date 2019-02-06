@@ -25,8 +25,8 @@ determinant.}
 }
 \description{
 These functions create rejection samplers, and uniform manifold
-  samplers based on them, using user-provided parameterization and Jacobian
-  functions.
+samplers based on them, using user-provided parameterization and Jacobian
+functions.
 }
 \details{
 (Details.)

@@ -25,7 +25,7 @@ radii) or flat torus-based Klein bottle (ratio of scale factors).}
 }
 \description{
 These functions generate uniform samples from Klein bottles in
-  4-dimensional space, optionally with noise.
+4-dimensional space, optionally with noise.
 }
 \details{
 (Details.)

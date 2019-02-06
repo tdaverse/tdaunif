@@ -23,8 +23,7 @@ sample_2sphere <- function(n, sd = 0) {
   # reverse a .5-probability sample of z-coordinates
   res[, 3] <- res[, 3] * ((-1) ^ stats::rbinom(n = n, size = 1, prob = .5))
   # add noise
-  if (sd != 0) res <- res + rmvunorm(n = n, d = 3, sd = sd)
-  res
+  add_noise(res, sd = sd)
 }
 
 # area-preserving map from [0,1]^2 to the upper hemisphere
@@ -51,7 +50,7 @@ sample_sphere <- function(n, d = 1, sd = 0) {
   # scale all points to have norm 1
   res <- sweep(res, 1, apply(res, 1, norm, "2"), FUN = "/")
   # add noise
-  if (sd != 0) res <- res + rmvunorm(n = n, d = d + 1, sd = sd)
+  res <- add_noise(res, sd = sd)
   # column names
   colnames(res) <- if (ncol(res) <= 4) {
     letters[1:ncol(res) + 26 - ncol(res)]

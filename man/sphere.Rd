@@ -19,11 +19,11 @@ sample_sphere(n, d = 1, sd = 0)
 }
 \description{
 These functions generate uniform samples from a sphere of radius
-  1 and dimension 2 in 3-space, or in arbitrary dimension in
-  1-higher-dimensional space, optionally with noise.
+1 and dimension 2 in 3-space, or in arbitrary dimension in
+1-higher-dimensional space, optionally with noise.
 }
 \details{
-The function `sample_sphere` is adapted from [TDA::sphereUnif()].
+The function \code{sample_sphere} is adapted from \code{\link[TDA:sphereUnif]{TDA::sphereUnif()}}.
 }
 \examples{
 
