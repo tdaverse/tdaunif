@@ -5,12 +5,12 @@
 \alias{sample_swiss}
 \title{Sample (with noise) from a Swiss roll}
 \usage{
-sample_swiss(n, w = 2, sd = 0)
+sample_swiss(n, width = 2, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{w}{Width of the roll.}
+\item{width}{Width of the roll.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }

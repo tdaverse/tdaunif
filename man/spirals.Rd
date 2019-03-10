@@ -5,12 +5,12 @@
 \alias{sample_spirals}
 \title{Sample (with noise) from a spirals}
 \usage{
-sample_spirals(n, s = 3, sd = 0)
+sample_spirals(n, spirals = 3, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{s}{Number of spirals.}
+\item{spirals}{Number of spirals.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }

@@ -21,10 +21,10 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
   theta <- rs_klein_tube(n, r)
   phi <- runif(n, 0, 2*pi)
   res <- cbind(
-    w = (1 + r * cos(theta)) * cos(phi),
-    x = (1 + r * cos(theta)) * sin(phi),
-    y = r * sin(theta) * cos(phi/2),
-    z = r * sin(theta) * sin(phi/2)
+    x = (1 + r * cos(theta)) * cos(phi),
+    y = (1 + r * cos(theta)) * sin(phi),
+    z = r * sin(theta) * cos(phi/2),
+    w = r * sin(theta) * sin(phi/2)
   )
   add_noise(res, sd = sd)
 }
@@ -58,10 +58,10 @@ sample_klein_flat <- function(n, ar = 1, bump = .1, sd = 0) {
   theta <- runif(n, 0, 2*pi)
   phi <- rs_klein_flat(n, ar, bump)
   res <- cbind(
-    w = cos(theta/2) * cos(phi) - sin(theta/2) * sin(2*phi),
-    x = sin(theta/2) * cos(phi) - cos(theta/2) * sin(2*phi),
-    y = ar * cos(theta) * (1 + bump * sin(phi)),
-    z = ar * sin(theta) * (1 + bump * sin(phi))
+    x = cos(theta/2) * cos(phi) - sin(theta/2) * sin(2*phi),
+    y = sin(theta/2) * cos(phi) - cos(theta/2) * sin(2*phi),
+    z = ar * cos(theta) * (1 + bump * sin(phi)),
+    w = ar * sin(theta) * (1 + bump * sin(phi))
   )
   add_noise(res, sd = sd)
 }

@@ -1,9 +1,16 @@
-^\.travis\.yml$
 # R project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
+# Travis-CI
+^\.travis\.yml$
+
 # package infrastructure
 man-roxygen
+
+# README
+^README\.[Rr]md$
+^man/figures/README-.*\.png$
+
 # sandbox
 sandbox

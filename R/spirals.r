@@ -7,23 +7,23 @@
 
 #' @name spirals
 #' @param n Number of observations.
-#' @param s Number of spirals.
+#' @param spirals Number of spirals.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-spirals.r
 NULL
 
 #' @rdname spirals
 #' @export
-sample_spirals <- function(n, s = 3, sd = 0) {
+sample_spirals <- function(n, spirals = 3, sd = 0) {
   # split sample size
-  ns <- apply(stats::rmultinom(n = n, size = 1, prob = rep(1, s)), 1, sum)
+  ns <- apply(stats::rmultinom(n = n, size = 1, prob = rep(1, spirals)), 1, sum)
   
   # each spiral
-  spirals <- lapply(1:s, function(i) {
+  spirals <- lapply(1:spirals, function(i) {
     t <- seq(1 / (4*pi), 1, length.out = ns[i]) ^ 0.5 * 2*pi
     cbind(
-      x = cos(t + (2*pi * i) / s) * t,
-      y = sin(t + (2*pi * i) / s) * t
+      x = cos(t + (2*pi * i) / spirals) * t,
+      y = sin(t + (2*pi * i) / spirals) * t
     )
   })
   # bind spirals

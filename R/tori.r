@@ -68,10 +68,10 @@ sample_torus_flat <- function(n, ar = 1, sd = 0) {
   theta <- runif(n = n, min = 0, max = 2*pi)
   phi <- runif(n = n, min = 0, max = 2*pi)
   res <- cbind(
-    w = cos(theta),
-    x = sin(theta),
-    y = ar * cos(phi),
-    z = ar * sin(phi)
+    x = cos(theta),
+    y = sin(theta),
+    z = ar * cos(phi),
+    w = ar * sin(phi)
   )
   add_noise(res, sd = sd)
 }
