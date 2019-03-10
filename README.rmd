@@ -10,6 +10,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![Travis build status](https://travis-ci.org/corybrunson/tdaunif.svg?branch=master)](https://travis-ci.org/corybrunson/tdaunif)
+
 # **tdaunif**: Uniform manifold samplers for topological data analysis
 
 This R package consists mainly of sampling functions for topological manifolds embedded in Euclidean space.
@@ -48,6 +50,7 @@ devtools::load_all()
 [An intuitive embedding of the Klein bottle into 4-space](https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_/_4D_M%C3%B6bius_tube) is adapted from the popular "donut" embedding of the torus in 3-space. In **tdaunif** this is called the "tube" parameterization. We can sample uniformly from this embedding (without noise) and examine the coordinate projections as follows:
 
 ```{r klein bottle}
+set.seed(0)
 x <- sample_klein_tube(n = 360, ar = 3, sd = 0)
 pairs(x, asp = 1, pch = 19, cex = .5)
 ```
@@ -59,4 +62,4 @@ x <- add_noise(x, sd = .2)
 pairs(x, asp = 1, pch = 19, cex = .5)
 ```
 
-For a thorough discussion of this sampler, see [my blog post](https://corybrunson.github.io/2019/01/28/uniform-sample-embedded-klein-bottle/) describing the method presented in [Diaconis, Holmes, and Shahshahani (2013)](https://projecteuclid.org/euclid.imsc/1379942050).
+For a thorough discussion of this sampler, see [my blog post](https://corybrunson.github.io/2019/02/01/uniform-sample-embedded-klein-bottle/) describing the method presented in [Diaconis, Holmes, and Shahshahani (2013)](https://projecteuclid.org/euclid.imsc/1379942050).

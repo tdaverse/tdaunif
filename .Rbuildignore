@@ -1,9 +1,9 @@
+^\.travis\.yml$
 # R project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
 # package infrastructure
 man-roxygen
-
 # sandbox
 sandbox
