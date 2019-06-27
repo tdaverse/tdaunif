@@ -8,7 +8,7 @@
 #' @name figure-eights
 #' @param n Number of observations.
 #' @param r Scalar factor of figure eight.
-#' @example inst/examples/ex-klein-bottles.r
+#' @example inst/examples/ex-figure-eights.r
 NULL
 
 #' @rdname figure-eights
