@@ -9,6 +9,7 @@
 #' @param n Number of observations.
 #' @param triangle The (x,y) coordinates of the vertices of a triangle,
 #'   formatted in a 2x3 matrix
+#' @example inst/examples/ex-planar-triangles.r
 NULL
 
 #' @rdname planar-triangles
@@ -31,5 +32,3 @@ planar_triangle_sampler <- function(n,triangle){
   colnames(res) <- c('x','y')
   res
 }
-
-
