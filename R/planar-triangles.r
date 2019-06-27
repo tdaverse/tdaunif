@@ -4,6 +4,9 @@
 #'   planar triangles in 2-dimensional space.
 #'
 #' @details (Details.)
+ 
+#' @template ref-arvo2001
+#' 
 
 #' @name planar-triangles
 #' @param n Number of observations.
