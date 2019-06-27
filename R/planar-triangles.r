@@ -17,7 +17,7 @@ NULL
 
 #' @rdname planar-triangles
 #' @export
-planar_triangle_sampler <- function(n,triangle){
+sample_planar_triangle <- function(n,triangle){
   #Checks to make sure 'triangle' input is a 2x3 matrix and if not, alerts the
   #user
   if(nrow(triangle) != 2 | ncol(triangle) != 3)
