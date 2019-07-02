@@ -7,26 +7,26 @@
 
 #' @name figure-eights
 #' @param n Number of observations.
-#' @param r Scalar factor of figure eight.
+#' @param a Aspect ratio of figure eight.
 #' @example inst/examples/ex-figure-eights.r
 NULL
 
 #' @rdname figure-eights
 #' @export
-sample_figure_eight <- function(n,r){
-  theta <- rs_eight(n,r)
+sample_figure_eight <- function(n,a){
+  theta <- rs_eight(n,a)
   #Parametrization of figure eight with modified theta values inputted
   res <- cbind(
-    x = (r * sin(theta)),
-    y = (r * sin(theta)*cos(theta))
+    x = (a * sin(theta)),
+    y = (a * sin(theta)*cos(theta))
   )
 }
 #Rejection sampler
-rs_eight <- function(n,r){
+rs_eight <- function(n,a){
   x <- c()
   while(length(x) < n){
     theta <- runif(n, 0, 2*pi)
-    jacobian <- jd_eight(r)
+    jacobian <- jd_eight(a)
     #Applies the jacobian scalar value to each value of theta
     jacobian_theta <- sapply(theta, jacobian)
     #Adds new theta values to list only if greater than the density threshold,
@@ -38,6 +38,6 @@ rs_eight <- function(n,r){
 }
 
 #Jacobian determinant of figure eight
-jd_eight <- function(r){
-  function(theta)sqrt((r*cos(theta))^2 + (r*cos(theta)^2-r*sin(theta)^2)^2)
+jd_eight <- function(a){
+  function(theta)sqrt((a*cos(theta))^2 + (a*cos(theta)^2-a*sin(theta)^2)^2)
 }
