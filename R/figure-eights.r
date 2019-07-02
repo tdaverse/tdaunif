@@ -1,25 +1,28 @@
-#' @title Sample from figure eight
+#' @title Sample (with noise) from figure eight
 #'
 #' @description These functions generate uniform samples from figure eights in
-#'   2-dimensional space.
+#'   2-dimensional space, optionally with noise.
 #'
 #' @details (Details.)
 
 #' @name figure-eights
 #' @param n Number of observations.
 #' @param a Aspect ratio of figure eight.
+#' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-figure-eights.r
 NULL
 
 #' @rdname figure-eights
 #' @export
-sample_figure_eight <- function(n,a){
+sample_figure_eight <- function(n, a, sd){
   theta <- rs_eight(n,a)
   #Parametrization of figure eight with modified theta values inputted
   res <- cbind(
     x = (a * sin(theta)),
     y = (a * sin(theta)*cos(theta))
   )
+  #Adds Gaussian noise to figure 8
+  add_noise(res, sd = sd)
 }
 #Rejection sampler
 rs_eight <- function(n,a){
