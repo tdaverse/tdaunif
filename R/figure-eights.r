@@ -7,29 +7,28 @@
 
 #' @name figure-eights
 #' @param n Number of observations.
-#' @param a Aspect ratio of figure eight.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-figure-eights.r
 NULL
 
 #' @rdname figure-eights
 #' @export
-sample_figure_eight <- function(n, a, sd){
-  theta <- rs_eight(n,a)
+sample_figure_eight <- function(n, sd){
+  theta <- rs_eight(n)
   #Parametrization of figure eight with modified theta values inputted
   res <- cbind(
-    x = (a * sin(theta)),
-    y = (a * sin(theta)*cos(theta))
+    x = (sin(theta)),
+    y = (sin(theta)*cos(theta))
   )
   #Adds Gaussian noise to figure 8
   add_noise(res, sd = sd)
 }
 #Rejection sampler
-rs_eight <- function(n,a){
+rs_eight <- function(n){
   x <- c()
   while(length(x) < n){
     theta <- runif(n, 0, 2*pi)
-    jacobian <- jd_eight(a)
+    jacobian <- jd_eight()
     #Applies the jacobian scalar value to each value of theta
     jacobian_theta <- sapply(theta, jacobian)
     #Adds new theta values to list only if greater than the density threshold,
@@ -41,6 +40,6 @@ rs_eight <- function(n,a){
 }
 
 #Jacobian determinant of figure eight
-jd_eight <- function(a){
-  function(theta)sqrt((a*cos(theta))^2 + (a*cos(theta)^2-a*sin(theta)^2)^2)
+jd_eight <- function(){
+  function(theta)sqrt((cos(theta))^2 + (cos(theta)^2-sin(theta)^2)^2)
 }
