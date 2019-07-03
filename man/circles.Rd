@@ -5,7 +5,6 @@
 \alias{sample_circle}
 \alias{sample_circles_interlocked}
 \alias{sample_circle_sinusoidal}
-\alias{sample_eight}
 \title{Sample (with noise) from circles}
 \usage{
 sample_circle(n, sd = 0)
@@ -13,8 +12,6 @@ sample_circle(n, sd = 0)
 sample_circles_interlocked(n, sd = 0)
 
 sample_circle_sinusoidal(n, sd = 0)
-
-sample_eight(n, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -40,8 +37,4 @@ pairs(x, asp = 1, pch = 19, cex = .5)
 # sinusoidal circle in 3-space
 x <- sample_circle_sinusoidal(120, sd = .1)
 pairs(x, asp = 1, pch = 19, cex = .5)
-
-# figure eight in 2-space
-x <- sample_eight(120, sd = .1)
-plot(x, asp = 1, pch = 19, cex = .5)
 }

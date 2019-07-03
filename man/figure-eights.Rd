@@ -3,29 +3,33 @@
 \name{figure-eights}
 \alias{figure-eights}
 \alias{sample_figure_eight}
-\title{Sample from figure eight}
+\title{Sample (with noise) from figure eight}
 \usage{
-sample_figure_eight(n, r)
+sample_figure_eight(n, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{r}{Scalar factor of figure eight.}
+\item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
 \description{
 These functions generate uniform samples from figure eights in
-2-dimensional space.
+2-dimensional space, optionally with noise.
 }
 \details{
 (Details.)
 }
 \examples{
 # Uniformly sampled figure eight in 2-space
-x <- sample_figure_eight(720, 1)
+x <- sample_figure_eight(720)
 plot(x, asp = 1, pch = 19, cex = .5)
 
 # Naively sampled figure eight, for comparison
 theta <- runif(n = 720, min = 0, max = 2*pi)
 x_naive <- cbind(x = cos(theta), y <- cos(theta) * sin(theta))
 plot(x_naive, asp = 1, pch = 19, cex = .5)
+
+# Uniformly sampled figure eight in 2-space with Gaussian noise
+x <- sample_figure_eight(720, 0.1)
+plot(x, asp = 1, pch = 19, cex = .5)
 }

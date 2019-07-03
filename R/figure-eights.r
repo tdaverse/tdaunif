@@ -13,7 +13,7 @@ NULL
 
 #' @rdname figure-eights
 #' @export
-sample_figure_eight <- function(n, sd){
+sample_figure_eight <- function(n, sd = 0){
   theta <- rs_eight(n)
   #Parametrization of figure eight with modified theta values inputted
   res <- cbind(
