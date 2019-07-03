@@ -40,12 +40,3 @@ sample_circle_sinusoidal <- function(n, sd = 0) {
   res <- cbind(x = x, y = y, z = x*y)
   add_noise(res, sd = sd)
 }
-
-#' @rdname circles
-#' @export
-sample_eight <- function(n, sd = 0) {
-  theta <- runif(n = n, min = 0, max = 2*pi)
-  x <- cos(theta); y <- sin(theta)
-  res <- cbind(x = x, y = x*y)
-  add_noise(res, sd = sd)
-}
