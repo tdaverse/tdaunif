@@ -3,17 +3,18 @@
 \name{stratified-samplers}
 \alias{stratified-samplers}
 \alias{stratified_square}
-\title{Stratified Sample of \link{0,1}x\link{0,1} square}
+\title{Stratified sample of unit square}
 \usage{
 stratified_square(n, k)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{k}{Number of intervals per dimension for the stratification}
+\item{k}{Number of intervals per dimension for the stratification.}
 }
 \description{
-This functions generates stratified samples of the unit square in 2-dimensional space
+This functions generates stratified samples of the unit square
+in 2-dimensional space.
 }
 \details{
 (Details.)
