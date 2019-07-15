@@ -31,7 +31,7 @@ stratified_square <- function(n,k){
   samples <- cbind(s,t)
   #Applies shifts to originally sampled s and t values to obtain the stratified
   #sample
-  coords <- samples + shiftVals
+  samples + shiftVals
 }
 
 #' @rdname stratified-samplers
@@ -48,5 +48,5 @@ stratified_segment <- function(n,k){
   #Calculate the shift values
   shiftVals <- (1/k) * m
   #Applies shifts to originally sampled s values to obtain the stratified sample
-  coords <- cbind(s + shiftVals,0) 
+  cbind((s + shiftVals)) 
 }
