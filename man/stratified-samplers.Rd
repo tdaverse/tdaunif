@@ -3,9 +3,12 @@
 \name{stratified-samplers}
 \alias{stratified-samplers}
 \alias{stratified_square}
-\title{Stratified sample of unit square}
+\alias{stratified_segment}
+\title{Stratified sample of unit square or line segment}
 \usage{
 stratified_square(n, k)
+
+stratified_segment(n, k)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -13,8 +16,8 @@ stratified_square(n, k)
 \item{k}{Number of intervals per dimension for the stratification.}
 }
 \description{
-This functions generates stratified samples of the unit square
-in 2-dimensional space.
+These functions generate stratified samples of the unit square
+in 2-dimensional space or stratified samples of a 1-dimension line segment
 }
 \details{
 (Details.)
@@ -22,7 +25,12 @@ in 2-dimensional space.
 \examples{
 #Stratified sample of a unit square with 100 cells
 x <- stratified_square(110,10)
-plot(x, asp = 1, pch = 19, cex = .5)
+plot(x, asp = 1, pch = 19, cex = .5, xlab = 'x', ylab = 'y')
 segments(x0 = seq(0,1,.1),y0 = 0, y1 = 1)
 segments(y0 = seq(0,1,.1),x0 = 0, x1 = 1)
+
+#Stratified sample in 1-dimension with 10 intervals
+x <- stratified_segment(13,10)
+plot(x, asp = 1, pch = 19, cex = .5, xlab = 'x', ylab = '')
+segments(x0 = seq(0,1,.1),y0 = -1, y1 = 1)
 }
