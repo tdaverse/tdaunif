@@ -5,7 +5,7 @@
 \alias{sample_planar_triangle}
 \title{Sample from planar triangles}
 \usage{
-sample_planar_triangle(n, triangle, resolution = 0)
+sample_planar_triangle(n, triangle, resolution = 1)
 }
 \arguments{
 \item{n}{Number of observations.}

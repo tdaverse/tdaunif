@@ -21,13 +21,13 @@ NULL
 
 #' @rdname planar-triangles
 #' @export
-sample_planar_triangle <- function(n, triangle, resolution = 0){
+sample_planar_triangle <- function(n, triangle, resolution = 1){
   #Checks to make sure 'triangle' input is a 2x3 matrix and if not, alerts the
   #user
   if(nrow(triangle) != 2 | ncol(triangle) != 3)
     stop("The triangle's vertices must be inputed as a 2x3 matrix")
   #Samples n values from a stratified unit square
-  if(resolution != 0){
+  if(resolution > 1){
     unitSquare <- stratified_square(n, resolution)
     s <- unitSquare[,1]
     t <- unitSquare[,2]
