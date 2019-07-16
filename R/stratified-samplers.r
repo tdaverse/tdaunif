@@ -1,14 +1,15 @@
-#' @title Stratified sample of unit line segment, square, or cube
+#' @title Stratified sample of any unit dimensional space
 #'
-#' @description These functions generate stratified samples of the unit line
-#'   segment in 1-dimensional space, the unit square in 2-space, and the unit
-#'   cube in 3-space.
+#' @description These functions generate stratified samples of any dimension
+#'   including the unit line segment in 1-dimensional space, the unit square in
+#'   2-space, the unit cube in 3-space.
 #'
 #' @details (Details.)
 
 #' @name stratified-samplers
 #' @param n Number of observations.
 #' @param k Number of intervals per dimension for the stratification.
+#' @param d Dimensional space of sample
 #' @example inst/examples/ex-stratified-samplers.r
 NULL
 
@@ -76,3 +77,41 @@ stratified_cube <- function(n,k){
   #sample
   samples + shiftVals
 }
+
+#' @rdname stratified-samplers
+#' @export
+stratified_sample <- function(n,k,d){
+  unifSamples <- c()
+  i <- 0
+  while(i<d){
+    unifSamples <- cbind(unifSamples, runif(n,0,1/k))
+    i=i+1
+  }
+  #Finds the number of remainder sample points
+  r <- n %% k^d
+  #Provides index values to cells in the 3-dimensional grid system
+  mq <-  rep(0:(k^d-1),n %/% (k^d))
+  mr <- sample(0:(k^d-1),r,replace = FALSE)
+  m <- c(mq,mr)
+  #Finds the row, column, and depth of each cell in the matrix
+  shifts <- matrix(base_expansion(m, k ,d), n, d+1)
+  shifts<-shifts[,c((d+1):2),drop = FALSE]
+  #Uses row, column, and depth values to determine degree of shifting
+  shiftVals <- (1/k) * shifts
+  #Applies shifts to originally sampled s/t/u values to obtain the stratified
+  #sample
+  unifSamples + shiftVals
+}
+
+base_expansion <- function(n,k, d){
+  i <- d
+  base <- c()
+  while(i >= 0) {
+    base <- c(base,n%/%k^i)
+    n <- n%%k^i
+    i <-  i-1
+  }
+  base
+}
+
+
