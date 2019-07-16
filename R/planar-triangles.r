@@ -14,21 +14,21 @@
 #' @param n Number of observations.
 #' @param triangle The (x,y) coordinates of the vertices of a triangle,
 #'   formatted in a 2x3 matrix
-#' @param resolution Number of intervals per dimension to stratify by. Default
-#'   set to 0, which generates a uniform sample
+#' @param bins Number of intervals per dimension to stratify by. Default
+#'   set to 1, which generates a uniform sample
 #' @example inst/examples/ex-planar-triangles.r
 NULL
 
 #' @rdname planar-triangles
 #' @export
-sample_planar_triangle <- function(n, triangle, resolution = 1){
+sample_planar_triangle <- function(n, triangle, bins = 1){
   #Checks to make sure 'triangle' input is a 2x3 matrix and if not, alerts the
   #user
   if(nrow(triangle) != 2 | ncol(triangle) != 3)
     stop("The triangle's vertices must be inputed as a 2x3 matrix")
   #Samples n values from a stratified unit square
-  if(resolution > 1){
-    unitSquare <- stratified_square(n, resolution)
+  if(bins > 1){
+    unitSquare <- stratified_square(n, bins)
     s <- unitSquare[,1]
     t <- unitSquare[,2]
   }
