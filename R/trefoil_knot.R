@@ -4,34 +4,33 @@
 #'   3-dimensional space.
 #'
 #' @details (Details.)
-
-#' @name trefoil-knot
+#' 
+#' @name trefoil_knot
 #' @param n Number of observations.
 #' @param a Aspect ratio
-#' @param min_theta minimum theta value for function
-#' @param max_theta maximum theta vaue for function
+#' @example inst/examples/ex-trefoil_knot.r
 
 NULL
 
 #' @rdname trefoil_knot
 #' @export
-sample_trefoil_knot <- function(n, a = 1,min_theta =0, max_theta = 2*pi){
-  theta <- rs_knot(n,a, min_theta, max_theta)
+sample_trefoil_knot <- function(n, a = 1){
+  theta <- rs_knot(n,a)
   #Applies modified theta values to parametric equation of trefoil knot
   res <- cbind(
     x = (sin(theta) + 2*sin(2*theta)),
     y = (cos(theta) - 2*cos(2*theta)),
     z = (-(sin(theta))^3)
   )
+  
 }
 
-
 #Rejection sampler
-rs_knot <- function(n,a, min_theta, max_theta){
+rs_knot <- function(n,a){
   x <- c()
   #Keep looping until desired number of observations is achieved
   while(length(x) < n){
-    theta <- runif(n, min_theta, max_theta)
+    theta <- runif(n, 0, 2*pi)
     jacobian <- jd_knot(a)
     #applies the Jacobian scalar value to each value of theta
     jacobian_theta <- sapply(theta, jacobian)
@@ -44,12 +43,8 @@ rs_knot <- function(n,a, min_theta, max_theta){
 }
 
 #Jacobian determinant of trefoil
-jd_knot <- function(a){
+jd_knot <- function(a)
+{
   function(theta)sqrt(((cos(theta) + 4*cos(2*theta))^2)+((-sin(theta) + 4*sin(2*theta))^2) + (9*(cos(3*theta))^2)) 
 }
-
-plot(sample_trefoil_knot(180))
-
-
- 
 
