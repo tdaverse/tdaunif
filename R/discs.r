@@ -18,19 +18,19 @@ NULL
 
 #' @rdname discs
 #' @export
-sample_disc <- function(n, sd){
+sample_disc <- function(n, sd) {
   #Orthogonal unit vectors (1,0) and (0,1)
-  unit_vectors <-  cbind(c(1,0),c(0,1))
+  unit_vectors <-  cbind(c(1,0), c(0,1))
   #Samples n values between 0 and 1 for unit square coordinates
-  s <- runif(n,0,1)
-  t <- runif(n,0,1)
+  s <- runif(n, 0, 1)
+  t <- runif(n, 0, 1)
   #Stores 2 coefficients of area-preserving parametrization of disc in a
   #2xn matrix with different unit square coordinates (s,t)
-  coeffs <-  rbind(sqrt(s)*(cos(2*pi*t)), sqrt(s)*(sin(2*pi*t)))
+  coeffs <- rbind(sqrt(s) * (cos(2*pi * t)), sqrt(s) * (sin(2*pi * t)))
   #Multiplies the matrix of the unit vectors by the matrix of coefficients, and
   #transposes the product to create an array of uniformly sampled x and y
   #coordinates
   res <- t(unit_vectors %*% coeffs)
-  colnames(res) <- c('x','y')
-  add_noise(res, sd=sd)
+  colnames(res) <- c('x', 'y')
+  add_noise(res, sd = sd)
 }

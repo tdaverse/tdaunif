@@ -18,6 +18,6 @@ NULL
 sample_swiss <- function(n, width = 2, sd = 0) {
   t <- runif(n, 1, 9/2*pi)
   z <- runif(n, 0, width)
-  res <- cbind(x = t*cos(t), y = t*sin(t), z = z)
+  res <- cbind(x = t * cos(t), y = t * sin(t), z = z)
   add_noise(res, sd = sd)
 }

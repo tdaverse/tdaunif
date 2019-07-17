@@ -21,29 +21,29 @@ NULL
 
 #' @rdname planar-triangles
 #' @export
-sample_planar_triangle <- function(n, triangle, bins = 1){
+sample_planar_triangle <- function(n, triangle, bins = 1) {
   #Checks to make sure 'triangle' input is a 2x3 matrix and if not, alerts the
   #user
-  if(nrow(triangle) != 2 | ncol(triangle) != 3)
-    stop("The triangle's vertices must be inputed as a 2x3 matrix")
+  if (nrow(triangle) != 2 | ncol(triangle) != 3)
+    stop ("The triangle's vertices must be inputed as a 2x3 matrix")
   #Samples n values from a stratified unit square
-  if(bins > 1){
+  if (bins > 1) {
     unit_square <- stratified_square(n, bins)
-    s <- unit_square[,1]
-    t <- unit_square[,2]
+    s <- unit_square[, 1]
+    t <- unit_square[, 2]
   }
   #Samples n values between 0 and 1 for unit square coordinates
-  else{
-    s <- runif(n,0,1)
-    t <- runif(n,0,1)
+  else {
+    s <- runif(n, 0, 1)
+    t <- runif(n, 0, 1)
   }
   #Stores 3 coefficients of area-preserving parametrization of triangle in a 3xn
   #matrix with different unit square coordinates (s,t)
-  coeffs <-  rbind(1-sqrt(s), sqrt(s)*(1-t), sqrt(s)*t)
+  coeffs <- rbind(1 - sqrt(s), sqrt(s) * (1 - t), sqrt(s) * t)
   #Multiplies the matrix of the triangle's vertices by the matrix of
   #coefficients, and transposes the product to create an array of uniformly
   #sampled x and y coordinates
   res <- t(triangle %*% coeffs)
-  colnames(res) <- c('x','y')
+  colnames(res) <- c('x', 'y')
   res
 }
