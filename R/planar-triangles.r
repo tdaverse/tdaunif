@@ -29,7 +29,7 @@ sample_planar_triangle <- function(n, triangle, bins = 1) {
   #Samples n values from a stratified unit square or samples n values between
   #0 and 1 for unit square coordinates if uniform sample desired
   if (bins > 1) {
-    unit_square <- stratified_square(n, bins)
+    unit_square <- sample_strat_square(n, bins)
     s <- unit_square[, 1]
     t <- unit_square[, 2]
   } else {

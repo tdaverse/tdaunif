@@ -14,7 +14,7 @@ NULL
 
 #' @rdname stratified-samplers
 #' @export
-stratified_segment <- function(n, k) {
+sample_strat_segment <- function(n, k) {
   #Samples s from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   #Finds the number of remainder sample points
@@ -31,7 +31,7 @@ stratified_segment <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-stratified_square <- function(n, k) {
+sample_strat_square <- function(n, k) {
   #Samples s and t from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   t <- runif(n, 0, (1/k))
@@ -54,7 +54,7 @@ stratified_square <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-stratified_cube <- function(n, k) {
+sample_strat_cube <- function(n, k) {
   #Samples s,t, and u from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   t <- runif(n, 0, (1/k))
