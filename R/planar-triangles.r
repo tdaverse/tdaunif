@@ -26,14 +26,13 @@ sample_planar_triangle <- function(n, triangle, bins = 1) {
   #user
   if (nrow(triangle) != 2 | ncol(triangle) != 3)
     stop ("The triangle's vertices must be inputed as a 2x3 matrix")
-  #Samples n values from a stratified unit square
+  #Samples n values from a stratified unit square or samples n values between
+  #0 and 1 for unit square coordinates if uniform sample desired
   if (bins > 1) {
     unit_square <- stratified_square(n, bins)
     s <- unit_square[, 1]
     t <- unit_square[, 2]
-  }
-  #Samples n values between 0 and 1 for unit square coordinates
-  else {
+  } else {
     s <- runif(n, 0, 1)
     t <- runif(n, 0, 1)
   }
