@@ -33,7 +33,7 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
 #' @export
 sample_klein <- sample_klein_tube
 
-# rejection sampler for a Klein bottle (Mobius tube parameterization)
+# Rejection sampler for a Klein bottle (Mobius tube parameterization)
 # https://projecteuclid.org/euclid.imsc/1379942050
 rs_klein_tube <- function(n, r) {
   x <- c()

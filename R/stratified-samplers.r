@@ -24,9 +24,9 @@ stratified_segment <- function(n,k){
   mr <- sample(0:(k-1),r,replace = FALSE)
   m <- c(mq,mr)
   #Calculate the shift values
-  shiftVals <- (1/k) * m
+  shifts <- (1/k) * m
   #Applies shifts to originally sampled s values to obtain the stratified sample
-  cbind((s + shiftVals)) 
+  cbind((s + shifts)) 
 }
 
 #' @rdname stratified-samplers
@@ -42,14 +42,14 @@ stratified_square <- function(n,k){
   mr <- sample(0:(k^2-1),r,replace = FALSE)
   m <- c(mq,mr)
   #Finds the row and column of each cell in the matrix
-  rowSample <- m %/% k
-  colSample <- m %% k
+  row_index <- m %/% k
+  col_index <- m %% k
   #Uses row and column values to determine degree of shifting
-  shiftVals <- (1/k) * cbind(rowSample,colSample)
+  shifts <- (1/k) * cbind(row_index,col_index)
   samples <- cbind(s,t)
   #Applies shifts to originally sampled s and t values to obtain the stratified
   #sample
-  samples + shiftVals
+  samples + shifts
 }
 
 #' @rdname stratified-samplers
@@ -66,13 +66,13 @@ stratified_cube <- function(n,k){
   mr <- sample(0:(k^3-1),r,replace = FALSE)
   m <- c(mq,mr)
   #Finds the row, column, and depth of each cell in the matrix
-  rowSample <- (m%%k^2) %/% k
-  colSample <- (m%%k^2) %% k
-  depthSample <- m %/% k^2
+  row_index <- (m%%k^2) %/% k
+  col_index <- (m%%k^2) %% k
+  depth_index <- m %/% k^2
   #Uses row, column, and depth values to determine degree of shifting
-  shiftVals <- (1/k) * cbind(rowSample,colSample, depthSample)
+  shifts <- (1/k) * cbind(row_index,col_index, depth_index)
   samples <- cbind(s,t,u)
   #Applies shifts to originally sampled s/t/u values to obtain the stratified
   #sample
-  samples + shiftVals
+  samples + shifts
 }

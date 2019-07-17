@@ -20,7 +20,7 @@ NULL
 #' @export
 sample_disc <- function(n, sd){
   #Orthogonal unit vectors (1,0) and (0,1)
-  unitVectors <-  cbind(c(1,0),c(0,1))
+  unit_vectors <-  cbind(c(1,0),c(0,1))
   #Samples n values between 0 and 1 for unit square coordinates
   s <- runif(n,0,1)
   t <- runif(n,0,1)
@@ -30,7 +30,7 @@ sample_disc <- function(n, sd){
   #Multiplies the matrix of the unit vectors by the matrix of coefficients, and
   #transposes the product to create an array of uniformly sampled x and y
   #coordinates
-  res <- t(unitVectors %*% coeffs)
+  res <- t(unit_vectors %*% coeffs)
   colnames(res) <- c('x','y')
   add_noise(res, sd=sd)
 }

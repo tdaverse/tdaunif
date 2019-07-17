@@ -23,11 +23,11 @@ sample_circle <- function(n, sd = 0) {
 #' @export
 sample_circles_interlocked <- function(n, sd = 0) {
   theta <- runif(n = n, min = 0, max = 4*pi)
-  theta1 <- theta[theta < 2*pi]
-  theta2 <- theta[theta >= 2*pi]
+  theta_1 <- theta[theta < 2*pi]
+  theta_2 <- theta[theta >= 2*pi]
   res <- rbind(
-    cbind(x = cos(theta1), y = sin(theta1), z = 0),
-    cbind(x = cos(theta2) + 1, y = 0, z = sin(theta2))
+    cbind(x = cos(theta_1), y = sin(theta_1), z = 0),
+    cbind(x = cos(theta_2) + 1, y = 0, z = sin(theta_2))
   )
   add_noise(res, sd = sd)
 }
