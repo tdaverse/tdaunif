@@ -19,10 +19,28 @@ These functions generate uniform samples from archimedean
 spirals in 2-dimensional space.
 }
 \details{
-(Details.)
+The archimedean spiral starts at the origin and wraps around itself
+such that distances between all the spiral branches are equivalent. The
+specific parametrization was taken from (insert). The uniform sample is
+generated through a rejection sampling process as described by Diaconis
+(2013).
 }
 \examples{
-#Uniformly sampled archimedean spiral in 2-space, with 2 wraps
-x <- sample_arch_spiral(720, min_wrap = 0, max_wrap = 2)
+#Uniformly sampled archimedean spiral in 2-space, with 1 wrap
+x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled archimedean spiral in 2-space, with 5 wraps
+x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 5)
+plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled archimedean spiral in 2-space, with 5 wraps and starting from
+#2 wraps
+x <- sample_arch_spiral(360, min_wrap = 2, max_wrap = 5)
+plot(x, asp = 1, pch = 19, cex = .5)
+}
+\references{
+P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
+\emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
+honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 }
