@@ -20,6 +20,9 @@ spirals in 2-dimensional space, optionally with noise.
 }
 \details{
 This function is adapted from \code{\link[KODAMA:spirals]{KODAMA::spirals()}}.
+
+\strong{Note:} This is a non-uniform sampler. Use \code{\link[=sample_arch_spiral]{sample_arch_spiral()}}
+instead, which will be modified soon to incorporate multiple arms.
 }
 \examples{
 
