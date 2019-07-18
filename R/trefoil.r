@@ -15,7 +15,7 @@
 #' @name trefoil
 #' @param n Number of observations.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
-#' @example inst/examples/ex-trefoil-knot.r
+#' @example inst/examples/ex-trefoil.r
 
 NULL
 
@@ -40,7 +40,7 @@ rs_trefoil <- function(n){
   # Keep looping until desired number of observations is achieved
   while (length(x) < n) {
     theta <- runif(n, 0, 2*pi)
-    jacobian <- jd_trefoil(a)
+    jacobian <- jd_trefoil()
     # Applies the Jacobian scalar value to each value of theta
     jacobian_theta <- sapply(theta, jacobian)
     # Density threshold is the greatest jacobian value in the trefoil knot, and
@@ -54,7 +54,7 @@ rs_trefoil <- function(n){
 }
 
 # Jacobian determinant of trefoil
-jd_trefoil <- function(a)
+jd_trefoil <- function()
 {
   function(theta)sqrt(
     ((cos(theta) + 4*cos(2*theta))^2) +
