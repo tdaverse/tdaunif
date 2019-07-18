@@ -3,16 +3,18 @@
 \name{trefoil}
 \alias{trefoil}
 \alias{sample_trefoil}
-\title{Sample from trefoil knot}
+\title{Sample (with noise) from trefoil knot}
 \usage{
-sample_trefoil(n)
+sample_trefoil(n, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
+
+\item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
 \description{
 These functions generate uniform samples from trefoil knot in
-3-dimensional space.
+3-dimensional space, optionally with noise.
 }
 \details{
 The trefoil knot is the simplest nontrivial knot and contains three
@@ -27,5 +29,9 @@ Diaconis &al, 2013.
 \examples{
 # Uniformly sampled trefoil knot in 3-space
 x <- sample_trefoil(180)
+pairs(x, asp = 1, pch = 19, cex = .5, col = "#00000077")
+
+# Uniformly sampled trefoil knot in 3-space, with Gaussian noise
+x <- sample_trefoil(180, sd = .1)
 pairs(x, asp = 1, pch = 19, cex = .5, col = "#00000077")
 }

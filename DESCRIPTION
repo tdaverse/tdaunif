@@ -1,7 +1,11 @@
 Package: tdaunif
 Title: Uniform manifold samplers for topological data analysis
 Version: 0.0.0.9000
-Authors@R: person("Jason Cory", "Brunson", email = "cornelioid@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+    person("Jason Cory", "Brunson", email = "cornelioid@gmail.com", role = c("aut", "cre")),
+    person("Brandon", "Demkowicz", email = "brandondemkowicz@gmail.com", role = "aut"),
+    person("Sanmati", "Choudhary", email = "20choudharysa@fpsct.org", role = "aut")
+    )
 Description: This package contains functions that generate uniform random
     samples from simple manifolds, optionally with noise, which are commonly
     used to test topological data analytic (TDA) techniques.
