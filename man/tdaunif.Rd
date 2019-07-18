@@ -32,4 +32,8 @@ honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 }
 \author{
 Jason Cory Brunson
+
+Brandon Demkowicz
+
+Sanmati Choudhary
 }
