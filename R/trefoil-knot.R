@@ -54,6 +54,10 @@ rs_trefoil <- function(n){
 # Jacobian determinant of trefoil
 jd_trefoil <- function(a)
 {
-  function(theta)sqrt(((cos(theta) + 4*cos(2*theta))^2)+((-sin(theta) + 4*sin(2*theta))^2) + (9*(cos(3*theta))^2)) 
+  function(theta)sqrt(
+    ((cos(theta) + 4*cos(2*theta))^2) +
+    ((-sin(theta) + 4*sin(2*theta))^2) + 
+    (9*(cos(3*theta))^2)
+    ) 
 }
 
