@@ -10,3 +10,8 @@ plot(x, asp = 1, pch = 19, cex = .5)
 #2 wraps
 x <- sample_arch_spiral(360, min_wrap = 2, max_wrap = 5)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled archimedean spiral in 2-space, with 1 wrap and noise with a
+#standard deviation of 0.1
+x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1, sd = 0.1)
+plot(x, asp = 1, pch = 19, cex = .5)

@@ -3,9 +3,9 @@
 \name{arch-spirals}
 \alias{arch-spirals}
 \alias{sample_arch_spiral}
-\title{Sample from archimedean spirals}
+\title{Sample (with noise) from archimedean spirals}
 \usage{
-sample_arch_spiral(n, min_wrap = 0, max_wrap = 1)
+sample_arch_spiral(n, min_wrap = 0, max_wrap = 1, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -13,16 +13,18 @@ sample_arch_spiral(n, min_wrap = 0, max_wrap = 1)
 \item{min_wrap}{The wrap of the spiral from which sampling begins}
 
 \item{max_wrap}{The wrap of the spiral where sampling ends}
+
+\item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
 \description{
 These functions generate uniform samples from archimedean
-spirals in 2-dimensional space.
+spirals in 2-dimensional space, optionally with noise.
 }
 \details{
 The archimedean spiral starts at the origin and wraps around itself
 such that distances between all the spiral branches are equivalent. The
-specific parametrization was taken from (insert). The uniform sample is
-generated through a rejection sampling process as described by Diaconis
+specific parametrization was taken from Koeller (2002). The uniform sample
+is generated through a rejection sampling process as described by Diaconis
 (2013).
 }
 \examples{
@@ -38,9 +40,17 @@ plot(x, asp = 1, pch = 19, cex = .5)
 #2 wraps
 x <- sample_arch_spiral(360, min_wrap = 2, max_wrap = 5)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled archimedean spiral in 2-space, with 1 wrap and noise with a
+#standard deviation of 0.1
+x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1, sd = 0.1)
+plot(x, asp = 1, pch = 19, cex = .5)
 }
 \references{
 P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
 \emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
 honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
+
+Koeller, J. (2002). Spirals. Retrieved July 18, 2019, from
+\url{http://www.mathematische-basteleien.de/spiral.htm}
 }
