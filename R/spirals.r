@@ -4,6 +4,9 @@
 #'   spirals in 2-dimensional space, optionally with noise.
 #'
 #' @details This function is adapted from [KODAMA::spirals()].
+#'
+#'   **Note:** This is a non-uniform sampler. Use [sample_arch_spiral()]
+#'   instead, which will be modified soon to incorporate multiple arms.
 
 #' @name spirals
 #' @param n Number of observations.
@@ -15,6 +18,11 @@ NULL
 #' @rdname spirals
 #' @export
 sample_spirals <- function(n, spirals = 3, sd = 0) {
+  warning(
+    "This is a non-uniform sampler. Use `sample_arch_spiral()` instead, ",
+    "which will be modified soon to incorporate multiple arms."
+  )
+  
   # split sample size
   ns <- apply(stats::rmultinom(n = n, size = 1, prob = rep(1, spirals)), 1, sum)
   
