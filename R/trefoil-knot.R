@@ -1,7 +1,7 @@
-#' @title Sample from trefoil knot
+#' @title Sample (with noise) from trefoil knot
 #'
 #' @description These functions generate uniform samples from trefoil knot in
-#'   3-dimensional space.
+#'   3-dimensional space, optionally with noise.
 #'
 #' @details The trefoil knot is the simplest nontrivial knot and contains three
 #'   unique crossings in three dimensional space. This uniform sample is
@@ -14,6 +14,7 @@
 #'   
 #' @name trefoil
 #' @param n Number of observations.
+#' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-trefoil-knot.r
 
 NULL
@@ -21,7 +22,7 @@ NULL
 #' @rdname trefoil
 #' @export
 
-sample_trefoil <- function(n){
+sample_trefoil <- function(n, sd = 0){
   theta <- rs_trefoil(n)
   # Applies modified theta values to parametric equation of trefoil knot
   res <- cbind(
@@ -29,7 +30,8 @@ sample_trefoil <- function(n){
     y = (cos(theta) - 2*cos(2*theta)),
     z = (-(sin(theta))^3)
   )
-  
+  #Adds Gaussian noise to figure 8
+  add_noise(res, sd = sd)
 }
 
 # Rejection sampler
