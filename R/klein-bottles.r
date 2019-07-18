@@ -33,7 +33,7 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
 #' @export
 sample_klein <- sample_klein_tube
 
-# rejection sampler for a Klein bottle (Mobius tube parameterization)
+# Rejection sampler for a Klein bottle (Mobius tube parameterization)
 # https://projecteuclid.org/euclid.imsc/1379942050
 rs_klein_tube <- function(n, r) {
   x <- c()
@@ -85,19 +85,19 @@ jd_klein_flat <- function(p, e) {
   function(phi) {
     sinphi <- sin(phi)
     cosphi <- cos(phi)
-    sqsinphi <- sinphi^2
-    sqcosphi <- cosphi^2
-    sin2phi <- sin(2*phi)
-    cos2phi <- cos(2*phi)
-    sqsin2phi <- sin2phi^2
-    sqcos2phi <- cos2phi^2
+    sqsinphi <- sinphi ^ 2
+    sqcosphi <- cosphi ^ 2
+    sin2phi <- sin(2 * phi)
+    cos2phi <- cos(2 * phi)
+    sqsin2phi <- sin2phi ^ 2
+    sqcos2phi <- cos2phi ^ 2
     .25 * sqsinphi * sqsin2phi +
       .25 * sqsinphi * sqcosphi +
       sqsin2phi * sqcos2phi +
       sqcosphi * sqcos2phi +
-      p^2 * (1 + e*sinphi)^2 * (sqsinphi + 4*sqcos2phi) +
-      p^2 * (e^2)*sqcosphi * (.25*sqcosphi + .25*sqsin2phi) +
-      p^4 * (1 + e*sinphi)^2 * (e^2)*sqcosphi -
+      p ^ 2 * (1 + e * sinphi) ^ 2 * (sqsinphi + 4 * sqcos2phi) +
+      p ^ 2 * (e ^ 2) * sqcosphi * (.25 * sqcosphi + .25 * sqsin2phi) +
+      p ^ 4 * (1 + e * sinphi)^2 * (e ^ 2) * sqcosphi -
       4 * sqcosphi * sqcos2phi -
       2 * sinphi * cosphi * sin2phi * cos2phi -
       .25 * sqsinphi * sqsin2phi
