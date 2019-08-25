@@ -5,14 +5,17 @@
 \alias{sample_arch_spiral}
 \title{Sample (with noise) from archimedean spirals}
 \usage{
-sample_arch_spiral(n, min_wrap = 0, max_wrap = 1, sd = 0)
+sample_arch_spiral(n, arms = 1L, min_wrap = 0, max_wrap = 1,
+  sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{min_wrap}{The wrap of the spiral from which sampling begins}
+\item{arms}{Number of spiral arms.}
 
-\item{max_wrap}{The wrap of the spiral where sampling ends}
+\item{min_wrap}{The wrap of the spiral from which sampling begins.}
+
+\item{max_wrap}{The wrap of the spiral at which sampling ends.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
@@ -41,16 +44,20 @@ plot(x, asp = 1, pch = 19, cex = .5)
 x <- sample_arch_spiral(360, min_wrap = 2, max_wrap = 5)
 plot(x, asp = 1, pch = 19, cex = .5)
 
+#Uniformly sampled archimedian spiral, from 1 to 2 wraps, with 3 arms
+x <- sample_arch_spiral(360, arms = 3, min_wrap = 1, max_wrap = 2)
+plot(x, asp = 1, pch = 19, cex = .5)
+
 #Uniformly sampled archimedean spiral in 2-space, with 1 wrap and noise with a
 #standard deviation of 0.1
 x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1, sd = 0.1)
 plot(x, asp = 1, pch = 19, cex = .5)
 }
 \references{
+Koeller, J. (2002). Spirals. Retrieved July 18, 2019, from
+\url{http://www.mathematische-basteleien.de/spiral.htm}
+
 P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
 \emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
 honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
-
-Koeller, J. (2002). Spirals. Retrieved July 18, 2019, from
-\url{http://www.mathematische-basteleien.de/spiral.htm}
 }
