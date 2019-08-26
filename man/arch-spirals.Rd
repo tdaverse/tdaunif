@@ -3,10 +3,14 @@
 \name{arch-spirals}
 \alias{arch-spirals}
 \alias{sample_arch_spiral}
-\title{Sample (with noise) from archimedean spirals}
+\alias{sample_swiss_roll}
+\title{Sample (with noise) from archimedean spirals and swiss rolls}
 \usage{
 sample_arch_spiral(n, arms = 1L, min_wrap = 0, max_wrap = 1,
   sd = 0)
+
+sample_swiss_roll(n, arms = 1L, min_wrap = 0, max_wrap = 1,
+  width = 2 * pi, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -18,17 +22,25 @@ sample_arch_spiral(n, arms = 1L, min_wrap = 0, max_wrap = 1,
 \item{max_wrap}{The wrap of the spiral at which sampling ends.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
+
+\item{width}{Width of the swiss roll (with respect to the radius of the
+spiral at one wrap).}
 }
 \description{
 These functions generate uniform samples from archimedean
-spirals in 2-dimensional space, optionally with noise.
+spirals in 2-dimensional space or from swiss rolls in 3-dimensional space,
+optionally with noise.
 }
 \details{
-The archimedean spiral starts at the origin and wraps around itself
-such that distances between all the spiral branches are equivalent. The
-specific parametrization was taken from Koeller (2002). The uniform sample
-is generated through a rejection sampling process as described by Diaconis
+The archimedean spiral starts at the origin and wraps around itself such that
+distances between all the spiral branches are equivalent. The specific
+parametrization was taken from Koeller (2002). The uniform sample is
+generated through a rejection sampling process as described by Diaconis
 (2013).
+
+The swiss roll sampler is patterned after one in
+\href{https://lvdmaaten.github.io/drtoolbox/}{drtoolbox} and extended from the
+archimedian spiral sampler.
 }
 \examples{
 #Uniformly sampled archimedean spiral in 2-space, with 1 wrap
@@ -52,6 +64,12 @@ plot(x, asp = 1, pch = 19, cex = .5)
 #standard deviation of 0.1
 x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1, sd = 0.1)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
+x <- sample_swiss_roll(720, width = 2*pi)
+pairs(x, asp = 1, pch = 19, cex = .5)
+pca <- prcomp(x)
+plot(x \%*\% pca$rotation, asp = 1, pch = 19, cex = .5)
 }
 \references{
 Koeller, J. (2002). Spirals. Retrieved July 18, 2019, from

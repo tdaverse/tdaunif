@@ -1,13 +1,21 @@
-#' @title Sample (with noise) from archimedean spirals
+#' @title Sample (with noise) from archimedean spirals and swiss rolls
 #'
 #' @description These functions generate uniform samples from archimedean
-#'   spirals in 2-dimensional space, optionally with noise.
+#'   spirals in 2-dimensional space or from swiss rolls in 3-dimensional space,
+#'   optionally with noise.
 #'
-#' @details The archimedean spiral starts at the origin and wraps around itself
-#'   such that distances between all the spiral branches are equivalent. The
-#'   specific parametrization was taken from Koeller (2002). The uniform sample
-#'   is generated through a rejection sampling process as described by Diaconis
-#'   (2013).
+#' @details
+#'
+#' The archimedean spiral starts at the origin and wraps around itself such that
+#' distances between all the spiral branches are equivalent. The specific
+#' parametrization was taken from Koeller (2002). The uniform sample is
+#' generated through a rejection sampling process as described by Diaconis
+#' (2013).
+#'
+#' The swiss roll sampler is patterned after one in
+#' [drtoolbox](https://lvdmaaten.github.io/drtoolbox/) and extended from the
+#' archimedian spiral sampler.
+#' 
 
 #' @template ref-koeller2002
 #' @template ref-diaconis2013
@@ -18,13 +26,17 @@
 #' @param arms Number of spiral arms.
 #' @param min_wrap The wrap of the spiral from which sampling begins.
 #' @param max_wrap The wrap of the spiral at which sampling ends.
+#' @param width Width of the swiss roll (with respect to the radius of the
+#'   spiral at one wrap).
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-archimedean-spirals.r
 NULL
 
 #' @rdname arch-spirals
 #' @export
-sample_arch_spiral <- function(n, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0){
+sample_arch_spiral <- function(
+  n, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0
+) {
   theta <- rs_spiral(n, min_wrap, max_wrap)
   #Applies modified theta values to parametric equation of spiral
   res <- cbind(
@@ -44,6 +56,24 @@ sample_arch_spiral <- function(n, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0)
       })
     ))
   }
+  #Adds Gaussian noise to the spiral
+  add_noise(res, sd = sd)
+}
+
+#' @rdname arch-spirals
+#' @export
+sample_swiss_roll <- function(
+  n, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
+) {
+  #Samples uniformly from the archimedian spiral on which the swiss roll is a
+  #cylinder
+  res <- sample_arch_spiral(
+    n = n, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
+    sd = 0
+  )
+  #Augments the archimedian spiral sample with a third coordinate uniformly
+  #sampled over the fixed range `width`
+  res <- cbind(res, z = runif(n, 0, width))
   #Adds Gaussian noise to the spiral
   add_noise(res, sd = sd)
 }

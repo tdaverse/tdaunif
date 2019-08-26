@@ -19,3 +19,9 @@ plot(x, asp = 1, pch = 19, cex = .5)
 #standard deviation of 0.1
 x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1, sd = 0.1)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
+x <- sample_swiss_roll(720, width = 2*pi)
+pairs(x, asp = 1, pch = 19, cex = .5)
+pca <- prcomp(x)
+plot(x %*% pca$rotation, asp = 1, pch = 19, cex = .5)
