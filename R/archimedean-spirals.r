@@ -88,12 +88,20 @@ rs_spiral <- function(n, min_wrap, max_wrap){
   #Keep looping until desired number of observations is achieved
   while(length(x) < n){
     theta <- runif(n, min_theta, max_theta)
+    jacobian <- jd_spiral()
+    #Applies the jacobian scalar value to each value of theta
+    jacobian_theta <- sapply(theta, jacobian)
     #Density threshold is the greatest jacobian value in the spiral, and the
     #area of least warping
     density_threshold <- runif(n, 0, max_theta)
     #Takes theta values that exceed the density threshold, and throws out the
     #rest
-    x <- c(x, theta[theta > density_threshold])
+    x <- c(x, theta[jacobian_theta > density_threshold])
   }
   x[1:n]
+}
+
+#Jacobian determinant of archimedean spiral
+jd_spiral <- function() {
+  function(theta) sqrt(1 + theta^2)
 }
