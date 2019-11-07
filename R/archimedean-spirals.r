@@ -23,6 +23,7 @@
 
 #' @name arch-spirals
 #' @param n Number of observations.
+#' @param ar Aspect ratio of spiral (ratio of width/height)
 #' @param arms Number of spiral arms.
 #' @param min_wrap The wrap of the spiral from which sampling begins.
 #' @param max_wrap The wrap of the spiral at which sampling ends.
@@ -35,12 +36,12 @@ NULL
 #' @rdname arch-spirals
 #' @export
 sample_arch_spiral <- function(
-  n, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0
+  n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0
 ) {
   theta <- rs_spiral(n, min_wrap, max_wrap)
   #Applies modified theta values to parametric equation of spiral
   res <- cbind(
-    x = (theta * cos(theta)),
+    x = ar * (theta * cos(theta)),
     y = (theta * sin(theta))
   )
   #Partitions the sample into arms and rotates each accordingly
