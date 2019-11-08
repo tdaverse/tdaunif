@@ -53,7 +53,10 @@ sample_arch_spiral <- function(
       list(res[arm == 0L, , drop = FALSE]),
       lapply(seq(arms - 1L), function(i) {
         res[arm == i, , drop = FALSE] %*%
-          matrix(c(cos(rot[i]), sin(rot[i]), -sin(rot[i]), cos(rot[i])), nrow = 2)
+          matrix(
+            c(cos(rot[i]), sin(rot[i]), -sin(rot[i]), cos(rot[i])),
+            nrow = 2
+          )
       })
     ))
   }
