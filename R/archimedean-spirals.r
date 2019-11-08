@@ -23,6 +23,7 @@
 
 #' @name arch-spirals
 #' @param n Number of observations.
+#' @param ar Aspect ratio of spiral (ratio of width/height)
 #' @param arms Number of spiral arms.
 #' @param min_wrap The wrap of the spiral from which sampling begins.
 #' @param max_wrap The wrap of the spiral at which sampling ends.
@@ -35,12 +36,12 @@ NULL
 #' @rdname arch-spirals
 #' @export
 sample_arch_spiral <- function(
-  n, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0
+  n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0
 ) {
   theta <- rs_spiral(n, min_wrap, max_wrap)
   #Applies modified theta values to parametric equation of spiral
   res <- cbind(
-    x = (theta * cos(theta)),
+    x = ar * (theta * cos(theta)),
     y = (theta * sin(theta))
   )
   #Partitions the sample into arms and rotates each accordingly
@@ -52,7 +53,10 @@ sample_arch_spiral <- function(
       list(res[arm == 0L, , drop = FALSE]),
       lapply(seq(arms - 1L), function(i) {
         res[arm == i, , drop = FALSE] %*%
-          matrix(c(cos(rot[i]), sin(rot[i]), -sin(rot[i]), cos(rot[i])), nrow = 2)
+          matrix(
+            c(cos(rot[i]), sin(rot[i]), -sin(rot[i]), cos(rot[i])),
+            nrow = 2
+          )
       })
     ))
   }
@@ -63,12 +67,12 @@ sample_arch_spiral <- function(
 #' @rdname arch-spirals
 #' @export
 sample_swiss_roll <- function(
-  n, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
+  n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
 ) {
   #Samples uniformly from the archimedian spiral on which the swiss roll is a
   #cylinder
   res <- sample_arch_spiral(
-    n = n, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
+    n = n, ar = ar, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
     sd = 0
   )
   #Augments the archimedian spiral sample with a third coordinate uniformly
@@ -88,12 +92,20 @@ rs_spiral <- function(n, min_wrap, max_wrap){
   #Keep looping until desired number of observations is achieved
   while(length(x) < n){
     theta <- runif(n, min_theta, max_theta)
+    jacobian <- jd_spiral()
+    #Applies the jacobian scalar value to each value of theta
+    jacobian_theta <- sapply(theta, jacobian)
     #Density threshold is the greatest jacobian value in the spiral, and the
     #area of least warping
     density_threshold <- runif(n, 0, max_theta)
     #Takes theta values that exceed the density threshold, and throws out the
     #rest
-    x <- c(x, theta[theta > density_threshold])
+    x <- c(x, theta[jacobian_theta > density_threshold])
   }
   x[1:n]
+}
+
+#Jacobian determinant of archimedean spiral
+jd_spiral <- function() {
+  function(theta) sqrt(1 + theta^2)
 }

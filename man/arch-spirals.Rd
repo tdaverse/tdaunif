@@ -6,14 +6,16 @@
 \alias{sample_swiss_roll}
 \title{Sample (with noise) from archimedean spirals and swiss rolls}
 \usage{
-sample_arch_spiral(n, arms = 1L, min_wrap = 0, max_wrap = 1,
-  sd = 0)
+sample_arch_spiral(n, ar = 1, arms = 1L, min_wrap = 0,
+  max_wrap = 1, sd = 0)
 
-sample_swiss_roll(n, arms = 1L, min_wrap = 0, max_wrap = 1,
+sample_swiss_roll(n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1,
   width = 2 * pi, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
+
+\item{ar}{Aspect ratio of spiral (ratio of width/height)}
 
 \item{arms}{Number of spiral arms.}
 
@@ -47,6 +49,16 @@ archimedian spiral sampler.
 x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 1)
 plot(x, asp = 1, pch = 19, cex = .5)
 
+#Uniformly sampled archimedean spiral in 2-space, with 1 wrap 
+#and aspect ratio of 2:1
+x <- sample_arch_spiral(360, ar = 2, min_wrap = 0, max_wrap = 1)
+plot(x, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled archimedean spiral in 2-space, with 1 wrap 
+#and aspect ratio of 1:2
+x <- sample_arch_spiral(360, ar = 0.5, min_wrap = 0, max_wrap = 1)
+plot(x, asp = 1, pch = 19, cex = .5)
+
 #Uniformly sampled archimedean spiral in 2-space, with 5 wraps
 x <- sample_arch_spiral(360, min_wrap = 0, max_wrap = 5)
 plot(x, asp = 1, pch = 19, cex = .5)
@@ -67,6 +79,12 @@ plot(x, asp = 1, pch = 19, cex = .5)
 
 #Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
 x <- sample_swiss_roll(720, width = 2*pi)
+pairs(x, asp = 1, pch = 19, cex = .5)
+pca <- prcomp(x)
+plot(x \%*\% pca$rotation, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
+x <- sample_swiss_roll(720, ar = 2, width = 2*pi)
 pairs(x, asp = 1, pch = 19, cex = .5)
 pca <- prcomp(x)
 plot(x \%*\% pca$rotation, asp = 1, pch = 19, cex = .5)
