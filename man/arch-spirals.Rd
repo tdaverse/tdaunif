@@ -9,7 +9,7 @@
 sample_arch_spiral(n, ar = 1, arms = 1L, min_wrap = 0,
   max_wrap = 1, sd = 0)
 
-sample_swiss_roll(n, arms = 1L, min_wrap = 0, max_wrap = 1,
+sample_swiss_roll(n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1,
   width = 2 * pi, sd = 0)
 }
 \arguments{
@@ -79,6 +79,12 @@ plot(x, asp = 1, pch = 19, cex = .5)
 
 #Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
 x <- sample_swiss_roll(720, width = 2*pi)
+pairs(x, asp = 1, pch = 19, cex = .5)
+pca <- prcomp(x)
+plot(x \%*\% pca$rotation, asp = 1, pch = 19, cex = .5)
+
+#Uniformly sampled swiss roll in 3-space, from 0 to 1 wraps and width 2*pi
+x <- sample_swiss_roll(720, ar = 2, width = 2*pi)
 pairs(x, asp = 1, pch = 19, cex = .5)
 pca <- prcomp(x)
 plot(x \%*\% pca$rotation, asp = 1, pch = 19, cex = .5)

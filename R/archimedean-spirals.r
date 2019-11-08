@@ -67,12 +67,12 @@ sample_arch_spiral <- function(
 #' @rdname arch-spirals
 #' @export
 sample_swiss_roll <- function(
-  n, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
+  n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
 ) {
   #Samples uniformly from the archimedian spiral on which the swiss roll is a
   #cylinder
   res <- sample_arch_spiral(
-    n = n, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
+    n = n, ar = ar, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
     sd = 0
   )
   #Augments the archimedian spiral sample with a third coordinate uniformly
