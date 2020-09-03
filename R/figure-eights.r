@@ -13,20 +13,20 @@ NULL
 
 #' @rdname figure-eights
 #' @export
-sample_figure_eight <- function(n, sd = 0){
+sample_figure_eight <- function(n, sd = 0) {
   theta <- rs_eight(n)
   #Parametrization of figure eight with modified theta values inputted
   res <- cbind(
     x = (sin(theta)),
-    y = (sin(theta)*cos(theta))
+    y = (sin(theta) * cos(theta))
   )
   #Adds Gaussian noise to figure 8
   add_noise(res, sd = sd)
 }
 #Rejection sampler
-rs_eight <- function(n){
+rs_eight <- function(n) {
   x <- c()
-  while(length(x) < n){
+  while (length(x) < n) {
     theta <- runif(n, 0, 2*pi)
     jacobian <- jd_eight()
     #Applies the jacobian scalar value to each value of theta
@@ -40,6 +40,6 @@ rs_eight <- function(n){
 }
 
 #Jacobian determinant of figure eight
-jd_eight <- function(){
-  function(theta)sqrt((cos(theta))^2 + (cos(theta)^2-sin(theta)^2)^2)
+jd_eight <- function() {
+  function(theta) sqrt((cos(theta)) ^ 2 + (cos(theta) ^ 2 - sin(theta) ^ 2) ^ 2)
 }
