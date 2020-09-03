@@ -5,7 +5,7 @@
 \alias{sample_strat_segment}
 \alias{sample_strat_square}
 \alias{sample_strat_cube}
-\alias{stratified_sample}
+\alias{sample_stratify}
 \title{Stratified sample of any unit dimensional space}
 \usage{
 sample_strat_segment(n, k)
@@ -14,7 +14,7 @@ sample_strat_square(n, k)
 
 sample_strat_cube(n, k)
 
-stratified_sample(n, k, d)
+sample_stratify(n, k, d)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -55,22 +55,22 @@ plot(x[,c(2,3)], asp = 1, pch = 19, cex = .5, xlab = 'y', ylab = 'z')
 segments(x0 = seq(0,1,1/3),y0 = 0, y1 = 1)
 segments(y0 = seq(0,1,1/3),x0 = 0, x1 = 1)
 
-#All of the same illustrations, but only using stratified_sample()
+#All of the same illustrations, but only using sample_stratify()
 
 #Stratified sample in 1-dimension with 10 intervals
-values <- stratified_sample(13,10,1)
+values <- sample_stratify(13,10,1)
 x <- cbind(values,rep(0,13))
 plot(x, asp = 1, pch = 19, cex = .5, xlab = 'x', ylab = '')
 segments(x0 = seq(0,1,.1),y0 = -1, y1 = 1)
 
 #Stratified sample of a unit square with 100 cells
-x <- stratified_sample(110,10, 2)
+x <- sample_stratify(110,10, 2)
 plot(x, asp = 1, pch = 19, cex = .5, xlab = 'x', ylab = 'y')
 segments(x0 = seq(0,1,.1),y0 = 0, y1 = 1)
 segments(y0 = seq(0,1,.1),x0 = 0, x1 = 1)
 
 #Stratified sample of a unit cube with 27 cells
-x <- stratified_sample(27,3, 3)
+x <- sample_stratify(27,3, 3)
 #Bird's eye view of the cube
 plot(x[,c(1,2)], asp = 1, pch = 19, cex = .5, xlab = 'x', ylab = 'y')
 segments(x0 = seq(0,1,1/3),y0 = 0, y1 = 1)

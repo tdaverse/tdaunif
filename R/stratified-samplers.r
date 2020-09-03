@@ -80,7 +80,7 @@ sample_strat_cube <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-stratified_sample <- function(n,k,d){
+sample_stratify <- function(n,k,d){
   unifSamples <- c()
   i <- 0
   while(i<d){
