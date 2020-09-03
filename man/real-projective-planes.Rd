@@ -19,3 +19,9 @@ planes in 4-dimensional space, optionally with noise.
 \details{
 (Details.)
 }
+\examples{
+
+# real projective plane embedding in 4-space
+x <- sample_projective_plane(120)
+pairs(x, asp = 1, pch = 19, cex = .5)
+}
