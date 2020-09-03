@@ -6,11 +6,17 @@
 \alias{sample_swiss_roll}
 \title{Sample (with noise) from archimedean spirals and swiss rolls}
 \usage{
-sample_arch_spiral(n, ar = 1, arms = 1L, min_wrap = 0,
-  max_wrap = 1, sd = 0)
+sample_arch_spiral(n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, sd = 0)
 
-sample_swiss_roll(n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1,
-  width = 2 * pi, sd = 0)
+sample_swiss_roll(
+  n,
+  ar = 1,
+  arms = 1L,
+  min_wrap = 0,
+  max_wrap = 1,
+  width = 2 * pi,
+  sd = 0
+)
 }
 \arguments{
 \item{n}{Number of observations.}
