@@ -19,6 +19,7 @@
 #' the local sampling rate per unit interior (length, area, volume, etc.),
 #' quantified as the Jacobian (higher-order derivative) of \eqn{p}. **tdaunif**
 #' uses two techniques to correct for this:
+#' 
 
 #' * The more numerical (brute-force) technique is to compute the Jacobian on
 #' the parameter space and oversample locally at a rate proportional to the
@@ -31,8 +32,8 @@
 #' \eqn{X} then produces a uniform sample \eqn{q(S)} on \eqn{f(M)}. The
 #' interior-preserving map also enables stratified sampling on the manifold via
 #' stratification of the parameter space.
-#' 
 
+#' 
 #' Multivariate Gaussian noise in the coordinate space can be added to any
 #' sample.
 #' 

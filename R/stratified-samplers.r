@@ -9,7 +9,7 @@
 #' @name stratified-samplers
 #' @param n Number of observations.
 #' @param k Number of intervals per dimension for the stratification.
-#' @param d Dimensional space of sample
+#' @param d Dimensional space of sample.
 #' @example inst/examples/ex-stratified-samplers.r
 NULL
 
@@ -21,12 +21,12 @@ sample_strat_segment <- function(n, k) {
   #Finds the number of remainder sample points
   r <- n %% k
   #Provides index values to intervals of the line segment
-  mq <-  rep(0:(k - 1), n %/% k)
-  mr <- sample(0:(k - 1), r, replace = FALSE)
+  mq <-  rep(0L:(k - 1L), n %/% k)
+  mr <- sample(0L:(k - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Calculate the shift values
   shifts <- (1/k) * m
-  #Applies shifts to originally sampled s values to obtain the stratified sample
+  #Applies shifts to sampled s values to obtain the stratified sample
   cbind((s + shifts)) 
 }
 
@@ -37,10 +37,10 @@ sample_strat_square <- function(n, k) {
   s <- runif(n, 0, (1/k))
   t <- runif(n, 0, (1/k))
   #Finds the number of remainder sample points
-  r <- n %% k ^ 2
+  r <- n %% k^2L
   #Provides index values to cells in the 2-dimensional matrix
-  mq <- rep(0:(k ^ 2 - 1), n %/% (k ^ 2))
-  mr <- sample(0:(k ^ 2 - 1), r, replace = FALSE)
+  mq <- rep(0L:(k^2L - 1L), n %/% (k^2L))
+  mr <- sample(0L:(k^2L - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Finds the row and column of each cell in the matrix
   row_index <- m %/% k
@@ -48,8 +48,7 @@ sample_strat_square <- function(n, k) {
   #Uses row and column values to determine degree of shifting
   shifts <- (1/k) * cbind(row_index, col_index)
   samples <- cbind(s, t)
-  #Applies shifts to originally sampled s and t values to obtain the stratified
-  #sample
+  #Applies shifts to sampled s and t values to obtain the stratified sample
   samples + shifts
 }
 
@@ -61,57 +60,53 @@ sample_strat_cube <- function(n, k) {
   t <- runif(n, 0, (1/k))
   u <- runif(n, 0, (1/k))
   #Finds the number of remainder sample points
-  r <- n %% k ^ 3
+  r <- n %% k^3L
   #Provides index values to cells in the 3-dimensional grid system
-  mq <- rep(0:(k ^ 3 - 1), n %/% (k ^ 3))
-  mr <- sample(0:(k ^ 3 - 1), r, replace = FALSE)
+  mq <- rep(0L:(k^3L - 1L), n %/% (k^3L))
+  mr <- sample(0L:(k^3L - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Finds the row, column, and depth of each cell in the matrix
-  row_index <- (m %% k ^ 2) %/% k
-  col_index <- (m %% k ^ 2) %% k
-  depth_index <- m %/% k ^ 2
+  row_index <- (m %% k^2L) %/% k
+  col_index <- (m %% k^2L) %% k
+  depth_index <- m %/% k^2L
   #Uses row, column, and depth values to determine degree of shifting
   shifts <- (1/k) * cbind(row_index, col_index, depth_index)
   samples <- cbind(s, t, u)
-  #Applies shifts to originally sampled s/t/u values to obtain the stratified
-  #sample
+  #Applies shifts to sampled s/t/u values to obtain the stratified sample
   samples + shifts
 }
 
 #' @rdname stratified-samplers
 #' @export
-sample_stratify <- function(n,k,d){
+sample_stratify <- function(n, k, d){
   unifSamples <- c()
-  i <- 0
-  while(i<d){
-    unifSamples <- cbind(unifSamples, runif(n,0,1/k))
-    i=i+1
+  i <- 0L
+  while(i < d) {
+    unifSamples <- cbind(unifSamples, runif(n, 0, 1/k))
+    i <- i + 1L
   }
   #Finds the number of remainder sample points
   r <- n %% k^d
   #Provides index values to cells in the 3-dimensional grid system
-  mq <-  rep(0:(k^d-1),n %/% (k^d))
-  mr <- sample(0:(k^d-1),r,replace = FALSE)
-  m <- c(mq,mr)
+  mq <-  rep(0L:(k^d - 1L), n %/% (k^d))
+  mr <- sample(0L:(k^d - 1L), r, replace = FALSE)
+  m <- c(mq, mr)
   #Finds the row, column, and depth of each cell in the matrix
-  shifts <- matrix(base_expansion(m, k ,d), n, d+1)
-  shifts<-shifts[,c((d+1):2),drop = FALSE]
+  shifts <- matrix(base_expansion(m, k, d), n, d + 1L)
+  shifts <- shifts[, c((d + 1L):2L), drop = FALSE]
   #Uses row, column, and depth values to determine degree of shifting
   shiftVals <- (1/k) * shifts
-  #Applies shifts to originally sampled s/t/u values to obtain the stratified
-  #sample
+  #Applies shifts to sampled s/t/u values to obtain the stratified sample
   unifSamples + shiftVals
 }
 
-base_expansion <- function(n,k, d){
+base_expansion <- function(n, k, d){
   i <- d
   base <- c()
-  while(i >= 0) {
-    base <- c(base,n%/%k^i)
-    n <- n%%k^i
-    i <-  i-1
+  while(i >= 0L) {
+    base <- c(base, n %/% k^i)
+    n <- n %% k^i
+    i <-  i - 1L
   }
   base
 }
-
-
