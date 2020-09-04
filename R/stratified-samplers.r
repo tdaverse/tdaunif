@@ -27,7 +27,7 @@ sample_strat_segment <- function(n, k) {
   #Calculate the shift values
   shifts <- (1/k) * m
   #Applies shifts to sampled s values to obtain the stratified sample
-  cbind((s + shifts)) 
+  cbind(s) + shifts
 }
 
 #' @rdname stratified-samplers
@@ -78,13 +78,11 @@ sample_strat_cube <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-sample_stratify <- function(n, k, d){
-  unifSamples <- c()
-  i <- 0L
-  while(i < d) {
-    unifSamples <- cbind(unifSamples, runif(n, 0, 1/k))
-    i <- i + 1L
-  }
+sample_stratify <- function(n, k, d) {
+  #Samples from the parameter space uniformly from 0 to 1/k in each dimension
+  unifSamples <- replicate(d, runif(n, 0, 1/k))
+  colnames(unifSamples) <- paste0("s", seq(d))
+  
   #Finds the number of remainder sample points
   r <- n %% k^d
   #Provides index values to cells in the 3-dimensional grid system
