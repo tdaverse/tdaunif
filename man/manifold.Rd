@@ -11,11 +11,11 @@ make_manifold_sampler(parameterization, jacobian, max_params, max_jacobian)
 make_manifold_rejection_sampler(jacobian, max_params, max_jacobian)
 }
 \arguments{
-\item{parameterization}{A function that takes a matrix of parameter vectors
-and returns a matrix of coordinates.}
+\item{parameterization}{A function that takes parameter vector arguments and
+returns a matrix of coordinates.}
 
-\item{jacobian}{A function that takes a matrix of parameter vectors and
-returns a vector of Jacobian determinants.}
+\item{jacobian}{A function that takes parameter vector arguments and returns
+a vector of Jacobian determinants.}
 
 \item{max_params}{Named vector of maximum values of the parameters, used for
 uniform sampling; minimum values must be zero.}
@@ -33,9 +33,7 @@ functions.
 }
 \examples{
 # parameterization and Jacobian for Klein bottle tube embedding
-klein_parameterization <- function(X) {
-  theta <- X[, "theta"]
-  phi <- X[, "phi"]
+klein_parameterization <- function(theta, phi) {
   cbind(
     w = (1 + .5 * cos(theta)) * cos(phi),
     x = (1 + .5 * cos(theta)) * sin(phi),
@@ -43,8 +41,7 @@ klein_parameterization <- function(X) {
     z = .5 * sin(theta) * sin(phi/2)
   )
 }
-klein_jacobian <- function(X) {
-  theta <- X[, "theta"]
+klein_jacobian <- function(theta, phi) {
   unname(.5 * sqrt((1 + .5 * cos(theta)) ^ 2 + (.5 * .5 * sin(theta)) ^ 2))
 }
 # custom sampler based on these functions

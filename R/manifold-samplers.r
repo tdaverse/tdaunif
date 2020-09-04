@@ -8,10 +8,10 @@
 #'   
 
 #' @name manifold
-#' @param parameterization A function that takes a matrix of parameter vectors
-#'   and returns a matrix of coordinates.
-#' @param jacobian A function that takes a matrix of parameter vectors and
-#'   returns a vector of Jacobian determinants.
+#' @param parameterization A function that takes parameter vector arguments and
+#'   returns a matrix of coordinates.
+#' @param jacobian A function that takes parameter vector arguments and returns
+#'   a vector of Jacobian determinants.
 #' @param max_params Named vector of maximum values of the parameters, used for
 #'   uniform sampling; minimum values must be zero.
 #' @param max_jacobian An (ideally sharp) upper bound on the Jacobian
@@ -29,7 +29,7 @@ make_manifold_sampler <- function(
   # manifold sampler
   function(n, sd = 0) {
     param_vals <- rs(n)
-    res <- parameterization(param_vals)
+    res <- do.call(parameterization, as.data.frame(param_vals))
     add_noise(res, sd = sd)
   }
 }
@@ -44,7 +44,7 @@ make_manifold_rejection_sampler <- function(
     x <- matrix(NA, nrow = 0, ncol = length(max_params))
     while (nrow(x) < n) {
       param_vals <- sapply(max_params, runif, n = n, min = 0)
-      j_vals <- jacobian(param_vals)
+      j_vals <- do.call(jacobian, as.data.frame(param_vals))
       density_threshold <- runif(n, 0, max_jacobian)
       x <- rbind(x, param_vals[j_vals > density_threshold, , drop = FALSE])
     }
