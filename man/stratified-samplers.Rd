@@ -21,7 +21,7 @@ sample_stratify(n, k, d)
 
 \item{k}{Number of intervals per dimension for the stratification.}
 
-\item{d}{Dimensional space of sample}
+\item{d}{Dimensional space of sample.}
 }
 \description{
 These functions generate stratified samples of any dimension
