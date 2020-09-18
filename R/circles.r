@@ -10,7 +10,7 @@
 #' from the unit interval to the unit circle.
 #'
 #' The function `sample_circles_interlocked()` effectively samples from a pair
-#' of circles and transforms them in 3-dimensional space so that they are
+#' of circles and rotates them in 3-dimensional space so that they are
 #' interlocked (perpendicular to each other).
 #'
 #' Both functions are length-preserving and admit stratification. If `bins = 2`,

@@ -49,7 +49,6 @@ sample_torus_tube <- function(n, ar = 2, sd = 0) {
 }
 
 # rejection sampler for a torus (conventional parameterization)
-# https://projecteuclid.org/euclid.imsc/1379942050
 rs_torus_tube <- function(n, r) {
   x <- c()
   while (length(x) < n) {

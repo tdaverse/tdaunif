@@ -48,7 +48,6 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
 }
 
 # Rejection sampler for a Klein bottle (Mobius tube parameterization)
-# https://projecteuclid.org/euclid.imsc/1379942050
 rs_klein_tube <- function(n, r) {
   x <- c()
   while (length(x) < n) {
@@ -81,7 +80,6 @@ sample_klein_flat <- function(n, ar = 1, bump = .1, sd = 0) {
 }
 
 # rejection sampler for a Klein bottle (flat torus-based parameterization)
-# https://projecteuclid.org/euclid.imsc/1379942050
 rs_klein_flat <- function(n, p, e) {
   x <- c()
   while (length(x) < n) {

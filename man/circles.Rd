@@ -28,7 +28,7 @@ The function \code{sample_circle()} uses the usual sinussoidal parameterization
 from the unit interval to the unit circle.
 
 The function \code{sample_circles_interlocked()} effectively samples from a pair
-of circles and transforms them in 3-dimensional space so that they are
+of circles and rotates them in 3-dimensional space so that they are
 interlocked (perpendicular to each other).
 
 Both functions are length-preserving and admit stratification. If \code{bins = 2},
