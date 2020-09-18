@@ -1,6 +1,6 @@
 #' @title Sample (with noise) from planar triangles
 #'
-#' @description This functions generates uniform and stratified samples from
+#' @description This function generates uniform and stratified samples from
 #'   configurations of planar triangles in 2-dimensional space, optionally with
 #'   noise.
 #'
@@ -16,7 +16,7 @@
 #' @param triangle The (x,y) coordinates of the vertices of a triangle,
 #'   formatted in a 2x3 matrix
 #' @param bins Number of intervals per dimension to stratify by. Default set to
-#'   1, which generates a uniform sample
+#'   1, which generates a uniform sample.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-planar-triangles.r
 NULL

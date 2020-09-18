@@ -7,10 +7,10 @@
 #' @details
 #'
 #' The archimedean spiral starts at the origin and wraps around itself such that
-#' distances between all the spiral branches are equivalent. The specific
+#' radial distances between all the spiral branches are equal. The specific
 #' parametrization was taken from Koeller (2002). The uniform sample is
-#' generated through a rejection sampling process as described by Diaconis
-#' (2013).
+#' generated through a rejection sampling process as described by Diaconis,
+#' Holmes, and Shahshahani (2013).
 #'
 #' The swiss roll sampler is patterned after one in
 #' [drtoolbox](https://lvdmaaten.github.io/drtoolbox/) and extended from the

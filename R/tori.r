@@ -3,7 +3,28 @@
 #' @description These functions generate uniform samples from configurations of
 #'   tori of primary radius 1 in 3-dimensional space, optionally with noise.
 #'
-#' @details (Details.)
+#' @details
+#'
+#' The function `sample_torus_tube()` uses the tubular parameterization into
+#' 3-dimensional space documented at
+#' [MathWorld](https://mathworld.wolfram.com/Torus.html).
+#'
+#' The function `sample_torus_flat()` uses a flat parameterization (having zero
+#' Gaussian curvature) into 4-dimensional space, as presented on
+#' [Wikipedia](https://en.wikipedia.org/wiki/Torus#Flat_torus).
+#'
+#' The function `sample_tori_interlocked()` samples from two tubular tori
+#' interlocked in the same way as [sample_circles_interlocked()].
+#'
+#' The abbreviated function `sample_torus()` is an alias for the tubular
+#' parametrization sampler.
+#'
+#' All uniform samples are generated through a rejection sampling process as
+#' described by Diaconis, Holmes, and Shahshahani (2013).
+#' 
+
+#' @template ref-diaconis2013
+#' 
 
 #' @name tori
 #' @param n Number of observations.
@@ -26,10 +47,6 @@ sample_torus_tube <- function(n, ar = 2, sd = 0) {
   )
   add_noise(res, sd = sd)
 }
-
-#' @rdname tori
-#' @export
-sample_torus <- sample_torus_tube
 
 # rejection sampler for a torus (conventional parameterization)
 # https://projecteuclid.org/euclid.imsc/1379942050
@@ -75,3 +92,7 @@ sample_torus_flat <- function(n, ar = 1, sd = 0) {
   )
   add_noise(res, sd = sd)
 }
+
+#' @rdname tori
+#' @export
+sample_torus <- sample_torus_tube

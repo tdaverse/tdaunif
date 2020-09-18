@@ -9,9 +9,13 @@
 #'   random samples from the trefoil knot distribution, by using random samples
 #'   from a more convenient distribution. It applies rejection/acceptance
 #'   criterion such that the samples that are accepted are to be distributed as
-#'   if they were from the target distribution. This function is adapted from
-#'   Diaconis &al, 2013.
-#'   
+#'   if they were from the target distribution. The uniform sample is generated
+#'   through a rejection sampling process as described by Diaconis, Holmes, and
+#'   Shahshahani (2013).
+
+#' @template ref-diaconis2013
+#' 
+
 #' @name trefoil
 #' @param n Number of observations.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.

@@ -17,11 +17,20 @@ These functions generate uniform samples from real projective
 planes in 4-dimensional space, optionally with noise.
 }
 \details{
-(Details.)
+The real projective plane only embeds into a Euclidean space of
+dimension at least 4. This embedding is adapted from
+\href{https://en.wikipedia.org/wiki/Real_projective_plane#Embedding_into_4-dimensional_space}{Wikipedia}.
+The uniform sample is generated through a rejection sampling process as
+described by Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
 
 # real projective plane embedding in 4-space
 x <- sample_projective_plane(120)
 pairs(x, asp = 1, pch = 19, cex = .5)
+}
+\references{
+P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
+\emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
+honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 }

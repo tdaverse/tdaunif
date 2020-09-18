@@ -3,7 +3,25 @@
 #' @description These functions generate uniform samples from Klein bottles in
 #'   4-dimensional space, optionally with noise.
 #'
-#' @details (Details.)
+#' @details
+#'
+#' The function `sample_klein_tube()` uses the Möbius tube parameterization
+#' documented at the [Encyclopédie des Formes Mathématiques
+#' Remarquables](https://mathcurve.com/surfaces.gb/klein/klein.shtml).
+#'
+#' The function `sample_klein_flat()` uses a flat parameterization based on that
+#' of the torus, as presented on
+#' [Wikipedia](https://en.wikipedia.org/wiki/Klein_bottle#4-D_non-intersecting).
+#'
+#' The abbreviated function `sample_klein()` is an alias for the tube
+#' parametrization sampler.
+#' 
+#' Both uniform samples are generated through a rejection sampling process as
+#' described by Diaconis, Holmes, and Shahshahani (2013).
+#'
+
+#' @template ref-diaconis2013
+#' 
 
 #' @name klein-bottles
 #' @param n Number of observations.
@@ -28,10 +46,6 @@ sample_klein_tube <- function(n, ar = 2, sd = 0) {
   )
   add_noise(res, sd = sd)
 }
-
-#' @rdname klein-bottles
-#' @export
-sample_klein <- sample_klein_tube
 
 # Rejection sampler for a Klein bottle (Mobius tube parameterization)
 # https://projecteuclid.org/euclid.imsc/1379942050
@@ -103,3 +117,7 @@ jd_klein_flat <- function(p, e) {
       .25 * sqsinphi * sqsin2phi
   }
 }
+
+#' @rdname klein-bottles
+#' @export
+sample_klein <- sample_klein_tube

@@ -3,7 +3,14 @@
 #' @description These functions generate uniform samples from real projective
 #'   planes in 4-dimensional space, optionally with noise.
 #'
-#' @details (Details.)
+#' @details The real projective plane only embeds into a Euclidean space of
+#'   dimension at least 4. This embedding is adapted from
+#'   [Wikipedia](https://en.wikipedia.org/wiki/Real_projective_plane#Embedding_into_4-dimensional_space).
+#'   The uniform sample is generated through a rejection sampling process as
+#'   described by Diaconis, Holmes, and Shahshahani (2013).
+
+#' @template ref-diaconis2013
+#' 
 
 #' @name real-projective-planes
 #' @param n Number of observations.
@@ -28,7 +35,6 @@ sample_projective_plane <- function(n, sd = 0) {
 }
 
 # Rejection sampler for a real projective plane
-# https://projecteuclid.org/euclid.imsc/1379942050
 rs_projective_plane <- function(n, r) {
   x <- c()
   while (length(x) < n) {

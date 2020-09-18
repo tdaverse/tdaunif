@@ -3,18 +3,18 @@
 \name{tori}
 \alias{tori}
 \alias{sample_torus_tube}
-\alias{sample_torus}
 \alias{sample_tori_interlocked}
 \alias{sample_torus_flat}
+\alias{sample_torus}
 \title{Sample (with noise) from tori}
 \usage{
 sample_torus_tube(n, ar = 2, sd = 0)
 
-sample_torus(n, ar = 2, sd = 0)
-
 sample_tori_interlocked(n, ar = 2, sd = 0)
 
 sample_torus_flat(n, ar = 1, sd = 0)
+
+sample_torus(n, ar = 2, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -29,7 +29,22 @@ These functions generate uniform samples from configurations of
 tori of primary radius 1 in 3-dimensional space, optionally with noise.
 }
 \details{
-(Details.)
+The function \code{sample_torus_tube()} uses the tubular parameterization into
+3-dimensional space documented at
+\href{https://mathworld.wolfram.com/Torus.html}{MathWorld}.
+
+The function \code{sample_torus_flat()} uses a flat parameterization (having zero
+Gaussian curvature) into 4-dimensional space, as presented on
+\href{https://en.wikipedia.org/wiki/Torus#Flat_torus}{Wikipedia}.
+
+The function \code{sample_tori_interlocked()} samples from two tubular tori
+interlocked in the same way as \code{\link[=sample_circles_interlocked]{sample_circles_interlocked()}}.
+
+The abbreviated function \code{sample_torus()} is an alias for the tubular
+parametrization sampler.
+
+All uniform samples are generated through a rejection sampling process as
+described by Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
 
@@ -40,4 +55,9 @@ pairs(x, asp = 1, pch = 19, cex = .5)
 # torus flat embedding in 4-space
 x <- sample_torus_flat(120, sd = .05)
 pairs(x, asp = 1, pch = 19, cex = .5)
+}
+\references{
+P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
+\emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
+honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 }

@@ -14,12 +14,12 @@ sample_planar_triangle(n, triangle, bins = 1, sd = 0)
 formatted in a 2x3 matrix}
 
 \item{bins}{Number of intervals per dimension to stratify by. Default set to
-1, which generates a uniform sample}
+1, which generates a uniform sample.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
 \description{
-This functions generates uniform and stratified samples from
+This function generates uniform and stratified samples from
 configurations of planar triangles in 2-dimensional space, optionally with
 noise.
 }

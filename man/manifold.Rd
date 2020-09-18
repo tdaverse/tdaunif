@@ -29,7 +29,15 @@ samplers based on them, using user-provided parameterization and Jacobian
 functions.
 }
 \details{
-(Details.)
+The rejection sampling technique of Diaconis, Holmes, and
+Shahshahani (2013) uses a parameterized embedding from a parameter space to
+a coordinate space and relies on a formula for its jacobian determinant.
+The \code{parameterization} must be a function that takes vector arguments of
+equal length and returns a coordinate matrix of the same number of rows.
+The \code{jacobian} must be a function that takes the same arguments and returns
+a scalar value. The parameters must range from 0 to their respective values
+in \code{max_params}. \code{max_jacobian} must be provided, though it may be larger
+than the theoretical maximum of the jacobian determinant.
 }
 \examples{
 # parameterization and Jacobian for Klein bottle tube embedding
@@ -54,4 +62,9 @@ klein_sampler <- make_manifold_sampler(
 # compare custom sampler to `sample_klein_tube()`
 pairs(klein_sampler(n = 360), asp = 1, pch = 19, cex = .5)
 pairs(sample_klein_tube(n = 360, ar = 2), asp = 1, pch = 19, cex = .5)
+}
+\references{
+P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
+\emph{Advances in Modern Statistical Theory and Applications: A Festschrift in
+honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 }

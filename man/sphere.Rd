@@ -2,16 +2,22 @@
 % Please edit documentation in R/sphere.r
 \name{sphere}
 \alias{sphere}
+\alias{sample_2hemisphere}
 \alias{sample_2sphere}
 \alias{sample_sphere}
 \title{Sample (with noise) from a sphere}
 \usage{
-sample_2sphere(n, sd = 0)
+sample_2hemisphere(n, bins = 1L, sd = 0)
+
+sample_2sphere(n, bins = 1L, sd = 0)
 
 sample_sphere(n, d = 1, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
+
+\item{bins}{Number of intervals per dimension to stratify by. Default set to
+1, which generates a uniform sample.}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 
@@ -23,7 +29,15 @@ These functions generate uniform samples from a sphere of radius
 1-higher-dimensional space, optionally with noise.
 }
 \details{
-The function \code{sample_sphere} is adapted from \code{\link[TDA:sphereUnif]{TDA::sphereUnif()}}.
+The function \code{sample_sphere()} is adapted from \code{\link[TDA:sphereUnif]{TDA::sphereUnif()}}. It uses
+\code{\link[stats:Normal]{stats::rnorm()}} to sample from a multivariate Gaussian and normalizes the
+resulting coordinates.
+
+The function \code{sample_2hemisphere()} uses an area-preserving parameterization
+of the upper hemisphere, and \code{sample_2sphere()} uses two of these samples,
+one reflected over the horizontal plane, to produce a sample from a sphere.
+The parametrization was derived through the method for sampling 2-manifolds
+as described by Arvo (2001).
 }
 \examples{
 
@@ -42,4 +56,9 @@ pairs(x, asp = 1, pch = 19, cex = .5)
 # 4-sphere in 5-space
 x <- sample_sphere(120, d = 4, sd = .1)
 pairs(x, asp = 1, pch = 19, cex = .5)
+}
+\references{
+J Arvo (2001) Stratified Sampling of 2-Manifolds. \emph{SIGRAPH 2001 (State of the
+Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)}, Course Notes,
+Vol. 29. \url{http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf}
 }

@@ -4,26 +4,36 @@
 \alias{circles}
 \alias{sample_circle}
 \alias{sample_circles_interlocked}
-\alias{sample_circle_sinusoidal}
 \title{Sample (with noise) from circles}
 \usage{
-sample_circle(n, sd = 0)
+sample_circle(n, bins = 1L, sd = 0)
 
-sample_circles_interlocked(n, sd = 0)
-
-sample_circle_sinusoidal(n, sd = 0)
+sample_circles_interlocked(n, bins = 1L, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
 
+\item{bins}{Number of intervals to stratify by. Default set to 1, which
+generates a uniform sample.}
+
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
 }
 \description{
-These functions generate uniform samples from configurations of
-circles of radius 1 in 2- or 3-dimensional space, optionally with noise.
+These functions generate uniform and stratified samples from
+configurations of circles of radius 1 in 2- or 3-dimensional space,
+optionally with noise.
 }
 \details{
-(Details.)
+The function \code{sample_circle()} uses the usual sinussoidal parameterization
+from the unit interval to the unit circle.
+
+The function \code{sample_circles_interlocked()} effectively samples from a pair
+of circles and transforms them in 3-dimensional space so that they are
+interlocked (perpendicular to each other).
+
+Both functions are length-preserving and admit stratification. If \code{bins = 2},
+the stratification for the latter function will simply be between the two
+interlocked circles.
 }
 \examples{
 # circle in 2-space
@@ -32,9 +42,5 @@ plot(x, asp = 1, pch = 19, cex = .5)
 
 # interlocked circles in 3-space
 x <- sample_circles_interlocked(120, sd = .1)
-pairs(x, asp = 1, pch = 19, cex = .5)
-
-# sinusoidal circle in 3-space
-x <- sample_circle_sinusoidal(120, sd = .1)
 pairs(x, asp = 1, pch = 19, cex = .5)
 }
