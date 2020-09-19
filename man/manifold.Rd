@@ -6,9 +6,15 @@
 \alias{make_manifold_rejection_sampler}
 \title{Custom uniform manifold samplers}
 \usage{
-make_manifold_sampler(parameterization, jacobian, max_params, max_jacobian)
+make_manifold_sampler(
+  parameterization,
+  jacobian,
+  min_params,
+  max_params,
+  max_jacobian
+)
 
-make_manifold_rejection_sampler(jacobian, max_params, max_jacobian)
+make_manifold_rejection_sampler(jacobian, min_params, max_params, max_jacobian)
 }
 \arguments{
 \item{parameterization}{A function that takes parameter vector arguments and
@@ -17,8 +23,8 @@ returns a matrix of coordinates.}
 \item{jacobian}{A function that takes parameter vector arguments and returns
 a vector of Jacobian determinants.}
 
-\item{max_params}{Named vector of maximum values of the parameters, used for
-uniform sampling; minimum values must be zero.}
+\item{min_params, max_params}{(Optionally named) vectors of minimum and
+maximum values of the parameters, used for uniform sampling.}
 
 \item{max_jacobian}{An (ideally sharp) upper bound on the Jacobian
 determinant.}
@@ -35,9 +41,10 @@ a coordinate space and relies on a formula for its jacobian determinant.
 The \code{parameterization} must be a function that takes vector arguments of
 equal length and returns a coordinate matrix of the same number of rows.
 The \code{jacobian} must be a function that takes the same arguments and returns
-a scalar value. The parameters must range from 0 to their respective values
-in \code{max_params}. \code{max_jacobian} must be provided, though it may be larger
-than the theoretical maximum of the jacobian determinant.
+a scalar value. The parameters must range from their respective minima
+\code{min_params} to their respective maxima \code{max_params}. \code{max_jacobian} must
+be provided, though it may be larger than the theoretical maximum of the
+jacobian determinant.
 }
 \examples{
 # parameterization and Jacobian for Klein bottle tube embedding

@@ -10,9 +10,10 @@
 #'   The `parameterization` must be a function that takes vector arguments of
 #'   equal length and returns a coordinate matrix of the same number of rows.
 #'   The `jacobian` must be a function that takes the same arguments and returns
-#'   a scalar value. The parameters must range from 0 to their respective values
-#'   in `max_params`. `max_jacobian` must be provided, though it may be larger
-#'   than the theoretical maximum of the jacobian determinant.
+#'   a scalar value. The parameters must range from their respective minima
+#'   `min_params` to their respective maxima `max_params`. `max_jacobian` must
+#'   be provided, though it may be larger than the theoretical maximum of the
+#'   jacobian determinant.
 #'   
 
 #' @template ref-diaconis2013
@@ -23,8 +24,8 @@
 #'   returns a matrix of coordinates.
 #' @param jacobian A function that takes parameter vector arguments and returns
 #'   a vector of Jacobian determinants.
-#' @param max_params Named vector of maximum values of the parameters, used for
-#'   uniform sampling; minimum values must be zero.
+#' @param min_params,max_params (Optionally named) vectors of minimum and
+#'   maximum values of the parameters, used for uniform sampling.
 #' @param max_jacobian An (ideally sharp) upper bound on the Jacobian
 #'   determinant.
 #' @example inst/examples/ex-manifold-samplers.r
@@ -33,14 +34,16 @@ NULL
 #' @rdname manifold
 #' @export
 make_manifold_sampler <- function(
-  parameterization, jacobian, max_params, max_jacobian
+  parameterization, jacobian, min_params, max_params, max_jacobian
 ) {
   # rejection sampler
-  rs <- make_manifold_rejection_sampler(jacobian, max_params, max_jacobian)
+  rs <- make_manifold_rejection_sampler(jacobian,
+                                        min_params, max_params, max_jacobian)
   # manifold sampler
   function(n, sd = 0) {
-    param_vals <- rs(n)
-    res <- do.call(parameterization, as.data.frame(param_vals))
+    param_vals <- stats::setNames(as.data.frame(rs(n)),
+                                  names(formals(parameterization)))
+    res <- do.call(parameterization, args = param_vals)
     add_noise(res, sd = sd)
   }
 }
@@ -48,14 +51,17 @@ make_manifold_sampler <- function(
 #' @rdname manifold
 #' @export
 make_manifold_rejection_sampler <- function(
-  jacobian, max_params, max_jacobian
+  jacobian, min_params, max_params, max_jacobian
 ) {
   # rejection sampler
   function(n) {
-    x <- matrix(NA, nrow = 0, ncol = length(max_params))
+    x <- matrix(NA, nrow = 0, ncol = length(min_params))
     while (nrow(x) < n) {
-      param_vals <- sapply(max_params, runif, n = n, min = 0)
-      j_vals <- do.call(jacobian, as.data.frame(param_vals))
+      param_vals <- mapply(runif, min = min_params, max = max_params,
+                           MoreArgs = list(n = n))
+      param_vals <- stats::setNames(as.data.frame(param_vals),
+                                    names(formals(jacobian)))
+      j_vals <- do.call(jacobian, args = param_vals)
       density_threshold <- runif(n, 0, max_jacobian)
       x <- rbind(x, param_vals[j_vals > density_threshold, , drop = FALSE])
     }

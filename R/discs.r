@@ -32,7 +32,7 @@ sample_disc <- function(n, bins = 1L, sd = 0) {
 # area-preserving map from [0,1]^2 to the disc
 apm_disc <- function(x) {
   cbind(
-    x = sqrt(x[, 1] * (cos(2 * pi * x[, 2]))),
-    y = sqrt(x[, 1] * (sin(2 * pi * x[, 2])))
+    x = sqrt(x[, 1]) * cos(2 * pi * x[, 2]),
+    y = sqrt(x[, 1]) * sin(2 * pi * x[, 2])
   )
 }

@@ -1,0 +1,79 @@
+---
+title: "Uniform and Stratified Sampling from Manifolds in Euclidean Space"
+author: "Cory Brunson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tdaunif)
+```
+
+The **tdaunif** package is a lightweight tool for sampling points in Euclidean space from a variety of embedded or immersed manifolds. Such samples may be useful for building intuition in topological study or for testing methods in topological data analysis.
+
+Samples from parameterized manifolds are easy to generate: Sample points from the parameter space and transform the points to the cooordinate space. When the parameterization is not volume-preserving (e.g. length-preserving for 1-dimensional manifolds, area-preserving for 2-dimensional manifolds). however, this will lead to oversampling of compressed regions and undersampling of expanded regions (called "warping"). [Diaconis, Holmes, and Shahshahani (2013)](https://projecteuclid.org/euclid.imsc/1379942050) illustrate this problem by sampling naïvely from the _curved torus_, a common embedding of the torus $\mathbb{T}^2$ into 3-dimensional Euclidean space $\mathbb{R}^3$.
+
+The package makes use of two techniques to mitigate this problem. The easier technique, described by Diaconis, Holmes, and Shahshahani, is _rejection sampling_. This involves generating a larger-than-necessary sample in the naïve way and strategically removing samples to correct for warping. The harder technique requires analytically solving (i.e. finding an inverse formula for) the warping in order to construct an alternative, _volume-preserving_ parameterization of the manifold. [Arvo (2001; p. 41--70)](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf) describes this technique for several simple cases, some of which are implemented here; but most common parameterizations do not have the necessary analytic solutions so are not implemented this way. For those that are, an important payoff is _stratified sampling_ from the coordinate space by stratifying the parameter space.
+
+## Rejection sampling
+
+
+
+## Stratified sampling
+
+
+
+## Making custom samplers
+
+Currently, **tdaunif** offers one set of function factories for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disc, which is already implemented using an area-preserving parameterization as `sample_disc()` (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square \(Q=[-1,1]\times[-1,1]\) circumscribing the unit disc into the disc itself:
+
+\[\begin{align*}
+f : Q & \to \mathbb{R}^2 \\
+\left[\begin{array}{c} s \\ t \end{array}\right]
+& \mapsto
+\left[\begin{array}{c} x \\ y \end{array}\right]
+= \left[\begin{array}{c} s \\ t\sqrt{1 - s^2} \end{array}\right]
+\end{align*}\]
+
+This map has a convenient Jacobian matrix, whose most difficult entry is not needed to compute the Jacobian determinant:
+
+\[J_f =
+\left[\ \frac{\partial f}{\partial s}\ \frac{\partial f}{\partial t}\ \right]=
+\left[\begin{array}{cc}
+\frac{\partial x}{\partial s} & \frac{\partial x}{\partial t} \\
+\frac{\partial y}{\partial s} & \frac{\partial y}{\partial t}
+\end{array}\right] =
+\left[\begin{array}{cc}
+1 & 0 \\
+\text{who cares} & \sqrt{1 - s^2}
+\end{array}\right]\]
+
+The Jacobian determinant \(j_f = \sqrt{1 - s^2}\) then maxes out at \(j_f = 1\) when \(s = 0\), and we have all the necessary data to build a rejection sampler:
+
+```{r}
+disc_parameterization <- function(s, t) cbind(
+  x = s,
+  y = t * sqrt(1 - s^2)
+)
+disc_jacobian <- function(s, t) sqrt(1 - s^2)
+disc_sampler <- make_manifold_sampler(
+  parameterization = disc_parameterization,
+  jacobian = disc_jacobian,
+  min_params = c(-1, -1), max_params = c(1, 1),
+  max_jacobian = 1
+)
+disc1 <- disc_sampler(360L)
+```
+
+For validation, we compare our custom rejection sampler to the volume-preserving parameterization--based disc sampler provided by **tdaunif**:
+
+```{r}
+disc2 <- sample_disc(360L)
+par(mfrow = c(1L, 2L))
+plot(disc1, asp = 1, pch = 19, cex = .5)
+plot(disc2, asp = 1, pch = 19, cex = .5)
+par(mfrow = c(1L, 1L))
+```
+
+Not bad!
