@@ -3,9 +3,12 @@
 \name{ellipses}
 \alias{ellipses}
 \alias{sample_ellipse}
+\alias{sample_cylinder_elliptical}
 \title{Sample (with noise) from ellipses}
 \usage{
 sample_ellipse(n, ar = 1, sd = 0)
+
+sample_cylinder_elliptical(n, ar = 1, width = 1, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -13,6 +16,9 @@ sample_ellipse(n, ar = 1, sd = 0)
 \item{ar}{Aspect ratio for an ellipse (ratio of major and minor radii).}
 
 \item{sd}{Standard deviation of (independent multivariate) Gaussian noise.}
+
+\item{width}{Width of the cylinder (with respect to the fixed radius of the
+ellipse).}
 }
 \description{
 These functions generate uniform samples from configurations of
@@ -26,19 +32,21 @@ sample is generated through a rejection sampling process as described by
 Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
-# ellipse in 2-space
+# ellipses in 2-space
 x <- sample_ellipse(120, ar = 6)
 plot(x, asp = 1, pch = 19, cex = .5)
-
-# ellipse in 2-space
 x <- sample_ellipse(120, ar = 1/6)
 plot(x, asp = 1, pch = 19, cex = .5)
 
-# ellipse in 2-space
+# ellipses in 2-space
 x <- sample_ellipse(120, ar = 6, sd = .1/6)
 plot(x, asp = 1, pch = 19, cex = .5)
-
-# ellipse in 2-space
 x <- sample_ellipse(120, ar = 1/6, sd = .1)
 plot(x, asp = 1, pch = 19, cex = .5)
+
+# cylinders in 3-space
+x <- sample_cylinder_elliptical(120, ar = 1)
+pairs(x, asp = 1, pch = 19, cex = .5)
+x <- sample_cylinder_elliptical(120, ar = 3, width = 2*pi)
+pairs(x, asp = 1, pch = 19, cex = .5)
 }

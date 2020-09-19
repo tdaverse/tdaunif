@@ -15,6 +15,8 @@
 #' @name ellipses
 #' @param n Number of observations.
 #' @param ar Aspect ratio for an ellipse (ratio of major and minor radii).
+#' @param width Width of the cylinder (with respect to the fixed radius of the
+#'   ellipse).
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
 #' @example inst/examples/ex-ellipses.r
 NULL
@@ -44,4 +46,16 @@ rs_ellipse <- function(n, r) {
 # Jacobian determinant of ellipse with respect to minor radius
 jd_ellipse <- function(r) {
   function(theta) sqrt((sin(theta)^2 + (r * cos(theta))^2))
+}
+
+#' @rdname ellipses
+#' @export
+sample_cylinder_elliptical <- function(n, ar = 1, width = 1, sd = 0) {
+  #Samples uniformly from an ellipse on which the cylinder is based
+  res <- sample_ellipse(n = n, ar = ar, sd = 0)
+  #Augments the ellipse sample with a third coordinate uniformly sampled over
+  #the fixed range `width`
+  res <- cbind(res, z = runif(n, 0, width))
+  #Adds Gaussian noise to the spiral
+  add_noise(res, sd = sd)
 }
