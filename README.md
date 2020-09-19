@@ -4,26 +4,26 @@ status](https://travis-ci.org/corybrunson/tdaunif.svg?branch=master)](https://tr
 
 # **tdaunif**: Uniform manifold samplers for topological data analysis
 
-This R package consists mainly of sampling functions for topological
-manifolds embedded in Euclidean space.
+This R package contains sampling functions for topological manifolds
+embedded (or immersed) in Euclidean space.
 
 ## motivation
 
 ### consolidation
 
-Statistical topology, or topological data analysis (TDA), includes a
-variety of methods for detecting topological structure from point cloud
-data sets, most famously persistent homology. (See [Weinberger
+Statistical topology and topological data analysis include a variety of
+methods for detecting topological structure from point cloud data sets,
+most famously persistent homology. (See [Weinberger
 (2011)](https://www.ams.org/notices/201101/rtx110100036p.pdf) for a
-brief introduction.) These methods are validated by applying them to
-point clouds sampled from spaces with known topology. Functions that
-generate such samples are therefore valuable to developers of TDA
-software.
+brief introduction.) These methods are often validated by applying them
+to point clouds sampled from spaces with known topology. Functions that
+generate such samples are therefore valuable to developers of
+topological–statistical software.
 
-Unfortunately, such samplers are not currently easy to find, at least
-for R users. Handfuls can be found in several different packages, but no
-single package or code repository has assembled a large collection for
-convenient use. That is the goal of this package.
+Such samplers have not been easy to find in the R package ecosystem.
+Handfuls exist in several different packages, but no single package or
+code repository has assembled a large collection for convenient use.
+That is the goal of this package.
 
 ### uniformity
 
@@ -81,6 +81,34 @@ pairs(x, asp = 1, pch = 19, cex = .5)
 ![](man/figures/README-klein%20bottle%20with%20noise-1.png)<!-- -->
 
 For a thorough discussion of this sampler, see [my blog
-post](https://corybrunson.github.io/2019/02/01/uniform-sample-embedded-klein-bottle/)
-describing the method presented in [Diaconis, Holmes, and Shahshahani
+post](https://corybrunson.github.io/2019/02/01/sampling/) describing the
+method presented in [Diaconis, Holmes, and Shahshahani
 (2013)](https://projecteuclid.org/euclid.imsc/1379942050).
+
+### another illustration
+
+A subset of samplers allow stratified sampling, which relies on an
+analytic solution to the problem of length or area distortion created by
+most parameterizations. For example, the planar triangle sampler can be
+stratified to produce a more uniform arrangement of points than a
+properly uniform sample would produce:
+
+``` r
+equilateral <- cbind(c(0,0), c(0.5,sqrt(3)/2), c(1,0))
+x <- sample_planar_triangle(n = 720, triangle = equilateral)
+y <- sample_planar_triangle(n = 720, triangle = equilateral, bins = 24)
+par(mfrow = c(1L, 2L))
+plot(x, asp = 1, pch = 19, cex = .5)
+plot(y, asp = 1, pch = 19, cex = .5)
+```
+
+![](man/figures/README-planar%20triangle,%20uniformly%20and%20with%20stratification-1.png)<!-- -->
+
+``` r
+par(mfrow = c(1L, 1L))
+```
+
+See [Arvo (1995)](https://dl.acm.org/doi/10.1145/218380.218500) and
+Arvo’s notes from
+[Siggraph 2001](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf)
+for a detailed treatment of this techniquue.
