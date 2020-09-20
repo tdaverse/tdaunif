@@ -14,8 +14,8 @@ klein_jacobian <- function(theta, phi) {
 klein_sampler <- make_manifold_sampler(
   klein_parameterization,
   klein_jacobian,
-  c(theta = 2*pi, phi = 2*pi),
-  klein_jacobian(cbind(theta = 0))
+  max_params = c(theta = 2*pi, phi = 2*pi),
+  max_jacobian = klein_jacobian(cbind(theta = 0))
 )
 # compare custom sampler to `sample_klein_tube()`
 pairs(klein_sampler(n = 360), asp = 1, pch = 19, cex = .5)

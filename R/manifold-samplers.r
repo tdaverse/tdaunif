@@ -36,13 +36,17 @@ NULL
 make_manifold_sampler <- function(
   parameterization, jacobian, min_params, max_params, max_jacobian
 ) {
+  # start parameters at zero if not specified
+  if (missing(min_params)) {
+    min_params <- max_params
+    min_params[] <- 0
+  }
   # rejection sampler
   rs <- make_manifold_rejection_sampler(jacobian,
                                         min_params, max_params, max_jacobian)
   # manifold sampler
   function(n, sd = 0) {
-    param_vals <- stats::setNames(as.data.frame(rs(n)),
-                                  names(formals(parameterization)))
+    param_vals <- rs(n)
     res <- do.call(parameterization, args = param_vals)
     add_noise(res, sd = sd)
   }
@@ -53,14 +57,21 @@ make_manifold_sampler <- function(
 make_manifold_rejection_sampler <- function(
   jacobian, min_params, max_params, max_jacobian
 ) {
+  # start parameters at zero if not specified
+  if (missing(min_params)) {
+    min_params <- max_params
+    min_params[] <- 0
+  }
   # rejection sampler
   function(n) {
     x <- matrix(NA, nrow = 0, ncol = length(min_params))
     while (nrow(x) < n) {
       param_vals <- mapply(runif, min = min_params, max = max_params,
                            MoreArgs = list(n = n))
-      param_vals <- stats::setNames(as.data.frame(param_vals),
-                                    names(formals(jacobian)))
+      if (is.null(colnames(param_vals))) {
+        colnames(param_vals) <- names(formals(jacobian))
+      }
+      param_vals <- as.data.frame(param_vals)
       j_vals <- do.call(jacobian, args = param_vals)
       density_threshold <- runif(n, 0, max_jacobian)
       x <- rbind(x, param_vals[j_vals > density_threshold, , drop = FALSE])
