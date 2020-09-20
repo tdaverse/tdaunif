@@ -30,9 +30,9 @@ sample_trefoil <- function(n, sd = 0){
   theta <- rs_trefoil(n)
   # Applies modified theta values to parametric equation of trefoil knot
   res <- cbind(
-    x = (sin(theta) + 2*sin(2*theta)),
-    y = (cos(theta) - 2*cos(2*theta)),
-    z = (-(sin(theta))^3)
+    x = sin(theta) + 2*sin(2*theta),
+    y = cos(theta) - 2*cos(2*theta),
+    z = -sin(3*theta)
   )
   #Adds Gaussian noise to figure 8
   add_noise(res, sd = sd)
@@ -58,12 +58,9 @@ rs_trefoil <- function(n){
 }
 
 # Jacobian determinant of trefoil
-jd_trefoil <- function()
-{
-  function(theta)sqrt(
-    ((cos(theta) + 4*cos(2*theta))^2) +
-    ((-sin(theta) + 4*sin(2*theta))^2) + 
-    (9*(cos(3*theta))^2)
-    ) 
+jd_trefoil <- function(){
+  function(theta) sqrt(
+    17 + 8 * (cos(theta) * cos(2 * theta) - sin(theta) * sin(2 * theta)) +
+      9 * (cos(3 * theta))^2
+  )
 }
-
