@@ -10,11 +10,13 @@ Description: This package contains functions that generate uniform random
     samples from simple manifolds, optionally with noise, which are commonly
     used to test topological data analytic (TDA) techniques.
 Depends: R (>= 3.3.0)
+Suggests: 
+    knitr,
+    testthat,
+    vdiffr (>= 0.2)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
-Suggests: 
-    testthat,
-    vdiffr (>= 0.2)
