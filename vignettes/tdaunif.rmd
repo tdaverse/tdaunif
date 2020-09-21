@@ -16,15 +16,86 @@ Samples from parameterized manifolds are easy to generate: Sample points from th
 
 The package makes use of two techniques to mitigate this problem. The easier technique, described by Diaconis, Holmes, and Shahshahani, is _rejection sampling_. This involves generating a larger-than-necessary sample in the naïve way and strategically removing samples to correct for warping. The harder technique requires analytically solving (i.e. finding an inverse formula for) the warping in order to construct an alternative, _volume-preserving_ parameterization of the manifold. [Arvo (2001; p. 41--70)](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf) describes this technique for several simple cases, some of which are implemented here; but most common parameterizations do not have the necessary analytic solutions so are not implemented this way. For those that are, an important payoff is _stratified sampling_ from the coordinate space by stratifying the parameter space.
 
+## Volume-preserving parameterizations
+
+In principle, any parameterization can be viewed as the composition of two steps:
+
+* a _warping map_ from the parameter space to a "warped" parameter space, and
+* a _volume-preserving map_ from the "warped" parameter space to the coordinate space.
+
+In the best case, the warping map can be inverted and the volume-preserving map extracted. Then points can be uniformly sampled from the warped parameter space and mapped, without deformation, to the manifold.
+
+The upper hemisphere of $\mathbb{S}^2$ is such a case. The function `sample_2hemisphere()` follows Arvo's procedure (p. 50--51), which begins with a conventional parameterization to spherical coordinates and extracts this area-preserving parameterization from it:
+
+\[\begin{align*}
+h : [0,1]\times[0,1] & \to \mathbb{R}^3 \\
+\left[\begin{array}{c} u \\ v \end{array}\right]
+& \mapsto
+\left[\begin{array}{c} x \\ y \\ z \end{array}\right]
+= \left[\begin{array}{c}
+\sqrt{u (2 - u)}\cos{2\pi v} \\
+\sqrt{u (2 - u)}\sin{2\pi v} \\
+1 - u
+\end{array}\right]
+\end{align*}\]
+
+```{r}
+hemi <- sample_2hemisphere(180L)
+pairs(hemi, asp = 1, pch = 19, cex = .5)
+```
+
+Notice the classical pattern of random clustering: Samples from uniform distributions are not themselves uniformly distributed (in the way that lattices are), so they don't match our intuitive expectations. If we want greater uniformity, volume-preserving maps offer a solution.
+
+### Stratified sampling
+
+To sample from a region more uniformly than random, we can stratify the region, allocate a uniform subsample size to each stratum, and sample those points uniformly within each stratum. The `sample_strat_*()` functions implement this idea for unit cubes of any dimension:[^remainder]
+
+[^remainder]: Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.
+
+```{r}
+sq1 <- sample_strat_square(100L, k = 1L)
+sq4 <- sample_strat_square(100L, k = 4L)
+sq10 <- sample_strat_square(100L, k = 10L)
+par(mfrow = c(1, 3))
+plot(sq1, asp = 1, pch = 19, cex = .5)
+plot(sq4, asp = 1, pch = 19, cex = .5)
+plot(sq10, asp = 1, pch = 19, cex = .5)
+par(mfrow = c(1, 1))
+```
+
+These functions also undergird stratified sampling from manifolds with volume-preserving parameterizations, including the hemisphere:
+
+```{r}
+hemi10 <- sample_2hemisphere(225L, bins = 10L)
+pairs(hemi10, asp = 1, pch = 19, cex = .5)
+```
+
 ## Rejection sampling
 
+In lieu of an analytic solution to the warping problem, rejection sampling provides a sligtly more expensive fallback. The idea, explained in detail by Diaconis, Holmes, and Shahshahani and demonstrated using R in [this blog post](https://corybrunson.github.io/2019/02/01/sampling/), is to oversample points throughout the parameter space and discard them with a probability that compensates for the local effects of warping. Since the rejection is probabilistic, we can't know in advance how large a sample will be necessary, so in practice we repeatedly sample and discard until the total number of points exceeds the desired number. (We then discard the last few, if necessary, to bring the total back down to the desired number.)
 
+One application in this package is to sample from a famous class of embeddings of the circle $\mathbb{S}^1$ in $\mathbb{R}^3$: the trefoil, one of many such classes called "knots" that cannot be continuously deformed in $\mathbb{R}^3$ to a geometric circle (the "unknot"). The parameterization suggests a sort of symmetry within the $xy$-plane, and the embedding is "knotted" by way of undulations along the $z$-axis.
 
-## Stratified sampling
+\[\begin{align*}
+g : \mathbb{S}^1 & \to \mathbb{R}^3 \\
+\left[\begin{array}{c} \theta \end{array}\right]
+& \mapsto
+\left[\begin{array}{c} x \\ y \\ z \end{array}\right]
+= \left[\begin{array}{c}
+\sin\theta + 2\sin 2\theta \\
+\cos\theta - 2\cos 2\theta \\
+-(\sin 3\theta)
+\end{array}\right]
+\end{align*}\]
 
+We generate a sample below using the function `sample_trefoil()` and plot it in the three coordinate planes of $\mathbb{R}^3$:
 
+```{r}
+tref <- sample_trefoil(120L)
+pairs(tref, asp = 1, pch = 19, cex = .5)
+```
 
-## Making custom samplers
+### Making custom samplers
 
 Currently, **tdaunif** offers one set of function factories for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disc, which is already implemented using an area-preserving parameterization as `sample_disc()` (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square \(Q=[-1,1]\times[-1,1]\) circumscribing the unit disc into the disc itself:
 
@@ -57,7 +128,7 @@ disc_parameterization <- function(s, t) cbind(
   y = t * sqrt(1 - s^2)
 )
 disc_jacobian <- function(s, t) sqrt(1 - s^2)
-disc_sampler <- make_manifold_sampler(
+disc_sampler <- make_rejection_sampler(
   parameterization = disc_parameterization,
   jacobian = disc_jacobian,
   min_params = c(-1, -1), max_params = c(1, 1),
