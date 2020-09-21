@@ -11,7 +11,7 @@ klein_jacobian <- function(theta, phi) {
   unname(.5 * sqrt((1 + .5 * cos(theta)) ^ 2 + (.5 * .5 * sin(theta)) ^ 2))
 }
 # custom sampler based on these functions
-klein_sampler <- make_manifold_sampler(
+klein_sampler <- make_rejection_sampler(
   klein_parameterization,
   klein_jacobian,
   max_params = c(theta = 2*pi, phi = 2*pi),

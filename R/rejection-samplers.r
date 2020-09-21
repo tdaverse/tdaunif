@@ -1,4 +1,4 @@
-#' @title Custom uniform manifold samplers
+#' @title Custom uniform rejection samplers
 #'
 #' @description These functions create rejection samplers, and uniform manifold
 #'   samplers based on them, using user-provided parameterization and Jacobian
@@ -19,7 +19,7 @@
 #' @template ref-diaconis2013
 #' 
 
-#' @name manifold
+#' @name rejection-samplers
 #' @param parameterization A function that takes parameter vector arguments and
 #'   returns a matrix of coordinates.
 #' @param jacobian A function that takes parameter vector arguments and returns
@@ -28,12 +28,12 @@
 #'   maximum values of the parameters, used for uniform sampling.
 #' @param max_jacobian An (ideally sharp) upper bound on the Jacobian
 #'   determinant.
-#' @example inst/examples/ex-manifold-samplers.r
+#' @example inst/examples/ex-rejection-samplers.r
 NULL
 
-#' @rdname manifold
+#' @rdname rejection-samplers
 #' @export
-make_manifold_sampler <- function(
+make_rejection_sampler <- function(
   parameterization, jacobian, min_params, max_params, max_jacobian
 ) {
   # start parameters at zero if not specified
@@ -41,28 +41,20 @@ make_manifold_sampler <- function(
     min_params <- max_params
     min_params[] <- 0
   }
-  # rejection sampler
-  rs <- make_manifold_rejection_sampler(jacobian,
-                                        min_params, max_params, max_jacobian)
+  # rejection sampler using provided jacobian determinant
+  rejection_sampler <- make_jd_rs(jacobian,
+                                  min_params, max_params, max_jacobian)
   # manifold sampler
   function(n, sd = 0) {
-    param_vals <- rs(n)
+    param_vals <- rejection_sampler(n)
     res <- do.call(parameterization, args = param_vals)
     add_noise(res, sd = sd)
   }
 }
 
-#' @rdname manifold
-#' @export
-make_manifold_rejection_sampler <- function(
+make_jd_rs <- function(
   jacobian, min_params, max_params, max_jacobian
 ) {
-  # start parameters at zero if not specified
-  if (missing(min_params)) {
-    min_params <- max_params
-    min_params[] <- 0
-  }
-  # rejection sampler
   function(n) {
     x <- matrix(NA, nrow = 0, ncol = length(min_params))
     while (nrow(x) < n) {
