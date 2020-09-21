@@ -16,6 +16,8 @@ NULL
 #' @rdname stratified-samplers
 #' @export
 sample_strat_segment <- function(n, k) {
+  #Throw warning if k > n
+  if (k > n) warning("Number of subregions is greater than sample size.")
   #Samples s from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   #Finds the number of remainder sample points
@@ -33,6 +35,8 @@ sample_strat_segment <- function(n, k) {
 #' @rdname stratified-samplers
 #' @export
 sample_strat_square <- function(n, k) {
+  #Throw warning if k^2 > n
+  if (k^2L > n) warning("Number of subregions is greater than sample size.")
   #Samples s and t from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   t <- runif(n, 0, (1/k))
@@ -55,6 +59,8 @@ sample_strat_square <- function(n, k) {
 #' @rdname stratified-samplers
 #' @export
 sample_strat_cube <- function(n, k) {
+  #Throw warning if k^3 > n
+  if (k^3L > n) warning("Number of subregions is greater than sample size.")
   #Samples s,t, and u from the parameter space uniformly from 0 to 1/k
   s <- runif(n, 0, (1/k))
   t <- runif(n, 0, (1/k))
@@ -79,6 +85,8 @@ sample_strat_cube <- function(n, k) {
 #' @rdname stratified-samplers
 #' @export
 sample_stratify <- function(n, k, d) {
+  #Throw warning if k^d > n
+  if (k^d > n) warning("Number of subregions is greater than sample size.")
   #Samples from the parameter space uniformly from 0 to 1/k in each dimension
   unifSamples <- replicate(d, runif(n, 0, 1/k))
   colnames(unifSamples) <- paste0("s", seq(d))
