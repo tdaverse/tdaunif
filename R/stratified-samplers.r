@@ -8,49 +8,49 @@
 
 #' @name stratified-samplers
 #' @param n Number of observations.
-#' @param k Number of intervals per dimension for the stratification.
-#' @param d Dimensional space of sample.
+#' @param bins Number of intervals per dimension for the stratification.
+#' @param dim Dimensional space of sample.
 #' @example inst/examples/ex-stratified-samplers.r
 NULL
 
 #' @rdname stratified-samplers
 #' @export
-sample_strat_segment <- function(n, k) {
-  #Throw warning if k > n
-  if (k > n) warning("Number of subregions is greater than sample size.")
-  #Samples s from the parameter space uniformly from 0 to 1/k
-  s <- runif(n, 0, (1/k))
+sample_strat_segment <- function(n, bins) {
+  #Throw warning if bins > n
+  if (bins > n) warning("Number of subregions is greater than sample size.")
+  #Samples s from the parameter space uniformly from 0 to 1/bins
+  s <- runif(n, 0, (1/bins))
   #Finds the number of remainder sample points
-  r <- n %% k
+  r <- n %% bins
   #Provides index values to intervals of the line segment
-  mq <-  rep(0L:(k - 1L), n %/% k)
-  mr <- sample(0L:(k - 1L), r, replace = FALSE)
+  mq <-  rep(0L:(bins - 1L), n %/% bins)
+  mr <- sample(0L:(bins - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Calculate the shift values
-  shifts <- (1/k) * m
+  shifts <- (1/bins) * m
   #Applies shifts to sampled s values to obtain the stratified sample
   cbind(s) + shifts
 }
 
 #' @rdname stratified-samplers
 #' @export
-sample_strat_square <- function(n, k) {
-  #Throw warning if k^2 > n
-  if (k^2L > n) warning("Number of subregions is greater than sample size.")
-  #Samples s and t from the parameter space uniformly from 0 to 1/k
-  s <- runif(n, 0, (1/k))
-  t <- runif(n, 0, (1/k))
+sample_strat_square <- function(n, bins) {
+  #Throw warning if bins^2 > n
+  if (bins^2L > n) warning("Number of subregions is greater than sample size.")
+  #Samples s and t from the parameter space uniformly from 0 to 1/bins
+  s <- runif(n, 0, (1/bins))
+  t <- runif(n, 0, (1/bins))
   #Finds the number of remainder sample points
-  r <- n %% k^2L
+  r <- n %% bins^2L
   #Provides index values to cells in the 2-dimensional matrix
-  mq <- rep(0L:(k^2L - 1L), n %/% (k^2L))
-  mr <- sample(0L:(k^2L - 1L), r, replace = FALSE)
+  mq <- rep(0L:(bins^2L - 1L), n %/% (bins^2L))
+  mr <- sample(0L:(bins^2L - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Finds the row and column of each cell in the matrix
-  row_index <- m %/% k
-  col_index <- m %% k
+  row_index <- m %/% bins
+  col_index <- m %% bins
   #Uses row and column values to determine degree of shifting
-  shifts <- (1/k) * cbind(row_index, col_index)
+  shifts <- (1/bins) * cbind(row_index, col_index)
   samples <- cbind(s, t)
   #Applies shifts to sampled s and t values to obtain the stratified sample
   samples + shifts
@@ -58,25 +58,25 @@ sample_strat_square <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-sample_strat_cube <- function(n, k) {
-  #Throw warning if k^3 > n
-  if (k^3L > n) warning("Number of subregions is greater than sample size.")
-  #Samples s,t, and u from the parameter space uniformly from 0 to 1/k
-  s <- runif(n, 0, (1/k))
-  t <- runif(n, 0, (1/k))
-  u <- runif(n, 0, (1/k))
+sample_strat_cube <- function(n, bins) {
+  #Throw warning if bins^3 > n
+  if (bins^3L > n) warning("Number of subregions is greater than sample size.")
+  #Samples s,t, and u from the parameter space uniformly from 0 to 1/bins
+  s <- runif(n, 0, (1/bins))
+  t <- runif(n, 0, (1/bins))
+  u <- runif(n, 0, (1/bins))
   #Finds the number of remainder sample points
-  r <- n %% k^3L
+  r <- n %% bins^3L
   #Provides index values to cells in the 3-dimensional grid system
-  mq <- rep(0L:(k^3L - 1L), n %/% (k^3L))
-  mr <- sample(0L:(k^3L - 1L), r, replace = FALSE)
+  mq <- rep(0L:(bins^3L - 1L), n %/% (bins^3L))
+  mr <- sample(0L:(bins^3L - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Finds the row, column, and depth of each cell in the matrix
-  row_index <- (m %% k^2L) %/% k
-  col_index <- (m %% k^2L) %% k
-  depth_index <- m %/% k^2L
+  row_index <- (m %% bins^2L) %/% bins
+  col_index <- (m %% bins^2L) %% bins
+  depth_index <- m %/% bins^2L
   #Uses row, column, and depth values to determine degree of shifting
-  shifts <- (1/k) * cbind(row_index, col_index, depth_index)
+  shifts <- (1/bins) * cbind(row_index, col_index, depth_index)
   samples <- cbind(s, t, u)
   #Applies shifts to sampled s/t/u values to obtain the stratified sample
   samples + shifts
@@ -84,34 +84,34 @@ sample_strat_cube <- function(n, k) {
 
 #' @rdname stratified-samplers
 #' @export
-sample_stratify <- function(n, k, d) {
-  #Throw warning if k^d > n
-  if (k^d > n) warning("Number of subregions is greater than sample size.")
-  #Samples from the parameter space uniformly from 0 to 1/k in each dimension
-  unifSamples <- replicate(d, runif(n, 0, 1/k))
-  colnames(unifSamples) <- paste0("s", seq(d))
+sample_stratify <- function(n, bins, dim) {
+  #Throw warning if bins^dim > n
+  if (bins^dim > n) warning("Number of subregions is greater than sample size.")
+  #Samples from the parameter space uniformly from 0 to 1/bins in each dimension
+  unifSamples <- replicate(dim, runif(n, 0, 1/bins))
+  colnames(unifSamples) <- paste0("s", seq(dim))
   
   #Finds the number of remainder sample points
-  r <- n %% k^d
+  r <- n %% bins^dim
   #Provides index values to cells in the 3-dimensional grid system
-  mq <-  rep(0L:(k^d - 1L), n %/% (k^d))
-  mr <- sample(0L:(k^d - 1L), r, replace = FALSE)
+  mq <-  rep(0L:(bins^dim - 1L), n %/% (bins^dim))
+  mr <- sample(0L:(bins^dim - 1L), r, replace = FALSE)
   m <- c(mq, mr)
   #Finds the row, column, and depth of each cell in the matrix
-  shifts <- matrix(base_expansion(m, k, d), n, d + 1L)
-  shifts <- shifts[, c((d + 1L):2L), drop = FALSE]
+  shifts <- matrix(base_expansion(m, bins, dim), n, dim + 1L)
+  shifts <- shifts[, c((dim + 1L):2L), drop = FALSE]
   #Uses row, column, and depth values to determine degree of shifting
-  shiftVals <- (1/k) * shifts
+  shiftVals <- (1/bins) * shifts
   #Applies shifts to sampled s/t/u values to obtain the stratified sample
   unifSamples + shiftVals
 }
 
-base_expansion <- function(n, k, d){
-  i <- d
+base_expansion <- function(n, bins, dim){
+  i <- dim
   base <- c()
   while(i >= 0L) {
-    base <- c(base, n %/% k^i)
-    n <- n %% k^i
+    base <- c(base, n %/% bins^i)
+    n <- n %% bins^i
     i <-  i - 1L
   }
   base

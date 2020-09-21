@@ -8,20 +8,20 @@
 \alias{sample_stratify}
 \title{Stratified sample of any unit dimensional space}
 \usage{
-sample_strat_segment(n, k)
+sample_strat_segment(n, bins)
 
-sample_strat_square(n, k)
+sample_strat_square(n, bins)
 
-sample_strat_cube(n, k)
+sample_strat_cube(n, bins)
 
-sample_stratify(n, k, d)
+sample_stratify(n, bins, dim)
 }
 \arguments{
 \item{n}{Number of observations.}
 
-\item{k}{Number of intervals per dimension for the stratification.}
+\item{bins}{Number of intervals per dimension for the stratification.}
 
-\item{d}{Dimensional space of sample.}
+\item{dim}{Dimensional space of sample.}
 }
 \description{
 These functions generate stratified samples of any dimension

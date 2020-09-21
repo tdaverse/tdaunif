@@ -12,7 +12,7 @@ test_that("custom klein bottle sampler produces a recognizable sample", {
   klein_jacobian <- function(theta, phi) {
     sqrt((1 + cos(theta)) ^ 2 + (.5 * sin(theta)) ^ 2)
   }
-  klein_sampler <- make_manifold_sampler(
+  klein_sampler <- make_rejection_sampler(
     klein_param, klein_jacobian,
     max_params = c(theta = 2*pi, phi = 2*pi),
     max_jacobian = 4 + .25

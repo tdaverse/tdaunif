@@ -53,9 +53,9 @@ To sample from a region more uniformly than random, we can stratify the region, 
 [^remainder]: Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.
 
 ```{r}
-sq1 <- sample_strat_square(100L, k = 1L)
-sq4 <- sample_strat_square(100L, k = 4L)
-sq10 <- sample_strat_square(100L, k = 10L)
+sq1 <- sample_strat_square(100L, bins = 1L)
+sq4 <- sample_strat_square(100L, bins = 4L)
+sq10 <- sample_strat_square(100L, bins = 10L)
 par(mfrow = c(1, 3))
 plot(sq1, asp = 1, pch = 19, cex = .5)
 plot(sq4, asp = 1, pch = 19, cex = .5)

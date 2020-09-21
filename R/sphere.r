@@ -22,7 +22,7 @@
 
 #' @name sphere
 #' @param n Number of observations.
-#' @param d Dimension of the sphere.
+#' @param dim Dimension of the sphere.
 #' @param bins Number of intervals per dimension to stratify by. Default set to
 #'   1, which generates a uniform sample.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
@@ -72,14 +72,14 @@ apm_hemisphere <- function(x) {
 
 #' @rdname sphere
 #' @export
-sample_sphere <- function(n, d = 1, sd = 0) {
+sample_sphere <- function(n, dim = 1, sd = 0) {
   # sample from a simple multivariate Gaussian
-  res <- array(stats::rnorm(n * (d + 1)), dim = c(n, d + 1))
+  res <- array(stats::rnorm(n * (dim + 1)), dim = c(n, dim + 1))
   # ensure that all points have positive norm
   van <- which(apply(res, 1, norm, "2") == 0)
   for (i in van) {
     while (norm(res[i, ], "2") == 0) {
-      res[i, ] <- stats::rnorm(d + 1)
+      res[i, ] <- stats::rnorm(dim + 1)
     }
   }
   # scale all points to have norm 1
