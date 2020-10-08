@@ -1,6 +1,5 @@
 
-[![Travis build
-status](https://travis-ci.org/corybrunson/tdaunif.svg?branch=master)](https://travis-ci.org/corybrunson/tdaunif)
+[![Travis](https://travis-ci.org/corybrunson/tdaunif.svg?branch=main)](https://travis-ci.org/corybrunson/tdaunif)
 
 # **tdaunif**: Uniform manifold samplers for topological data analysis
 
@@ -50,7 +49,7 @@ their own with minimal effort (see `help(manifold, package =
 [the **remotes** package](https://github.com/r-lib/remotes):
 
 ``` r
-remotes::install_github("corybrunson/tdaunif")
+remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)
 ```
 
 ### illustration
@@ -95,8 +94,8 @@ properly uniform sample would produce:
 
 ``` r
 equilateral <- cbind(c(0,0), c(0.5,sqrt(3)/2), c(1,0))
-x <- sample_planar_triangle(n = 720, triangle = equilateral)
-y <- sample_planar_triangle(n = 720, triangle = equilateral, bins = 24)
+x <- sample_triangle_planar(n = 720, triangle = equilateral)
+y <- sample_triangle_planar(n = 720, triangle = equilateral, bins = 24)
 par(mfrow = c(1L, 2L))
 plot(x, asp = 1, pch = 19, cex = .5)
 plot(y, asp = 1, pch = 19, cex = .5)
