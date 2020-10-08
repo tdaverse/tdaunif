@@ -1,0 +1,18 @@
+reference:
+- title: Package
+  desc:  Motivation and background
+  contents:
+  - '`tdaunif`'
+- title: Use samplers
+  desc:  Sample points from immersed manifolds using given parameterizations
+  contents:
+  - starts_with("sample_")
+- title: Build samplers
+  desc:  Build custom samplers using general techniques
+  contents:
+  - '`make_rejection_sampler`'
+- title: Utilities
+  desc:  Helper functions
+  contents:
+  - '`add_noise`'
+  - starts_with("sample_strat_")
