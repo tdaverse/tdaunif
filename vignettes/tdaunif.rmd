@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ```{r, include=FALSE, results='hide'}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align='center', fig.width=6)
 library(tdaunif)
 ```
 
@@ -46,7 +46,7 @@ h : [0,1]\times[0,1] & \to \mathbb{R}^3 \\
 \end{array}\right]
 \end{align*}\]
 
-```{r, fig.width=6, fig.height=6}
+```{r, fig.height=6}
 hemi <- sample_2hemisphere(180L)
 pairs(hemi, asp = 1, pch = 19, cex = .5)
 ```
@@ -59,7 +59,7 @@ To sample from a region more uniformly than at random, we can stratify the regio
 
 [^remainder]: Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.
 
-```{r, fig.width=6, fig.height=3}
+```{r, fig.height=3}
 sq1 <- sample_strat_square(100L, bins = 1L)
 sq4 <- sample_strat_square(100L, bins = 4L)
 sq10 <- sample_strat_square(100L, bins = 10L)
@@ -72,7 +72,7 @@ par(mfrow = c(1, 1))
 
 These functions also undergird stratified sampling from manifolds with volume-preserving parameterizations, including the hemisphere:
 
-```{r, fig.width=6, fig.height=6}
+```{r, fig.height=6}
 hemi10 <- sample_2hemisphere(225L, bins = 10L)
 pairs(hemi10, asp = 1, pch = 19, cex = .5)
 ```
@@ -97,7 +97,7 @@ g : \mathbb{S}^1 & \to \mathbb{R}^3 \\
 
 We generate a sample below using the function `sample_trefoil()` and plot it in the three coordinate planes of $\mathbb{R}^3$. The parameterization above suggests a sort of symmetry within the $xy$-plane, and the plot shows that the embedding is "knotted" by way of undulations along the $z$-axis:
 
-```{r, fig.width=6, fig.height=6}
+```{r, fig.height=6}
 tref <- sample_trefoil(120L)
 pairs(tref, asp = 1, pch = 19, cex = .5)
 ```
@@ -146,7 +146,7 @@ disk1 <- disk_sampler(360L)
 
 For a quick surface validation, we can compare our custom rejection sampler to the volume-preserving parameterization--based disk sampler provided by **tdaunif**:
 
-```{r, fig.width=6, fig.height=4}
+```{r, fig.height=4}
 disk2 <- sample_disk(360L)
 par(mfrow = c(1L, 2L))
 plot(disk1, asp = 1, pch = 19, cex = 1/3)
