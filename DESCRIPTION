@@ -8,7 +8,10 @@ Authors@R: c(
     )
 Description: This package contains functions that generate uniform random
     samples from simple manifolds, optionally with noise, which are commonly
-    used to test topological data analytic (TDA) techniques.
+    used to test topological data analytic (TDA) tools. The samplers make use of
+    two techniques: analytic volume-preserving parameterizations, as employed by
+    Arvo (1995) <doi:10.1145/218380.218500>, and rejection sampling, as employed
+    by Diaconis, Holmes, and Shahshahani (2013) <doi:10.1214/12-IMSCOLL1006>.
 Depends: R (>= 3.3.0)
 Suggests: 
     knitr,
@@ -16,6 +19,8 @@ Suggests:
     vdiffr (>= 0.2)
 License: GPL-3
 Encoding: UTF-8
+URL: https://corybrunson.github.io/tdaunif/
+BugReports: https://github.com/corybrunson/tdaunif/issues
 LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
