@@ -10,7 +10,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r setup, include=FALSE}
+```{r, include=FALSE, results='hide'}
 knitr::opts_chunk$set(echo = TRUE)
 library(tdaunif)
 ```
@@ -44,7 +44,7 @@ h : [0,1]\times[0,1] & \to \mathbb{R}^3 \\
 \end{array}\right]
 \end{align*}\]
 
-```{r}
+```{r, fig.width=6, fig.height=6}
 hemi <- sample_2hemisphere(180L)
 pairs(hemi, asp = 1, pch = 19, cex = .5)
 ```
@@ -57,7 +57,7 @@ To sample from a region more uniformly than random, we can stratify the region, 
 
 [^remainder]: Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.
 
-```{r}
+```{r, fig.width=6, fig.height=3}
 sq1 <- sample_strat_square(100L, bins = 1L)
 sq4 <- sample_strat_square(100L, bins = 4L)
 sq10 <- sample_strat_square(100L, bins = 10L)
@@ -70,7 +70,7 @@ par(mfrow = c(1, 1))
 
 These functions also undergird stratified sampling from manifolds with volume-preserving parameterizations, including the hemisphere:
 
-```{r}
+```{r, fig.width=6, fig.height=6}
 hemi10 <- sample_2hemisphere(225L, bins = 10L)
 pairs(hemi10, asp = 1, pch = 19, cex = .5)
 ```
@@ -95,7 +95,7 @@ g : \mathbb{S}^1 & \to \mathbb{R}^3 \\
 
 We generate a sample below using the function `sample_trefoil()` and plot it in the three coordinate planes of $\mathbb{R}^3$:
 
-```{r}
+```{r, fig.width=6, fig.height=6}
 tref <- sample_trefoil(120L)
 pairs(tref, asp = 1, pch = 19, cex = .5)
 ```
@@ -142,14 +142,14 @@ disc_sampler <- make_rejection_sampler(
 disc1 <- disc_sampler(360L)
 ```
 
-For validation, we compare our custom rejection sampler to the volume-preserving parameterization--based disc sampler provided by **tdaunif**:
+For a quick surface validation, we can compare our custom rejection sampler to the volume-preserving parameterization--based disc sampler provided by **tdaunif**:
 
-```{r}
+```{r, fig.width=6, fig.height=4}
 disc2 <- sample_disc(360L)
 par(mfrow = c(1L, 2L))
-plot(disc1, asp = 1, pch = 19, cex = .5)
-plot(disc2, asp = 1, pch = 19, cex = .5)
+plot(disc1, asp = 1, pch = 19, cex = 1/3)
+plot(disc2, asp = 1, pch = 19, cex = 1/3)
 par(mfrow = c(1L, 1L))
 ```
 
-Not bad!
+Pretty close!
