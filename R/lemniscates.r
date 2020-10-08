@@ -5,8 +5,7 @@
 #'
 #' @details These functions use a simple parameterization from the unit circle
 #'   to the lemniscate of Gerono, as presented on
-#'   [Wikipedia](https://en.wikipedia.org/wiki/Lemniscate_of_Gerono).
-#'   `sample_figure_eight()` is an alias of `sample_lemniscate_gerono()`. The
+#'   [Wikipedia](https://en.wikipedia.org/wiki/Lemniscate_of_Gerono). The
 #'   uniform sample is generated through a rejection sampling process as
 #'   described by Diaconis, Holmes, and Shahshahani (2013).
 
@@ -51,7 +50,3 @@ rs_gerono <- function(n) {
 jd_gerono <- function() {
   function(theta) sqrt((cos(theta)) ^ 2 + (cos(theta) ^ 2 - sin(theta) ^ 2) ^ 2)
 }
-
-#' @rdname lemniscates
-#' @export
-sample_figure_eight <- sample_lemniscate_gerono

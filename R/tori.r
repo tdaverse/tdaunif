@@ -16,9 +16,6 @@
 #' The function `sample_tori_interlocked()` samples from two tubular tori
 #' interlocked in the same way as [sample_circles_interlocked()].
 #'
-#' The abbreviated function `sample_torus()` is an alias for the tubular
-#' parametrization sampler.
-#'
 #' All uniform samples are generated through a rejection sampling process as
 #' described by Diaconis, Holmes, and Shahshahani (2013).
 #' 
@@ -67,10 +64,10 @@ sample_tori_interlocked <- function(n, ar = 2, sd = 0) {
   # split sample size
   ns <- as.vector(table(stats::rbinom(n = n, size = 1, prob = .5)))
   # first torus, without noise
-  res_1 <- sample_torus(n = ns[1], ar = ar, sd = 0)
+  res_1 <- sample_torus_tube(n = ns[1], ar = ar, sd = 0)
   res_1 <- cbind(res_1, z = 0)
   # second torus, without noise, offset to (1,0,0) and rotated pi/2 about x
-  res_2 <- sample_torus(n = ns[2], ar = ar, sd = 0)
+  res_2 <- sample_torus_tube(n = ns[2], ar = ar, sd = 0)
   res_2 <- cbind(x = res_2[, 1] + 1, y = 0, z = res_2[, 2])
   # combine tori
   res <- rbind(res_1, res_2)[sample(n), , drop = FALSE]
@@ -91,7 +88,3 @@ sample_torus_flat <- function(n, ar = 1, sd = 0) {
   )
   add_noise(res, sd = sd)
 }
-
-#' @rdname tori
-#' @export
-sample_torus <- sample_torus_tube

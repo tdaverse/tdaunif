@@ -11,19 +11,19 @@
 #' @template ref-arvo2001
 #'
 
-#' @name planar-triangles
+#' @name triangles
 #' @param n Number of observations.
 #' @param triangle The (x,y) coordinates of the vertices of a triangle,
 #'   formatted in a 2x3 matrix
 #' @param bins Number of intervals per dimension to stratify by. Default set to
 #'   1, which generates a uniform sample.
 #' @param sd Standard deviation of (independent multivariate) Gaussian noise.
-#' @example inst/examples/ex-planar-triangles.r
+#' @example inst/examples/ex-triangles.r
 NULL
 
-#' @rdname planar-triangles
+#' @rdname triangles
 #' @export
-sample_planar_triangle <- function(n, triangle, bins = 1, sd = 0) {
+sample_triangle_planar <- function(n, triangle, bins = 1, sd = 0) {
   #Checks to make sure 'triangle' input is a 2x3 matrix and if not, alerts the
   #user
   if (nrow(triangle) != 2 | ncol(triangle) != 3)

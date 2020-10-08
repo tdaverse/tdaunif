@@ -13,9 +13,6 @@
 #' of the torus, as presented on
 #' [Wikipedia](https://en.wikipedia.org/wiki/Klein_bottle#4-D_non-intersecting).
 #'
-#' The abbreviated function `sample_klein()` is an alias for the tube
-#' parametrization sampler.
-#' 
 #' Both uniform samples are generated through a rejection sampling process as
 #' described by Diaconis, Holmes, and Shahshahani (2013).
 #'
@@ -115,7 +112,3 @@ jd_klein_flat <- function(p, e) {
       .25 * sqsinphi * sqsin2phi
   }
 }
-
-#' @rdname klein-bottles
-#' @export
-sample_klein <- sample_klein_tube

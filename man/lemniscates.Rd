@@ -3,12 +3,9 @@
 \name{lemniscates}
 \alias{lemniscates}
 \alias{sample_lemniscate_gerono}
-\alias{sample_figure_eight}
 \title{Sample (with noise) from lemniscates (figure eights)}
 \usage{
 sample_lemniscate_gerono(n, sd = 0)
-
-sample_figure_eight(n, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -22,8 +19,7 @@ These functions generate uniform samples from lemniscates
 \details{
 These functions use a simple parameterization from the unit circle
 to the lemniscate of Gerono, as presented on
-\href{https://en.wikipedia.org/wiki/Lemniscate_of_Gerono}{Wikipedia}.
-\code{sample_figure_eight()} is an alias of \code{sample_lemniscate_gerono()}. The
+\href{https://en.wikipedia.org/wiki/Lemniscate_of_Gerono}{Wikipedia}. The
 uniform sample is generated through a rejection sampling process as
 described by Diaconis, Holmes, and Shahshahani (2013).
 }

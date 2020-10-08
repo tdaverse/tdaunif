@@ -4,14 +4,11 @@
 \alias{klein-bottles}
 \alias{sample_klein_tube}
 \alias{sample_klein_flat}
-\alias{sample_klein}
 \title{Sample (with noise) from Klein bottles}
 \usage{
 sample_klein_tube(n, ar = 2, sd = 0)
 
 sample_klein_flat(n, ar = 1, bump = 0.1, sd = 0)
-
-sample_klein(n, ar = 2, sd = 0)
 }
 \arguments{
 \item{n}{Number of observations.}
@@ -34,9 +31,6 @@ documented at the \href{https://mathcurve.com/surfaces.gb/klein/klein.shtml}{Enc
 The function \code{sample_klein_flat()} uses a flat parameterization based on that
 of the torus, as presented on
 \href{https://en.wikipedia.org/wiki/Klein_bottle#4-D_non-intersecting}{Wikipedia}.
-
-The abbreviated function \code{sample_klein()} is an alias for the tube
-parametrization sampler.
 
 Both uniform samples are generated through a rejection sampling process as
 described by Diaconis, Holmes, and Shahshahani (2013).
