@@ -62,7 +62,6 @@ uniformly from this embedding (without noise) and examine the coordinate
 projections as follows:
 
 ``` r
-set.seed(0)
 x <- sample_klein_tube(n = 360, ar = 3, sd = 0)
 pairs(x, asp = 1, pch = 19, cex = .5)
 ```

@@ -41,16 +41,16 @@ One especially important motivation for this package is therefore to include uni
 remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)
 ```
 
-### illustration
-
 ```{r eval=TRUE, echo=FALSE, message=FALSE}
 devtools::load_all()
+set.seed(0)
 ```
+
+### illustration
 
 [An intuitive embedding of the Klein bottle into 4-space](https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_/_4D_M%C3%B6bius_tube) is adapted from the popular "donut" embedding of the torus in 3-space. In **tdaunif** this is called the "tube" parameterization. We can sample uniformly from this embedding (without noise) and examine the coordinate projections as follows:
 
 ```{r klein bottle}
-set.seed(0)
 x <- sample_klein_tube(n = 360, ar = 3, sd = 0)
 pairs(x, asp = 1, pch = 19, cex = .5)
 ```
