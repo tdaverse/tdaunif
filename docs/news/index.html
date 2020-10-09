@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis — tdaunif • tdaunif</title>
+<title>Changelog • tdaunif</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,7 @@
 
 
 
-<meta property="og:title" content="<strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis — tdaunif" />
-<meta property="og:description" content="Generate uniform random samples from embedded manifolds,
-optionally with noise." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -60,7 +58,7 @@ optionally with noise." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -115,62 +113,23 @@ optionally with noise." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis</h1>
-    <small class="dont-index">Source: <a href='https://github.com/corybrunson/tdaunif/blob/master/R/tdaunif.r'><code>R/tdaunif.r</code></a></small>
-    <div class="hidden name"><code>tdaunif.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/corybrunson/tdaunif/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>Generate uniform random samples from embedded manifolds,
-optionally with noise.</p>
-    </div>
-
-
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This package assembles functions that generate samples of points uniformly
-from the surfaces of embedded manifolds. An <em>embedding</em> is a one-to-one
-continuous map \(f:M\to X\) from a manifold \(M\) to a Euclidean
-coordinate space \(X\), and each function relies on a <em>parameterization</em> of
-\(M\) given by a continuous bijective function \(p:S\to f(M)\) that may
-identify some points of \(s\) (boundary or interior) to produce the
-topology of \(M\). (This means that the inverse of \(p\) may not be
-continuous.)</p>
-<p>Sampling points \(P\) uniformly from \(S\) and mapping the sample to
-\(f(M)\) may produce a non-uniform sample \(p(P)\) due to differences in
-the local sampling rate per unit interior (length, area, volume, etc.),
-quantified as the Jacobian (higher-order derivative) of \(p\). <strong>tdaunif</strong>
-uses two techniques to correct for this:</p><ul>
-<li><p>The more numerical (brute-force) technique is to compute the Jacobian on
-the parameter space and oversample locally at a rate proportional to the
-Jacobian. This oversampling is done via rejection sampling as illustrated by
-Diaconis, Holmes, and Shahshahani (2013).</p></li>
-<li><p>The more analytic technique is to invert the Jacobian symbolically in order
-to define an interior-preserving parameterization \(q:S\to f(M)\), as
-illustrated for 2-manifolds by Arvo (2001). Sampling \(P\) uniformly on
-\(S\) then produces a uniform sample \(q(P)\) on \(f(M)\). The
-interior-preserving map also enables stratified sampling on the manifold via
-stratification of the parameter space.</p></li>
-</ul>
-
-<p>Multivariate Gaussian noise in the coordinate space can be added to any
-sample.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>J Arvo (2001) Stratified Sampling of 2-Manifolds. <em>SIGRAPH 2001 (State of the
-Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)</em>, Course Notes,
-Vol. 29. <a href='http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf'>http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf</a></p>
-<p>P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
-<em>Advances in Modern Statistical Theory and Applications: A Festschrift in
-honor of Morris L. Eaton</em>, 102--125. doi: <a href='https://doi.org/10.1214/12-IMSCOLL1006'>10.1214/12-IMSCOLL1006</a></p>
-
+    <div id="tdaunif-0-1-0" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#tdaunif-0-1-0" class="anchor"></a>tdaunif 0.1.0</h1>
+<p>This first minor version contains several common samplers, stratified samplers for cubes in any dimension, and a function factory for custom rejection samplers.</p>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 

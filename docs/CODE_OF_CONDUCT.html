@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis — tdaunif • tdaunif</title>
+<title>Contributor Code of Conduct • tdaunif</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,15 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="<strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis — tdaunif" />
-<meta property="og:description" content="Generate uniform random samples from embedded manifolds,
-optionally with noise." />
+<meta property="og:title" content="Contributor Code of Conduct" />
 
 
 
@@ -60,7 +58,7 @@ optionally with noise." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -72,7 +70,7 @@ optionally with noise." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">tdaunif</a>
+        <a class="navbar-link" href="index.html">tdaunif</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -80,19 +78,19 @@ optionally with noise." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../articles/tdaunif.html">Get started</a>
+  <a href="articles/tdaunif.html">Get started</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -113,65 +111,30 @@ optionally with noise." />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1><strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis</h1>
-    <small class="dont-index">Source: <a href='https://github.com/corybrunson/tdaunif/blob/master/R/tdaunif.r'><code>R/tdaunif.r</code></a></small>
-    <div class="hidden name"><code>tdaunif.Rd</code></div>
+      <h1>Contributor Code of Conduct</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Generate uniform random samples from embedded manifolds,
-optionally with noise.</p>
-    </div>
+<div id="contributor-code-of-conduct" class="section level1">
 
-
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This package assembles functions that generate samples of points uniformly
-from the surfaces of embedded manifolds. An <em>embedding</em> is a one-to-one
-continuous map \(f:M\to X\) from a manifold \(M\) to a Euclidean
-coordinate space \(X\), and each function relies on a <em>parameterization</em> of
-\(M\) given by a continuous bijective function \(p:S\to f(M)\) that may
-identify some points of \(s\) (boundary or interior) to produce the
-topology of \(M\). (This means that the inverse of \(p\) may not be
-continuous.)</p>
-<p>Sampling points \(P\) uniformly from \(S\) and mapping the sample to
-\(f(M)\) may produce a non-uniform sample \(p(P)\) due to differences in
-the local sampling rate per unit interior (length, area, volume, etc.),
-quantified as the Jacobian (higher-order derivative) of \(p\). <strong>tdaunif</strong>
-uses two techniques to correct for this:</p><ul>
-<li><p>The more numerical (brute-force) technique is to compute the Jacobian on
-the parameter space and oversample locally at a rate proportional to the
-Jacobian. This oversampling is done via rejection sampling as illustrated by
-Diaconis, Holmes, and Shahshahani (2013).</p></li>
-<li><p>The more analytic technique is to invert the Jacobian symbolically in order
-to define an interior-preserving parameterization \(q:S\to f(M)\), as
-illustrated for 2-manifolds by Arvo (2001). Sampling \(P\) uniformly on
-\(S\) then produces a uniform sample \(q(P)\) on \(f(M)\). The
-interior-preserving map also enables stratified sampling on the manifold via
-stratification of the parameter space.</p></li>
-</ul>
-
-<p>Multivariate Gaussian noise in the coordinate space can be added to any
-sample.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>J Arvo (2001) Stratified Sampling of 2-Manifolds. <em>SIGRAPH 2001 (State of the
-Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)</em>, Course Notes,
-Vol. 29. <a href='http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf'>http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf</a></p>
-<p>P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
-<em>Advances in Modern Statistical Theory and Applications: A Festschrift in
-honor of Morris L. Eaton</em>, 102--125. doi: <a href='https://doi.org/10.1214/12-IMSCOLL1006'>10.1214/12-IMSCOLL1006</a></p>
+<p>As contributors and maintainers of this project, we pledge to respect all people who contribute through opening issues (including questions, bugs, and feature requests), updating documentation, submitting pull requests or patches, and other activities.</p>
+<p>We are committed to making participation in this project a harassment-free experience for everyone, regardless of level of experience or fluency, contribution history, social status, age, gender identity or expression, sexual orientation, visible or invisible disability, personal appearance, body size, ethnic or racial identity or perception, and cultural or religious background or identity.</p>
+<p>Examples of unacceptable behavior by participants include the use of sexual language or imagery, derogatory or derisive comments, personal attacks, trolling, public or private harassment or insults, or other unprofessional conduct.</p>
+<p>Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, issues, and other contributions inconsistent with this Code of Conduct. Project maintainers who do not follow this Code of Conduct may be removed from the project team. Instances of behavior inconsistent with this Code of Conduct may be reported by opening an issue or contacting one or more of the project maintainers.</p>
+<p>This Code of Conduct is adapted (with changes) from the <a href="http:contributor-covenant.org">Contributor Covenant</a>, version 1.0.0, available at <a href="https://www.contributor-covenant.org/version/1/0/0/code-of-conduct.html" class="uri">https://www.contributor-covenant.org/version/1/0/0/code-of-conduct.html</a></p>
+</div>
 
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
+
 
 
       <footer>
