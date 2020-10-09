@@ -1,20 +1,21 @@
 Package: tdaunif
-Title: Uniform manifold samplers for topological data analysis
+Title: Uniform Manifold Samplers for Topological Data Analysis
 Version: 0.1.0
 Authors@R: c(
     person("Jason Cory", "Brunson", email = "cornelioid@gmail.com", role = c("aut", "cre")),
     person("Brandon", "Demkowicz", email = "brandondemkowicz@gmail.com", role = "aut"),
     person("Sanmati", "Choudhary", email = "20choudharysa@fpsct.org", role = "aut")
     )
-Description: This package contains functions that generate uniform random
-    samples from simple manifolds, optionally with noise, which are commonly
-    used to test topological data analytic (TDA) tools. The samplers make use of
-    two techniques: analytic volume-preserving parameterizations, as employed by
-    Arvo (1995) <doi:10.1145/218380.218500>, and rejection sampling, as employed
-    by Diaconis, Holmes, and Shahshahani (2013) <doi:10.1214/12-IMSCOLL1006>.
+Description: Uniform random samples from simple manifolds, sometimes with noise,
+    are commonly used to test topological data analytic (TDA) tools.
+    This package includes samplers powered by two techniques: analytic
+    volume-preserving parameterizations, as employed by Arvo (1995)
+    <doi:10.1145/218380.218500>, and rejection sampling, as employed by
+    Diaconis, Holmes, and Shahshahani (2013) <doi:10.1214/12-IMSCOLL1006>.
 Depends: R (>= 3.3.0)
 Suggests: 
     knitr,
+    rmarkdown,
     testthat,
     vdiffr (>= 0.2)
 License: GPL-3

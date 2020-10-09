@@ -29,9 +29,9 @@ These functions generate uniform samples from a sphere of radius
 1-higher-dimensional space, optionally with noise.
 }
 \details{
-The function \code{sample_sphere()} is adapted from \code{\link[TDA:sphereUnif]{TDA::sphereUnif()}}. It uses
-\code{\link[stats:Normal]{stats::rnorm()}} to sample from a multivariate Gaussian and normalizes the
-resulting coordinates.
+The function \code{sample_sphere()} is adapted from \code{sphereUnif()} in the \strong{TDA}
+package. It uses \code{\link[stats:Normal]{stats::rnorm()}} to sample from a multivariate Gaussian and
+normalizes the resulting coordinates.
 
 The function \code{sample_2hemisphere()} uses an area-preserving parameterization
 of the upper hemisphere, and \code{sample_2sphere()} uses two of these samples,

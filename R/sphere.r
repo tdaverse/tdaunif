@@ -6,9 +6,9 @@
 #'
 #' @details
 #'
-#' The function `sample_sphere()` is adapted from [TDA::sphereUnif()]. It uses
-#' [stats::rnorm()] to sample from a multivariate Gaussian and normalizes the
-#' resulting coordinates.
+#' The function `sample_sphere()` is adapted from `sphereUnif()` in the **TDA**
+#' package. It uses [stats::rnorm()] to sample from a multivariate Gaussian and
+#' normalizes the resulting coordinates.
 #'
 #' The function `sample_2hemisphere()` uses an area-preserving parameterization
 #' of the upper hemisphere, and `sample_2sphere()` uses two of these samples,

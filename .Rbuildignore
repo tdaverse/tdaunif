@@ -6,12 +6,21 @@
 ^\.travis\.yml$
 
 # package infrastructure
-man-roxygen
-docs
+^man-roxygen$
+^docs$
 
-# README
+# package files
 ^README\.[Rr]md$
 ^man/figures/README-.*\.png$
+^LICENSE$
+^CONTRIBUTING.md$
+^CODE_OF_CONDUCT.md$
+
+# hosting infrastructure
+^_pkgdown\.yml$
+^\.travis\.yml$
+^cran-comments.md$
+^CRAN-RELEASE$
 
 # sandbox
-sandbox
+^sandbox$
