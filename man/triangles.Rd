@@ -29,6 +29,8 @@ the planar triangle. This parametrization was derived through the method
 for sampling 2-manifolds as described by Arvo (2001).
 }
 \examples{
+set.seed(23004L)
+
 #Uniformly sampled equilateral planar triangle in 2-space
 equilateral_triangle <- cbind(c(0,0), c(0.5,sqrt(3)/2), c(1,0))
 x <-  sample_triangle_planar(10000, equilateral_triangle)
@@ -47,5 +49,5 @@ plot(x, asp = 1, pch = 19, cex = .25)
 \references{
 J Arvo (2001) Stratified Sampling of 2-Manifolds. \emph{SIGRAPH 2001 (State of the
 Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)}, Course Notes,
-Vol. 29. \url{http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf}
+Vol. 29. \url{https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf}
 }

@@ -32,6 +32,8 @@ including the unit line segment in 1-dimensional space, the unit square in
 (Details.)
 }
 \examples{
+set.seed(28522L)
+
 #Stratified sample in 1-dimension with 10 intervals
 values <- sample_strat_segment(13, 10)
 x <- cbind(values, rep(0, 13))

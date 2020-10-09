@@ -1,3 +1,5 @@
+set.seed(23004L)
+
 #Uniformly sampled equilateral planar triangle in 2-space
 equilateral_triangle <- cbind(c(0,0), c(0.5,sqrt(3)/2), c(1,0))
 x <-  sample_triangle_planar(10000, equilateral_triangle)

@@ -24,6 +24,8 @@ uniform sample is generated through a rejection sampling process as
 described by Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
+set.seed(12051L)
+
 # Uniformly sampled figure eight in 2-space
 x <- sample_lemniscate_gerono(720)
 plot(x, asp = 1, pch = 19, cex = .5)

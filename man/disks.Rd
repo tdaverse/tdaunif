@@ -25,6 +25,8 @@ the disk. This parametrization was derived through the method for sampling
 2-manifolds as described by Arvo (2001).
 }
 \examples{
+set.seed(99812L)
+
 # Uniformly sampled unit disk in 2-space
 x <- sample_disk(1800, sd = 0)
 plot(x, asp = 1, pch = 19, cex = .5)
@@ -36,5 +38,5 @@ plot(x, asp = 1, pch = 19, cex = .5)
 \references{
 J Arvo (2001) Stratified Sampling of 2-Manifolds. \emph{SIGRAPH 2001 (State of the
 Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)}, Course Notes,
-Vol. 29. \url{http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf}
+Vol. 29. \url{https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf}
 }

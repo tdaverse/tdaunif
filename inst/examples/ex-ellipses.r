@@ -1,3 +1,5 @@
+set.seed(97205L)
+
 # ellipses in 2-space
 x <- sample_ellipse(120, ar = 6)
 plot(x, asp = 1, pch = 19, cex = .5)

@@ -24,6 +24,7 @@ The uniform sample is generated through a rejection sampling process as
 described by Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
+set.seed(22764L)
 
 # real projective plane embedding in 4-space
 x <- sample_projective_plane(120)

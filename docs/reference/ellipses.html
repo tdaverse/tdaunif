@@ -161,7 +161,9 @@ sample is generated through a rejection sampling process as described by
 Diaconis, Holmes, and Shahshahani (2013).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># ellipses in 2-space</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>97205L</span>)
+
+<span class='co'># ellipses in 2-space</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>6</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-2.png' alt='' width='700' height='433' /></div><div class='input'>

@@ -44,6 +44,8 @@ be provided, though it may be larger than the theoretical maximum of the
 jacobian determinant.
 }
 \examples{
+set.seed(47569L)
+
 # parameterization and Jacobian for Klein bottle tube embedding
 klein_parameterization <- function(theta, phi) {
   cbind(

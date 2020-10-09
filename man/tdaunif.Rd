@@ -42,7 +42,7 @@ sample.
 \references{
 J Arvo (2001) Stratified Sampling of 2-Manifolds. \emph{SIGRAPH 2001 (State of the
 Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)}, Course Notes,
-Vol. 29. \url{http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf}
+Vol. 29. \url{https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf}
 
 P Diaconis, S Holmes, and M Shahshahani (2013) Sampling from a Manifold.
 \emph{Advances in Modern Statistical Theory and Applications: A Festschrift in

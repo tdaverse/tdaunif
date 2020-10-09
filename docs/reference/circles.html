@@ -161,7 +161,9 @@ the stratification for the latter function will simply be between the two
 interlocked circles.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># circle in 2-space</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>14312L</span>)
+
+<span class='co'># circle in 2-space</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_circle</span>(<span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>.1</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='circles-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># interlocked circles in 3-space</span>

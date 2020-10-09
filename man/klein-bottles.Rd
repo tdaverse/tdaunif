@@ -36,6 +36,7 @@ Both uniform samples are generated through a rejection sampling process as
 described by Diaconis, Holmes, and Shahshahani (2013).
 }
 \examples{
+set.seed(834L)
 
 # Klein bottle tube embedding in 4-space
 x <- sample_klein_tube(120, sd = .05)

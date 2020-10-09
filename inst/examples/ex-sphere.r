@@ -1,3 +1,4 @@
+set.seed(50253L)
 
 # 1-sphere in 2-space
 x <- sample_sphere(120, dim = 1, sd = .1)

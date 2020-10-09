@@ -1,3 +1,5 @@
+set.seed(14312L)
+
 # circle in 2-space
 x <- sample_circle(120, sd = .1)
 plot(x, asp = 1, pch = 19, cex = .5)

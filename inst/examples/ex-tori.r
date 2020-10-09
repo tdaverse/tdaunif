@@ -1,3 +1,4 @@
+set.seed(33183L)
 
 # torus tube embedding in 3-space
 x <- sample_torus_tube(120, sd = .05)

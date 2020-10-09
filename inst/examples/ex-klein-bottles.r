@@ -1,3 +1,4 @@
+set.seed(834L)
 
 # Klein bottle tube embedding in 4-space
 x <- sample_klein_tube(120, sd = .05)

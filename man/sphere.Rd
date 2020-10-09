@@ -40,6 +40,7 @@ The parametrization was derived through the method for sampling 2-manifolds
 as described by Arvo (2001).
 }
 \examples{
+set.seed(50253L)
 
 # 1-sphere in 2-space
 x <- sample_sphere(120, dim = 1, sd = .1)
@@ -60,5 +61,5 @@ pairs(x, asp = 1, pch = 19, cex = .5)
 \references{
 J Arvo (2001) Stratified Sampling of 2-Manifolds. \emph{SIGRAPH 2001 (State of the
 Art in Monte Carlo Ray Tracing for Realistic Image Synthesis)}, Course Notes,
-Vol. 29. \url{http://www.cs.virginia.edu/~jdl/bib/globillum/arvo01_notes.pdf}
+Vol. 29. \url{https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf}
 }

@@ -1,3 +1,5 @@
+set.seed(47569L)
+
 # parameterization and Jacobian for Klein bottle tube embedding
 klein_parameterization <- function(theta, phi) {
   cbind(
