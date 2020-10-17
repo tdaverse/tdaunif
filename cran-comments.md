@@ -1,3 +1,7 @@
+## Resubmission
+
+This is a resubmission following a response alerting me that i had not restored graphical settings after adjusting them in documentation using `par()`. This has been fixed in the README and in the vignette.
+
 ## Test environments
 
 * local OS X install, R 4.0.0 (via `devtools::check()`)
@@ -8,7 +12,7 @@
 
 ## Test results
 
-All tests produced NOTES about possibly misspelled words, all of which are names or standard initialisms and have been verified.
+All remote tests produced NOTES about possibly misspelled words, all of which are names or standard initialisms and have been verified.
 
 ### R CMD check results
 
@@ -25,8 +29,6 @@ On one platform (Ubuntu Linux 16.04 LTS, R-release, GCC), one ERROR was due to v
 There were no ERRORs.
 
 On the old release platform (x86_64-w64-mingw32, R version 3.6.3), one WARNING flagged a failure to convert README.md due to an image not being found. Weaving the file from its R Markdown source produces no new files, and each random step is set with a seed, so i don't know how this might be resolved.
-
-On the development platform (x86_64-w64-mingw32, r79316), one NOTE flagged that the LICENSE file is not mentioned in the DESCRIPTION (only "GPL-3" is mentioned, which for other packages has been enough) and flagged non-standard files (CODE_OF_CONDUCT.md, etc) that are already included in .Rbuildignore.
 
 ## Downstream dependencies
 
