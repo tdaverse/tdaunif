@@ -52,6 +52,15 @@ their own with minimal effort (see `help(manifold, package =
 remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)
 ```
 
+To stabilize this document, this chunk saves the default graphics
+settings (as required by CRAN) and initializes the random number
+generator:
+
+``` r
+oldpar <- par(no.readonly = TRUE)
+set.seed(0)
+```
+
 ### illustration
 
 [An intuitive embedding of the Klein bottle
@@ -102,11 +111,11 @@ plot(y, asp = 1, pch = 19, cex = .5)
 
 ![](man/figures/README-planar%20triangle,%20uniformly%20and%20with%20stratification-1.png)<!-- -->
 
-``` r
-par(mfrow = c(1L, 1L))
-```
-
 See [Arvo (1995)](https://dl.acm.org/doi/10.1145/218380.218500) and
 Arvo’s notes from
 [Siggraph 2001](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf)
 for a detailed treatment of this techniquue.
+
+``` r
+par(oldpar)
+```

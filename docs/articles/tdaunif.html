@@ -76,7 +76,7 @@
       <h1 data-toc-skip>Uniform and Stratified Sampling from Manifolds in Euclidean Space</h1>
                         <h4 class="author">Cory Brunson</h4>
             
-            <h4 class="date">2020-10-09</h4>
+            <h4 class="date">2020-10-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/corybrunson/tdaunif/blob/master/vignettes/tdaunif.rmd"><code>vignettes/tdaunif.rmd</code></a></small>
       <div class="hidden name"><code>tdaunif.rmd</code></div>
@@ -89,6 +89,14 @@
 <p>Samples from <a href="https://mathworld.wolfram.com/ParametricEquations.html">parameterized</a> immersions are easy to generate: When the parameterization is <span class="math inline">\(f : S \to X\)</span>, sample points from the parameter space <span class="math inline">\(S\)</span> (the domain) and transform the points to the cooordinate space <span class="math inline">\(X\)</span> (the codomain). When the parameterization is not volume-preserving (length-preserving for 1-dimensional manifolds, area-preserving for 2-dimensional manifolds, etc.), however, this will lead to oversampling of compressed regions and undersampling of expanded regions, called “warping”. <a href="https://projecteuclid.org/euclid.imsc/1379942050">Diaconis, Holmes, and Shahshahani (2013)</a> illustrate this problem by sampling naïvely from the <em>curved torus</em>, a common embedding of the torus <span class="math inline">\(\mathbb{T}^2\)</span> into 3-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
 <p>The package makes use of two techniques to mitigate this problem. The easier technique, described by Diaconis, Holmes, and Shahshahani, is <em>rejection sampling</em>: Generate a larger-than-necessary sample in the naïve way and then strategically discard samples to correct for warping. To do this requires explicitly calculating a function that quantifies the warping at each point in the domain, a more general analog to the derivative of a function <span class="math inline">\(f : \mathbb{R} \to \mathbb{R}\)</span>. This derivative is called the <a href="https://mathworld.wolfram.com/Jacobian.html">Jacobian determinant</a> <span class="math inline">\(j_f : S \to \mathbb{R}\)</span> and is used to calibrate the rejection rate.</p>
 <p>The harder technique requires analytically solving (i.e. finding an inverse formula for) <span class="math inline">\(j_f\)</span> in order to construct an alternative, <em>volume-preserving</em> parameterization <span class="math inline">\(\tilde{f} : S \to X\)</span> of the same manifold. <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf">Arvo (2001; p. 41–70)</a> describes this technique for several simple cases, some of which are implemented here. Unfortunately, most common parameterizations do not have the necessary analytic solutions so are not implemented this way. For those that are, an important payoff is the ability to generate <em>stratified samples</em> from the coordinate space merely by stratifying the parameter space.</p>
+<div id="set-up" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-up" class="anchor"></a>Set up</h3>
+<p>This chunk attaches the installed version of the package, saves the default graphics settings and initializes the random number generator:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tdaunif</span>)
+<span class="no">oldpar</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">no.readonly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">0</span>)</pre></body></html></div>
+</div>
 <div id="volume-preserving-parameterizations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#volume-preserving-parameterizations" class="anchor"></a>Volume-preserving parameterizations</h2>
@@ -110,7 +118,7 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 1 - u
 \end{array}\right]
 \end{align*}\]</span></p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">hemi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span>(<span class="fl">180L</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">hemi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span>(<span class="fl">180L</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(<span class="no">hemi</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">.5</span>)</pre></body></html></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Notice the classical pattern of random clustering: Samples from uniform distributions are not themselves uniformly distributed (in the way that lattices are), so they don’t match our intuitive expectations. If we want greater uniformity, volume-preserving maps offer a solution.</p>
@@ -118,7 +126,7 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 <h3 class="hasAnchor">
 <a href="#stratified-sampling" class="anchor"></a>Stratified sampling</h3>
 <p>To sample from a region more uniformly than at random, we can stratify the region, allocate a uniform subsample size to each stratum, and sample those points uniformly within each stratum. The <code>sample_strat_*()</code> functions implement this idea for unit cubes of any dimension:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">sq1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span>(<span class="fl">100L</span>, <span class="kw">bins</span> <span class="kw">=</span> <span class="fl">1L</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">sq1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span>(<span class="fl">100L</span>, <span class="kw">bins</span> <span class="kw">=</span> <span class="fl">1L</span>)
 <span class="no">sq4</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span>(<span class="fl">100L</span>, <span class="kw">bins</span> <span class="kw">=</span> <span class="fl">4L</span>)
 <span class="no">sq10</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span>(<span class="fl">100L</span>, <span class="kw">bins</span> <span class="kw">=</span> <span class="fl">10L</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>))
@@ -126,7 +134,6 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">sq4</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">.5</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">sq10</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">.5</span>)</pre></body></html></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>))</pre></body></html></div>
 <p>These functions also undergird stratified sampling from manifolds with volume-preserving parameterizations, including the hemisphere:</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">hemi10</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span>(<span class="fl">225L</span>, <span class="kw">bins</span> <span class="kw">=</span> <span class="fl">10L</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(<span class="no">hemi10</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">.5</span>)</pre></body></html></div>
@@ -194,8 +201,12 @@ f : Q &amp; \to \mathbb{R}^2 \\
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">disk1</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1</span>/<span class="fl">3</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">disk2</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1</span>/<span class="fl">3</span>)</pre></body></html></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">1L</span>))</pre></body></html></div>
 <p>Pretty close!</p>
+</div>
+<div id="set-down" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-down" class="anchor"></a>Set down</h3>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">oldpar</span>)</pre></body></html></div>
 </div>
 </div>
 <div class="footnotes">

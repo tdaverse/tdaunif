@@ -2,12 +2,13 @@
 output: github_document
 ---
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-"
 )
+devtools::load_all()
 ```
 
 [![Travis](https://travis-ci.org/corybrunson/tdaunif.svg?branch=main)](https://travis-ci.org/corybrunson/tdaunif)
@@ -41,8 +42,10 @@ One especially important motivation for this package is therefore to include uni
 remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)
 ```
 
-```{r eval=TRUE, echo=FALSE, message=FALSE}
-devtools::load_all()
+To stabilize this document, this chunk saves the default graphics settings (as required by CRAN) and initializes the random number generator:
+
+```{r stabilize}
+oldpar <- par(no.readonly = TRUE)
 set.seed(0)
 ```
 
@@ -75,7 +78,10 @@ y <- sample_triangle_planar(n = 720, triangle = equilateral, bins = 24)
 par(mfrow = c(1L, 2L))
 plot(x, asp = 1, pch = 19, cex = .5)
 plot(y, asp = 1, pch = 19, cex = .5)
-par(mfrow = c(1L, 1L))
 ```
 
 See [Arvo (1995)](https://dl.acm.org/doi/10.1145/218380.218500) and Arvo's notes from [Siggraph 2001](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf) for a detailed treatment of this techniquue.
+
+```{r restore}
+par(oldpar)
+```
