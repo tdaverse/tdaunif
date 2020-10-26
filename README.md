@@ -45,8 +45,16 @@ their own with minimal effort (see `help(manifold, package =
 
 ### installation
 
-**tdaunif** is not yet on CRAN, but you can install it from GitHub using
-[the **remotes** package](https://github.com/r-lib/remotes):
+The latest release of **tdaunif** can be installed from
+[CRAN](https://cran.r-project.org/):
+
+``` r
+install.packages("tdaunif")
+```
+
+You can install the current development version of **tdaunif** from
+GitHub using [the **remotes**
+package](https://github.com/r-lib/remotes):
 
 ``` r
 remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)

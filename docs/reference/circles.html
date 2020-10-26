@@ -127,9 +127,9 @@ configurations of circles of radius 1 in 2- or 3-dimensional space,
 optionally with noise.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sample_circle</span>(<span class='no'>n</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+    <pre class="usage"><span class='fu'>sample_circle</span><span class='op'>(</span><span class='va'>n</span>, bins <span class='op'>=</span> <span class='fl'>1L</span>, sd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 
-<span class='fu'>sample_circles_interlocked</span>(<span class='no'>n</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+<span class='fu'>sample_circles_interlocked</span><span class='op'>(</span><span class='va'>n</span>, bins <span class='op'>=</span> <span class='fl'>1L</span>, sd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,14 +161,16 @@ the stratification for the latter function will simply be between the two
 interlocked circles.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>14312L</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>14312L</span><span class='op'>)</span>
 
 <span class='co'># circle in 2-space</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_circle</span>(<span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>.1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='circles-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_circle</span><span class='op'>(</span><span class='fl'>120</span>, sd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='circles-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># interlocked circles in 3-space</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_circles_interlocked</span>(<span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>.1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='circles-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_circles_interlocked</span><span class='op'>(</span><span class='fl'>120</span>, sd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='circles-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -184,7 +186,7 @@ interlocked circles.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

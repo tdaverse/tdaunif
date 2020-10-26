@@ -36,7 +36,13 @@ One especially important motivation for this package is therefore to include uni
 
 ### installation
 
-**tdaunif** is not yet on CRAN, but you can install it from GitHub using [the **remotes** package](https://github.com/r-lib/remotes):
+The latest release of **tdaunif** can be installed from [CRAN](https://cran.r-project.org/):
+
+```{r eval=FALSE}
+install.packages("tdaunif")
+```
+
+You can install the current development version of **tdaunif** from GitHub using [the **remotes** package](https://github.com/r-lib/remotes):
 
 ```{r eval=FALSE}
 remotes::install_github("corybrunson/tdaunif", build_vignettes = TRUE)

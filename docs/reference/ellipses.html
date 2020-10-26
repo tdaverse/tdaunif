@@ -127,9 +127,9 @@ ellipses of major or minor radius 1 in 2- or 3-dimensional space,
 optionally with noise.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sample_ellipse</span>(<span class='no'>n</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+    <pre class="usage"><span class='fu'>sample_ellipse</span><span class='op'>(</span><span class='va'>n</span>, ar <span class='op'>=</span> <span class='fl'>1</span>, sd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 
-<span class='fu'>sample_cylinder_elliptical</span>(<span class='no'>n</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+<span class='fu'>sample_cylinder_elliptical</span><span class='op'>(</span><span class='va'>n</span>, ar <span class='op'>=</span> <span class='fl'>1</span>, width <span class='op'>=</span> <span class='fl'>1</span>, sd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,20 +161,26 @@ sample is generated through a rejection sampling process as described by
 Diaconis, Holmes, and Shahshahani (2013).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>97205L</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>97205L</span><span class='op'>)</span>
 
 <span class='co'># ellipses in 2-space</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>6</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_ellipse</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_ellipse</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># ellipses in 2-space</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>.1</span>/<span class='fl'>6</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_ellipse</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>6</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>.1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_ellipse</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>6</span>, sd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>/</span><span class='fl'>6</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_ellipse</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span>, sd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># cylinders in 3-space</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_cylinder_elliptical</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sample_cylinder_elliptical</span>(<span class='fl'>120</span>, <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>2</span>*<span class='no'>pi</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span>(<span class='no'>x</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.5</span>)</div><div class='img'><img src='ellipses-6.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_cylinder_elliptical</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>sample_cylinder_elliptical</span><span class='op'>(</span><span class='fl'>120</span>, ar <span class='op'>=</span> <span class='fl'>3</span>, width <span class='op'>=</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>pi</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pairs.html'>pairs</a></span><span class='op'>(</span><span class='va'>x</span>, asp <span class='op'>=</span> <span class='fl'>1</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span>
+</div><div class='img'><img src='ellipses-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -190,7 +196,7 @@ Diaconis, Holmes, and Shahshahani (2013).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
