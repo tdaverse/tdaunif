@@ -1,3 +1,6 @@
+# next version
+
+This patch fixes miscalculated coordinates for interlocked tori (`sample_tori_interlocked()`) that caused an error and adds an example to ensure that the sampler runs without error.
 
 # tdaunif 0.1.0
 

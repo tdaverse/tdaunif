@@ -1,6 +1,6 @@
 Package: tdaunif
 Title: Uniform Manifold Samplers for Topological Data Analysis
-Version: 0.1.0
+Version: 0.1.0.0001
 Authors@R: c(
     person("Jason Cory", "Brunson", email = "cornelioid@gmail.com", role = c("aut", "cre")),
     person("Brandon", "Demkowicz", email = "brandondemkowicz@gmail.com", role = "aut"),
