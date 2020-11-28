@@ -65,10 +65,9 @@ sample_tori_interlocked <- function(n, ar = 2, sd = 0) {
   ns <- as.vector(table(stats::rbinom(n = n, size = 1, prob = .5)))
   # first torus, without noise
   res_1 <- sample_torus_tube(n = ns[1], ar = ar, sd = 0)
-  res_1 <- cbind(res_1, z = 0)
   # second torus, without noise, offset to (1,0,0) and rotated pi/2 about x
   res_2 <- sample_torus_tube(n = ns[2], ar = ar, sd = 0)
-  res_2 <- cbind(x = res_2[, 1] + 1, y = 0, z = res_2[, 2])
+  res_2 <- cbind(x = res_2[, 1] + 1, y = res_2[, 3], z = res_2[, 2])
   # combine tori
   res <- rbind(res_1, res_2)[sample(n), , drop = FALSE]
   # add noise
