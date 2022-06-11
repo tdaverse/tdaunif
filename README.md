@@ -2,7 +2,8 @@
 [![Travis](https://travis-ci.org/corybrunson/tdaunif.svg?branch=main)](https://travis-ci.org/corybrunson/tdaunif)
 [![CRAN](http://www.r-pkg.org/badges/version/tdaunif)](https://cran.r-project.org/package=tdaunif)
 [![downloads](https://cranlogs.r-pkg.org/badges/tdaunif)](https://cran.r-project.org/package=tdaunif)
-\# **tdaunif**: Uniform manifold samplers for topological data analysis
+
+# **tdaunif**: Uniform manifold samplers for topological data analysis
 
 This R package contains sampling functions for topological manifolds
 embedded (or immersed) in Euclidean space.
