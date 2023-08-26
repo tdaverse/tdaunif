@@ -3,6 +3,7 @@
 \docType{package}
 \name{tdaunif}
 \alias{tdaunif}
+\alias{tdaunif-package}
 \title{\strong{tdaunif}: Uniform manifold samplers for topological data analysis}
 \description{
 Generate uniform random samples from embedded manifolds,

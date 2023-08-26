@@ -48,4 +48,5 @@
 #' @author Sanmati Choudhary
 #' @importFrom stats runif
 #' @name tdaunif
+#' @aliases tdaunif-package
 NULL
