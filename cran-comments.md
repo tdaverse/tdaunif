@@ -24,7 +24,15 @@ There were no ERRORs, WARNINGs, or NOTEs.
 
 There were no ERRORs or WARNINGs.
 
-One platform (Windows Server 2022, R-devel, 64 bit) obtained the following NOTEs:
+One platform (Fedora Linux, R-devel, clang, gfortran) obtained the following NOTEs:
+
+```
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
+Skipping checking math rendering: package 'V8' unavailable
+```
+
+Another (Windows Server 2022, R-devel, 64 bit) obtained the following NOTEs:
 
 ```
 * checking HTML version of manual ... NOTE
@@ -38,7 +46,7 @@ Found the following files/directories:
 ```
 
 Per [this discussion](https://github.com/r-hub/rhub/issues/503), the last NOTE is due to a bug and can be ignored.
-I have no insight into the other two.
+I have no insight into the other three.
 
 ### WinBuilder
 
