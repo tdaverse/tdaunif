@@ -120,10 +120,10 @@ plot(y, asp = 1, pch = 19, cex = .5)
 
 ![](man/figures/README-planar%20triangle,%20uniformly%20and%20with%20stratification-1.png)<!-- -->
 
-See [Arvo (1995)](https://doi.org/10.1145/218380.218500) and Arvo’s
-notes from [Siggraph
+See [Arvo (1995)](https://dl.acm.org/doi/10.1145/218380.218500) and
+Arvo’s notes from [Siggraph
 2001](https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf)
-for a detailed treatment of this techniquue.
+for a detailed treatment of this technique.
 
 ``` r
 par(oldpar)

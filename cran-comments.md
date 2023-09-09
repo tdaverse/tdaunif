@@ -12,7 +12,9 @@ This resubmission was prompted by an email from the maintainers about the `_PKGN
 
 ## Test results
 
-All remote tests produced NOTES about possibly misspelled words, all of which are names or standard initialisms and have been verified.
+All remote tests NOTEd one or both of two URLs, <https://projecteuclid.org/euclid.imsc/1379942050> and <https://dl.acm.org/doi/10.1145/218380.218500>.
+The first redirects to <https://projecteuclid.org/ebooks/institute-of-mathematical-statistics-collections/Advances-in-Modern-Statistical-Theory-and-Applications--A-Festschrift/chapter/Sampling-from-a-Manifold/10.1214/12-IMSCOLL1006>, and the second is redirected from the standard <https://doi.org/10.1145/218380.218500> provided at the site.
+Replacing either with the alternative did not resolve the NOTE.
 
 ### R CMD check results
 
@@ -22,13 +24,25 @@ There were no ERRORs, WARNINGs, or NOTEs.
 
 There were no ERRORs or WARNINGs.
 
-On one platform (Ubuntu Linux 16.04 LTS, R-release, GCC), one ERROR was due to vdiffr being suggested but not available.
+One platform (Windows Server 2022, R-devel, 64 bit) obtained the following NOTEs:
+
+```
+* checking HTML version of manual ... NOTE
+* checking for non-standard things in the check directory ... NOTE
+Found the following files/directories:
+Skipping checking math rendering: package 'V8' unavailable
+  ''NULL''
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+```
+
+Per [this discussion](https://github.com/r-hub/rhub/issues/503), the last NOTE is due to a bug and can be ignored.
+I have no insight into the other two.
 
 ### WinBuilder
 
-There were no ERRORs.
-
-On the old release platform (x86_64-w64-mingw32, R version 3.6.3), one WARNING flagged a failure to convert README.md due to an image not being found. Weaving the file from its R Markdown source produces no new files, and each random step is set with a seed, so i don't know how this might be resolved.
+There were no ERRORs or WARNINGs.
 
 ## Downstream dependencies
 
