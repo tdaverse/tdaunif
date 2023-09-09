@@ -26,7 +26,7 @@ ellipses of major or minor radius 1 in 2- or 3-dimensional space,
 optionally with noise.
 }
 \details{
-The function \code{sample_ellipse()} uses the usual sinussoidal parameterization
+The function \code{sample_ellipse()} uses the usual sinusoidal parameterization
 from the unit interval to an ellipse with radii 1 and \code{1/ar}. The uniform
 sample is generated through a rejection sampling process as described by
 Diaconis, Holmes, and Shahshahani (2013).

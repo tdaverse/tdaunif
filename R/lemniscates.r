@@ -22,7 +22,7 @@ NULL
 #' @export
 sample_lemniscate_gerono <- function(n, sd = 0) {
   theta <- rs_gerono(n)
-  #Parametrization of lemniscate with modified theta values inputted
+  #Parameterization of lemniscate with modified theta values inputted
   res <- cbind(
     x = (sin(theta)),
     y = (sin(theta) * cos(theta))

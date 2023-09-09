@@ -1,6 +1,10 @@
-# next version
+# tdaunif 0.1.1
 
 This patch fixes miscalculated coordinates for interlocked tori (`sample_tori_interlocked()`) that caused an error and adds an example to ensure that the sampler runs without error.
+
+It also addresses an issue related to `_PKGNAME` documentation, which has been addressed using `@aliases` as described [here](https://github.com/r-lib/roxygen2/issues/1491).
+
+Finally, several spelling errors were corrected
 
 # tdaunif 0.1.0
 

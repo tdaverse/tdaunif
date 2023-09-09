@@ -13,7 +13,7 @@
 #' The function `sample_2hemisphere()` uses an area-preserving parameterization
 #' of the upper hemisphere, and `sample_2sphere()` uses two of these samples,
 #' one reflected over the horizontal plane, to produce a sample from a sphere.
-#' The parametrization was derived through the method for sampling 2-manifolds
+#' The parameterization was derived through the method for sampling 2-manifolds
 #' as described by Arvo (2001).
 #' 
 

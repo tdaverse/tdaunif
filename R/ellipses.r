@@ -6,7 +6,7 @@
 #'
 #' @details
 #'
-#' The function `sample_ellipse()` uses the usual sinussoidal parameterization
+#' The function `sample_ellipse()` uses the usual sinusoidal parameterization
 #' from the unit interval to an ellipse with radii 1 and `1/ar`. The uniform
 #' sample is generated through a rejection sampling process as described by
 #' Diaconis, Holmes, and Shahshahani (2013).

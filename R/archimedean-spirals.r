@@ -8,13 +8,13 @@
 #'
 #' The archimedean spiral starts at the origin and wraps around itself such that
 #' radial distances between all the spiral branches are equal. The specific
-#' parametrization was taken from Koeller (2002). The uniform sample is
+#' parameterization was taken from Koeller (2002). The uniform sample is
 #' generated through a rejection sampling process as described by Diaconis,
 #' Holmes, and Shahshahani (2013).
 #'
 #' The swiss roll sampler is patterned after one in
 #' [drtoolbox](https://lvdmaaten.github.io/drtoolbox/) and extended from the
-#' archimedian spiral sampler.
+#' archimedean spiral sampler.
 #' 
 
 #' @template ref-koeller2002
@@ -69,13 +69,13 @@ sample_arch_spiral <- function(
 sample_swiss_roll <- function(
   n, ar = 1, arms = 1L, min_wrap = 0, max_wrap = 1, width = 2*pi, sd = 0
 ) {
-  #Samples uniformly from the archimedian spiral on which the swiss roll is a
+  #Samples uniformly from the archimedean spiral on which the swiss roll is a
   #cylinder
   res <- sample_arch_spiral(
     n = n, ar = ar, arms = arms, min_wrap = min_wrap, max_wrap = max_wrap,
     sd = 0
   )
-  #Augments the archimedian spiral sample with a third coordinate uniformly
+  #Augments the archimedean spiral sample with a third coordinate uniformly
   #sampled over the fixed range `width`
   res <- cbind(res, z = runif(n, 0, width))
   #Adds Gaussian noise to the spiral
