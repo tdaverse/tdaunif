@@ -1,10 +1,10 @@
 ## Resubmission
 
-This is a resubmission following a response alerting me that i had not restored graphical settings after adjusting them in documentation using `par()`. This has been fixed in the README and in the vignette.
+This resubmission was prompted by an email from the maintainers about the `_PKGNAME` documentation issue. It is a patch that also addresses some other problems as documented in 'NEWS.md'.
 
 ## Test environments
 
-* local OS X install, R 4.0.0 (via `devtools::check()`)
+* local OS X install, R 4.1.1 (via `devtools::check()`)
 * win-builder (devel, current, and previous; via `devtools::check_win_*()`)
 * Rhub (via `rhub::check_for_cran()`)
 

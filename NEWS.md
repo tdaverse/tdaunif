@@ -4,7 +4,7 @@ This patch fixes miscalculated coordinates for interlocked tori (`sample_tori_in
 
 It also addresses an issue related to `_PKGNAME` documentation, which has been addressed using `@aliases` as described [here](https://github.com/r-lib/roxygen2/issues/1491).
 
-The key--value pair `LazyData: true` was removed from 'DESCRIPTION', which should resolve that NOTE at the [check results](https://cran.rstudio.com//web/checks/check_results_tdaunif.html).
+The key--value pair `LazyData: true` was removed from 'DESCRIPTION', which should resolve that NOTE at the [check results](https://cran.rstudio.com/web/checks/check_results_tdaunif.html).
 
 Finally, several spelling errors were corrected
 

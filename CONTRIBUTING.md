@@ -32,7 +32,7 @@ For more guidance on reproducible examples, see [this vignette](https://reprex.t
 
 **Bug fixes, feature upgrades, and other substantive, self-contained changes** may be contributed via [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests). Unless previously discussed with a maintainer, please follow these steps:
 
-1. Fork the home repository (`corybrunson/tdaunif`).
+1. Fork the home repository (`tdaverse/tdaunif`).
 2. Create a new (local) branch on which to make changes. If appropriate, update the documentation on this branch and run functionality checks (e.g. using the **devtools** package).
 3. Push this new branch to the fork and open a pull request from it to the home repository.
 4. With the maintainer(s), discuss and (if necessary) update the pull request until it is accepted or decided against. _In the latter case, the maintainer(s) should provide a clear and consistent reason._

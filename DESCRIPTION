@@ -20,8 +20,8 @@ Suggests:
     vdiffr (>= 0.2)
 License: GPL-3
 Encoding: UTF-8
-URL: https://corybrunson.github.io/tdaunif/
-BugReports: https://github.com/corybrunson/tdaunif/issues
+URL: https://tdaverse.github.io/tdaunif/
+BugReports: https://github.com/tdaverse/tdaunif/issues
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
