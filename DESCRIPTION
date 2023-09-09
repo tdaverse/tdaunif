@@ -22,7 +22,6 @@ License: GPL-3
 Encoding: UTF-8
 URL: https://corybrunson.github.io/tdaunif/
 BugReports: https://github.com/corybrunson/tdaunif/issues
-LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
