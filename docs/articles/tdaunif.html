@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Uniform and Stratified Sampling from Manifolds in Euclidean Space • tdaunif</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tdaunif</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/tdaunif.html">Get started</a>
 </li>
@@ -55,8 +51,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/corybrunson/tdaunif/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/tdaverse/tdaunif/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -74,33 +70,33 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Uniform and Stratified Sampling from Manifolds in Euclidean Space</h1>
-                        <h4 class="author">Cory Brunson</h4>
+                        <h4 data-toc-skip class="author">Cory Brunson</h4>
             
-            <h4 class="date">2020-10-26</h4>
+            <h4 data-toc-skip class="date">2024-05-29</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/corybrunson/tdaunif/blob/master/vignettes/tdaunif.rmd"><code>vignettes/tdaunif.rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/tdaverse/tdaunif/blob/HEAD/vignettes/tdaunif.rmd" class="external-link"><code>vignettes/tdaunif.rmd</code></a></small>
       <div class="hidden name"><code>tdaunif.rmd</code></div>
 
     </div>
 
     
     
-<p>The <strong>tdaunif</strong> package is a lightweight tool for sampling points from a variety of manifolds <a href="https://mathworld.wolfram.com/Embedding.html">embedded</a> or otherwise <a href="https://mathworld.wolfram.com/Immersion.html">immersed</a> in Euclidean space. Such samples may be useful for building intuition in topological study or for testing methods in topological data analysis.</p>
-<p>Samples from <a href="https://mathworld.wolfram.com/ParametricEquations.html">parameterized</a> immersions are easy to generate: When the parameterization is <span class="math inline">\(f : S \to X\)</span>, sample points from the parameter space <span class="math inline">\(S\)</span> (the domain) and transform the points to the cooordinate space <span class="math inline">\(X\)</span> (the codomain). When the parameterization is not volume-preserving (length-preserving for 1-dimensional manifolds, area-preserving for 2-dimensional manifolds, etc.), however, this will lead to oversampling of compressed regions and undersampling of expanded regions, called “warping”. <a href="https://projecteuclid.org/euclid.imsc/1379942050">Diaconis, Holmes, and Shahshahani (2013)</a> illustrate this problem by sampling naïvely from the <em>curved torus</em>, a common embedding of the torus <span class="math inline">\(\mathbb{T}^2\)</span> into 3-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
-<p>The package makes use of two techniques to mitigate this problem. The easier technique, described by Diaconis, Holmes, and Shahshahani, is <em>rejection sampling</em>: Generate a larger-than-necessary sample in the naïve way and then strategically discard samples to correct for warping. To do this requires explicitly calculating a function that quantifies the warping at each point in the domain, a more general analog to the derivative of a function <span class="math inline">\(f : \mathbb{R} \to \mathbb{R}\)</span>. This derivative is called the <a href="https://mathworld.wolfram.com/Jacobian.html">Jacobian determinant</a> <span class="math inline">\(j_f : S \to \mathbb{R}\)</span> and is used to calibrate the rejection rate.</p>
-<p>The harder technique requires analytically solving (i.e. finding an inverse formula for) <span class="math inline">\(j_f\)</span> in order to construct an alternative, <em>volume-preserving</em> parameterization <span class="math inline">\(\tilde{f} : S \to X\)</span> of the same manifold. <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf">Arvo (2001; p. 41–70)</a> describes this technique for several simple cases, some of which are implemented here. Unfortunately, most common parameterizations do not have the necessary analytic solutions so are not implemented this way. For those that are, an important payoff is the ability to generate <em>stratified samples</em> from the coordinate space merely by stratifying the parameter space.</p>
-<div id="set-up" class="section level3">
-<h3 class="hasAnchor">
-<a href="#set-up" class="anchor"></a>Set up</h3>
+<p>The <strong>tdaunif</strong> package is a lightweight tool for sampling points from a variety of manifolds <a href="https://mathworld.wolfram.com/Embedding.html" class="external-link">embedded</a> or otherwise <a href="https://mathworld.wolfram.com/Immersion.html" class="external-link">immersed</a> in Euclidean space. Such samples may be useful for building intuition in topological study or for testing methods in topological data analysis.</p>
+<p>Samples from <a href="https://mathworld.wolfram.com/ParametricEquations.html" class="external-link">parameterized</a> immersions are easy to generate: When the parameterization is <span class="math inline">\(f : S \to X\)</span>, sample points from the parameter space <span class="math inline">\(S\)</span> (the domain) and transform the points to the coordinate space <span class="math inline">\(X\)</span> (the codomain). When the parameterization is not volume-preserving (length-preserving for 1-dimensional manifolds, area-preserving for 2-dimensional manifolds, etc.), however, this will lead to oversampling of compressed regions and undersampling of expanded regions, called “warping”. <a href="https://projecteuclid.org/euclid.imsc/1379942050" class="external-link">Diaconis, Holmes, and Shahshahani (2013)</a> illustrate this problem by sampling naïvely from the <em>curved torus</em>, a common embedding of the torus <span class="math inline">\(\mathbb{T}^2\)</span> into 3-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>The package makes use of two techniques to mitigate this problem. The easier technique, described by Diaconis, Holmes, and Shahshahani, is <em>rejection sampling</em>: Generate a larger-than-necessary sample in the naïve way and then strategically discard samples to correct for warping. To do this requires explicitly calculating a function that quantifies the warping at each point in the domain, a more general analog to the derivative of a function <span class="math inline">\(f : \mathbb{R} \to \mathbb{R}\)</span>. This derivative is called the <a href="https://mathworld.wolfram.com/Jacobian.html" class="external-link">Jacobian determinant</a> <span class="math inline">\(j_f : S \to \mathbb{R}\)</span> and is used to calibrate the rejection rate.</p>
+<p>The harder technique requires analytically solving (i.e. finding an inverse formula for) <span class="math inline">\(j_f\)</span> in order to construct an alternative, <em>volume-preserving</em> parameterization <span class="math inline">\(\tilde{f} : S \to X\)</span> of the same manifold. <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf" class="external-link">Arvo (2001; p. 41–70)</a> describes this technique for several simple cases, some of which are implemented here. Unfortunately, most common parameterizations do not have the necessary analytic solutions so are not implemented this way. For those that are, an important payoff is the ability to generate <em>stratified samples</em> from the coordinate space merely by stratifying the parameter space.</p>
+<div class="section level3">
+<h3 id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a>
+</h3>
 <p>This chunk attaches the installed version of the package, saves the default graphics settings and initializes the random number generator:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://corybrunson.github.io/tdaunif/">tdaunif</a></span><span class="op">)</span>
-<span class="va">oldpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tdaverse.github.io/tdaunif/" class="external-link">tdaunif</a></span><span class="op">)</span></span>
+<span><span class="va">oldpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="volume-preserving-parameterizations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#volume-preserving-parameterizations" class="anchor"></a>Volume-preserving parameterizations</h2>
+<div class="section level2">
+<h2 id="volume-preserving-parameterizations">Volume-preserving parameterizations<a class="anchor" aria-label="anchor" href="#volume-preserving-parameterizations"></a>
+</h2>
 <p>In principle, any parameterization <span class="math inline">\(f : S \to X\)</span> can be viewed as the composition of two steps:</p>
 <ul>
 <li>a <em>warping map</em> <span class="math inline">\(\omega : S \to \tilde{S}\)</span> from the parameter space to a “warped” parameter space, and</li>
@@ -108,7 +104,7 @@
 </ul>
 <p>In the best case, the warping map can be inverted and the volume-preserving map, itself a parameterization, extracted as <span class="math inline">\(\psi = \phi \circ \omega^{-1}\)</span>. Then points can be uniformly sampled from the warped parameter space and mapped, without distortion, to the manifold.</p>
 <p>The upper hemisphere of <span class="math inline">\(\mathbb{S}^2\)</span> is such a case. The function <code><a href="../reference/sphere.html">sample_2hemisphere()</a></code> follows Arvo’s procedure (p. 50–51), which begins with a conventional parameterization to spherical coordinates and extracts this area-preserving parameterization from it:</p>
-<p><span class="math display">\[\begin{align*}
+<p>[<span class="math display">\[\begin{align*}
 h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 \left[\begin{array}{c} u \\ v \end{array}\right]
 &amp; \mapsto
@@ -118,38 +114,38 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 \sqrt{u (2 - u)}\sin{2\pi v} \\
 1 - u
 \end{array}\right]
-\end{align*}\]</span></p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">hemi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span><span class="op">(</span><span class="fl">180L</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">hemi</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+\end{align*}\]</span>]</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hemi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span><span class="op">(</span><span class="fl">180L</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">hemi</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Notice the classical pattern of random clustering: Samples from uniform distributions are not themselves uniformly distributed (in the way that lattices are), so they don’t match our intuitive expectations. If we want greater uniformity, volume-preserving maps offer a solution.</p>
-<div id="stratified-sampling" class="section level3">
-<h3 class="hasAnchor">
-<a href="#stratified-sampling" class="anchor"></a>Stratified sampling</h3>
+<div class="section level3">
+<h3 id="stratified-sampling">Stratified sampling<a class="anchor" aria-label="anchor" href="#stratified-sampling"></a>
+</h3>
 <p>To sample from a region more uniformly than at random, we can stratify the region, allocate a uniform subsample size to each stratum, and sample those points uniformly within each stratum. The <code>sample_strat_*()</code> functions implement this idea for unit cubes of any dimension:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">sq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span>
-<span class="va">sq4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">4L</span><span class="op">)</span>
-<span class="va">sq10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sq1</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sq4</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sq10</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="va">sq4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">4L</span><span class="op">)</span></span>
+<span><span class="va">sq10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stratified-samplers.html">sample_strat_square</a></span><span class="op">(</span><span class="fl">100L</span>, bins <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sq1</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sq4</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sq10</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>These functions also undergird stratified sampling from manifolds with volume-preserving parameterizations, including the hemisphere:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">hemi10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span><span class="op">(</span><span class="fl">225L</span>, bins <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">hemi10</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hemi10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span><span class="op">(</span><span class="fl">225L</span>, bins <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">hemi10</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div id="rejection-sampling" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rejection-sampling" class="anchor"></a>Rejection sampling</h2>
-<p>In lieu of an analytic solution to the warping problem, rejection sampling provides a fallback that shifts the burden to additional sampling. The idea, explained in detail by Diaconis, Holmes, and Shahshahani and demonstrated in more detail in <a href="https://corybrunson.github.io/2019/02/01/sampling/">this blog post</a>, is to oversample points throughout the parameter space and discard them with a probability that compensates for local distortions. Since the rejection is probabilistic, we can’t know in advance how large a sample will be necessary, so we repeatedly sample and discard until the total number of points meets or exceeds the desired number (then discard the excess points).</p>
-<p>One application in this package is to sample from a famous class of embeddings of the circle <span class="math inline">\(\mathbb{S}^1\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>: the trefoil, one of many such classes called <a href="https://mathworld.wolfram.com/Knot.html">knots</a> that cannot be continuously deformed in <span class="math inline">\(\mathbb{R}^3\)</span> to a geometric circle (the “unknot”).</p>
-<p><span class="math display">\[\begin{align*}
+<div class="section level2">
+<h2 id="rejection-sampling">Rejection sampling<a class="anchor" aria-label="anchor" href="#rejection-sampling"></a>
+</h2>
+<p>In lieu of an analytic solution to the warping problem, rejection sampling provides a fallback that shifts the burden to additional sampling. The idea, explained in detail by Diaconis, Holmes, and Shahshahani and demonstrated in more detail in <a href="https://corybrunson.github.io/2019/02/01/sampling/" class="external-link">this blog post</a>, is to oversample points throughout the parameter space and discard them with a probability that compensates for local distortions. Since the rejection is probabilistic, we can’t know in advance how large a sample will be necessary, so we repeatedly sample and discard until the total number of points meets or exceeds the desired number (then discard the excess points).</p>
+<p>One application in this package is to sample from a famous class of embeddings of the circle <span class="math inline">\(\mathbb{S}^1\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>: the trefoil, one of many such classes called <a href="https://mathworld.wolfram.com/Knot.html" class="external-link">knots</a> that cannot be continuously deformed in <span class="math inline">\(\mathbb{R}^3\)</span> to a geometric circle (the “unknot”).</p>
+<p>[<span class="math display">\[\begin{align*}
 g : \mathbb{S}^1 &amp; \to \mathbb{R}^3 \\
 \left[\begin{array}{c} \theta \end{array}\right]
 &amp; \mapsto
@@ -159,68 +155,59 @@ g : \mathbb{S}^1 &amp; \to \mathbb{R}^3 \\
 \cos\theta - 2\cos 2\theta \\
 -(\sin 3\theta)
 \end{array}\right]
-\end{align*}\]</span></p>
+\end{align*}\]</span>]</p>
 <p>We generate a sample below using the function <code><a href="../reference/trefoil.html">sample_trefoil()</a></code> and plot it in the three coordinate planes of <span class="math inline">\(\mathbb{R}^3\)</span>. The parameterization above suggests a sort of symmetry within the <span class="math inline">\(xy\)</span>-plane, and the plot shows that the embedding is “knotted” by way of undulations along the <span class="math inline">\(z\)</span>-axis:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">tref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trefoil.html">sample_trefoil</a></span><span class="op">(</span><span class="fl">120L</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">tref</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trefoil.html">sample_trefoil</a></span><span class="op">(</span><span class="fl">120L</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">tref</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
-<div id="making-custom-samplers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#making-custom-samplers" class="anchor"></a>Making custom samplers</h3>
-<p>Currently, <strong>tdaunif</strong> offers one set of <a href="https://adv-r.hadley.nz/function-factories.html">function factories</a> for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disk, which is already implemented using an area-preserving parameterization as <code><a href="../reference/disks.html">sample_disk()</a></code> (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square <span class="math inline">\(Q=[-1,1]\times[-1,1]\)</span> circumscribing the unit disk into the disk itself:</p>
-<p><span class="math display">\[\begin{align*}
+<div class="section level3">
+<h3 id="making-custom-samplers">Making custom samplers<a class="anchor" aria-label="anchor" href="#making-custom-samplers"></a>
+</h3>
+<p>Currently, <strong>tdaunif</strong> offers one set of <a href="https://adv-r.hadley.nz/function-factories.html" class="external-link">function factories</a> for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disk, which is already implemented using an area-preserving parameterization as <code><a href="../reference/annuli.html">sample_disk()</a></code> (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square (Q=[-1,1]) circumscribing the unit disk into the disk itself:</p>
+<p>[<span class="math display">\[\begin{align*}
 f : Q &amp; \to \mathbb{R}^2 \\
 \left[\begin{array}{c} s \\ t \end{array}\right]
 &amp; \mapsto
 \left[\begin{array}{c} x \\ y \end{array}\right]
 = \left[\begin{array}{c} s \\ t\sqrt{1 - s^2} \end{array}\right]
-\end{align*}\]</span></p>
+\end{align*}\]</span>]</p>
 <p>This map has a convenient Jacobian matrix for purposes of calculating its determinant:</p>
-<p><span class="math display">\[J_f =
-\left[\ \frac{\partial f}{\partial s}\ \frac{\partial f}{\partial t}\ \right]=
-\left[\begin{array}{cc}
-\frac{\partial x}{\partial s} &amp; \frac{\partial x}{\partial t} \\
-\frac{\partial y}{\partial s} &amp; \frac{\partial y}{\partial t}
-\end{array}\right] =
-\left[\begin{array}{cc}
-1 &amp; 0 \\
-\text{who cares} &amp; \sqrt{1 - s^2}
-\end{array}\right]\]</span></p>
-<p>This Jacobian determinant <span class="math inline">\(j_f = \sqrt{1 - s^2}\)</span> maxes out at <span class="math inline">\(j_f = 1\)</span> when <span class="math inline">\(s = 0\)</span>, and we have all the necessary data to build a rejection sampler:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">disk_parameterization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">s</span>,
-  y <span class="op">=</span> <span class="va">t</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">s</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">disk_jacobian</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">s</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">disk_sampler</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rejection-samplers.html">make_rejection_sampler</a></span><span class="op">(</span>
-  parameterization <span class="op">=</span> <span class="va">disk_parameterization</span>,
-  jacobian <span class="op">=</span> <span class="va">disk_jacobian</span>,
-  min_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, max_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,
-  max_jacobian <span class="op">=</span> <span class="fl">1</span>
-<span class="op">)</span>
-<span class="va">disk1</span> <span class="op">&lt;-</span> <span class="fu">disk_sampler</span><span class="op">(</span><span class="fl">360L</span><span class="op">)</span></pre></div>
+<p>[J_f = = = ]</p>
+<p>This Jacobian determinant (j_f = ) maxes out at (j_f = 1) when (s = 0), and we have all the necessary data to build a rejection sampler:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">disk_parameterization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">s</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">t</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">s</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">disk_jacobian</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">s</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">disk_sampler</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rejection-samplers.html">make_rejection_sampler</a></span><span class="op">(</span></span>
+<span>  parameterization <span class="op">=</span> <span class="va">disk_parameterization</span>,</span>
+<span>  jacobian <span class="op">=</span> <span class="va">disk_jacobian</span>,</span>
+<span>  min_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, max_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  max_jacobian <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">disk1</span> <span class="op">&lt;-</span> <span class="fu">disk_sampler</span><span class="op">(</span><span class="fl">360L</span><span class="op">)</span></span></code></pre></div>
 <p>For a quick surface validation, we can compare our custom rejection sampler to the volume-preserving parameterization–based disk sampler provided by <strong>tdaunif</strong>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">disk2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/disks.html">sample_disk</a></span><span class="op">(</span><span class="fl">360L</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">disk1</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">disk2</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">disk2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/annuli.html">sample_disk</a></span><span class="op">(</span><span class="fl">360L</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">disk1</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">disk2</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tdaunif_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Pretty close!</p>
 </div>
-<div id="set-down" class="section level3">
-<h3 class="hasAnchor">
-<a href="#set-down" class="anchor"></a>Set down</h3>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">oldpar</span><span class="op">)</span></pre></div>
+<div class="section level3">
+<h3 id="set-down">Set down<a class="anchor" aria-label="anchor" href="#set-down"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">oldpar</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
   </div>
@@ -236,11 +223,13 @@ f : Q &amp; \to \mathbb{R}^2 \\
 
 
       <footer><div class="copyright">
-  <p>Developed by Jason Cory Brunson, Brandon Demkowicz, Sanmati Choudhary.</p>
+  <p></p>
+<p>Developed by Jason Cory Brunson, Brandon Demkowicz, Sanmati Choudhary.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
@@ -248,6 +237,8 @@ f : Q &amp; \to \mathbb{R}^2 \\
 
   
 
+
+  
 
   </body>
 </html>

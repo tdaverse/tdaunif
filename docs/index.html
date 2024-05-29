@@ -6,24 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Uniform Manifold Samplers for Topological Data Analysis • tdaunif</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Uniform Manifold Samplers for Topological Data Analysis">
-<meta property="og:description" content="Uniform random samples from simple manifolds, sometimes with noise,
-    are commonly used to test topological data analytic (TDA) tools.
-    This package includes samplers powered by two techniques: analytic
-    volume-preserving parameterizations, as employed by Arvo (1995)
-    &lt;doi:10.1145/218380.218500&gt;, and rejection sampling, as employed by
-    Diaconis, Holmes, and Shahshahani (2013) &lt;doi:10.1214/12-IMSCOLL1006&gt;.">
+<meta property="og:description" content="Uniform random samples from simple manifolds, sometimes with noise, are commonly used to test topological data analytic (TDA) tools. This package includes samplers powered by two techniques: analytic volume-preserving parameterizations, as employed by Arvo (1995) &lt;doi:10.1145/218380.218500&gt;, and rejection sampling, as employed by Diaconis, Holmes, and Shahshahani (2013) &lt;doi:10.1214/12-IMSCOLL1006&gt;.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tdaunif</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/tdaunif.html">Get started</a>
 </li>
@@ -60,8 +51,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/corybrunson/tdaunif/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/tdaverse/tdaunif/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -79,72 +70,73 @@
   <div class="contents col-md-9">
 
 
-<div id="tdaunif-uniform-manifold-samplers-for-topological-data-analysis" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#tdaunif-uniform-manifold-samplers-for-topological-data-analysis" class="anchor"></a><strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="tdaunif-uniform-manifold-samplers-for-topological-data-analysis">
+<strong>tdaunif</strong>: Uniform manifold samplers for topological data analysis<a class="anchor" aria-label="anchor" href="#tdaunif-uniform-manifold-samplers-for-topological-data-analysis"></a>
+</h1></div>
 <p>This R package contains sampling functions for topological manifolds embedded (or immersed) in Euclidean space.</p>
-<div id="motivation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>motivation</h2>
-<div id="consolidation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#consolidation" class="anchor"></a>consolidation</h3>
-<p>Statistical topology and topological data analysis include a variety of methods for detecting topological structure from point cloud data sets, most famously persistent homology. (See <a href="https://www.ams.org/notices/201101/rtx110100036p.pdf">Weinberger (2011)</a> for a brief introduction.) These methods are often validated by applying them to point clouds sampled from spaces with known topology. Functions that generate such samples are therefore valuable to developers of topological–statistical software.</p>
+<div class="section level2">
+<h2 id="motivation">motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
+<div class="section level3">
+<h3 id="consolidation">consolidation<a class="anchor" aria-label="anchor" href="#consolidation"></a>
+</h3>
+<p>Statistical topology and topological data analysis include a variety of methods for detecting topological structure from point cloud data sets, most famously persistent homology. (See <a href="https://www.ams.org/notices/201101/rtx110100036p.pdf" class="external-link">Weinberger (2011)</a> for a brief introduction.) These methods are often validated by applying them to point clouds sampled from spaces with known topology. Functions that generate such samples are therefore valuable to developers of topological–statistical software.</p>
 <p>Such samplers have not been easy to find in the R package ecosystem. Handfuls exist in several different packages, but no single package or code repository has assembled a large collection for convenient use. That is the goal of this package.</p>
 </div>
-<div id="uniformity" class="section level3">
-<h3 class="hasAnchor">
-<a href="#uniformity" class="anchor"></a>uniformity</h3>
-<p>The simplest validations use points sampled uniformly from the surfaces of manifolds embedded in Euclidean space. Uniformity here is with respect to the surface area of the embedded manifold, but such uniform sampling is not trivial to do when the manifold can only be expressed via parameterization from a simpler parameter space, as when <a href="https://en.wikipedia.org/wiki/Torus#Flat_torus">a square is rolled and bent into a torus</a>. Uniform sampling on the parameter space may then produce uneven sampling on the manifold, regions of greater compression being oversampled relative to regions of greater expansion. One especially important motivation for this package is therefore to include uniform samplers for popular embeddings of topological manifolds, including functions that allow users to build their own with minimal effort (see <code>help(manifold, package = "tdaunif")</code>).</p>
+<div class="section level3">
+<h3 id="uniformity">uniformity<a class="anchor" aria-label="anchor" href="#uniformity"></a>
+</h3>
+<p>The simplest validations use points sampled uniformly from the surfaces of manifolds embedded in Euclidean space. Uniformity here is with respect to the surface area of the embedded manifold, but such uniform sampling is not trivial to do when the manifold can only be expressed via parameterization from a simpler parameter space, as when <a href="https://en.wikipedia.org/wiki/Torus#Flat_torus" class="external-link">a square is rolled and bent into a torus</a>. Uniform sampling on the parameter space may then produce uneven sampling on the manifold, regions of greater compression being oversampled relative to regions of greater expansion. One especially important motivation for this package is therefore to include uniform samplers for popular embeddings of topological manifolds, including functions that allow users to build their own with minimal effort (see <code>help(manifold, package = "tdaunif")</code>).</p>
 </div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>usage</h2>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>installation</h3>
-<p>The latest release of <strong>tdaunif</strong> can be installed from <a href="https://cran.r-project.org/">CRAN</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tdaunif"</span><span class="op">)</span></pre></div>
-<p>You can install the current development version of <strong>tdaunif</strong> from GitHub using <a href="https://github.com/r-lib/remotes">the <strong>remotes</strong> package</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"corybrunson/tdaunif"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="section level2">
+<h2 id="usage">usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<div class="section level3">
+<h3 id="installation">installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
+<p>The latest release of <strong>tdaunif</strong> can be installed from <a href="https://cran.r-project.org/" class="external-link">CRAN</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tdaunif"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the current development version of <strong>tdaunif</strong> from GitHub using <a href="https://github.com/r-lib/remotes" class="external-link">the <strong>remotes</strong> package</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"tdaverse/tdaunif"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>To stabilize this document, this chunk saves the default graphics settings (as required by CRAN) and initializes the random number generator:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">oldpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">oldpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="illustration" class="section level3">
-<h3 class="hasAnchor">
-<a href="#illustration" class="anchor"></a>illustration</h3>
-<p><a href="https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_/_4D_M%C3%B6bius_tube">An intuitive embedding of the Klein bottle into 4-space</a> is adapted from the popular “donut” embedding of the torus in 3-space. In <strong>tdaunif</strong> this is called the “tube” parameterization. We can sample uniformly from this embedding (without noise) and examine the coordinate projections as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/klein-bottles.html">sample_klein_tube</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">360</span>, ar <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="section level3">
+<h3 id="illustration">illustration<a class="anchor" aria-label="anchor" href="#illustration"></a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_/_4D_M%C3%B6bius_tube" class="external-link">An intuitive embedding of the Klein bottle into 4-space</a> is adapted from the popular “donut” embedding of the torus in 3-space. In <strong>tdaunif</strong> this is called the “tube” parameterization. We can sample uniformly from this embedding (without noise) and examine the coordinate projections as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/klein-bottles.html">sample_klein_tube</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">360</span>, ar <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-klein%20bottle-1.png"><!-- --></p>
 <p>Compare these neat projections to those of the same sample with noise added in the ambient Euclidean space:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/noise.html">add_noise</a></span><span class="op">(</span><span class="va">x</span>, sd <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/noise.html">add_noise</a></span><span class="op">(</span><span class="va">x</span>, sd <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-klein%20bottle%20with%20noise-1.png"><!-- --></p>
-<p>For a thorough discussion of this sampler, see <a href="https://corybrunson.github.io/2019/02/01/sampling/">my blog post</a> describing the method presented in <a href="https://projecteuclid.org/euclid.imsc/1379942050">Diaconis, Holmes, and Shahshahani (2013)</a>.</p>
+<p>For a thorough discussion of this sampler, see <a href="https://corybrunson.github.io/2019/02/01/sampling/" class="external-link">my blog post</a> describing the method presented in <a href="https://projecteuclid.org/euclid.imsc/1379942050" class="external-link">Diaconis, Holmes, and Shahshahani (2013)</a>.</p>
 </div>
-<div id="another-illustration" class="section level3">
-<h3 class="hasAnchor">
-<a href="#another-illustration" class="anchor"></a>another illustration</h3>
+<div class="section level3">
+<h3 id="another-illustration">another illustration<a class="anchor" aria-label="anchor" href="#another-illustration"></a>
+</h3>
 <p>A subset of samplers allow stratified sampling, which relies on an analytic solution to the problem of length or area distortion created by most parameterizations. For example, the planar triangle sampler can be stratified to produce a more uniform arrangement of points than a properly uniform sample would produce:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">equilateral</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/triangles.html">sample_triangle_planar</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">720</span>, triangle <span class="op">=</span> <span class="va">equilateral</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/triangles.html">sample_triangle_planar</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">720</span>, triangle <span class="op">=</span> <span class="va">equilateral</span>, bins <span class="op">=</span> <span class="fl">24</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">equilateral</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/triangles.html">sample_triangle_planar</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">720</span>, triangle <span class="op">=</span> <span class="va">equilateral</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/triangles.html">sample_triangle_planar</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">720</span>, triangle <span class="op">=</span> <span class="va">equilateral</span>, bins <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">y</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-planar%20triangle,%20uniformly%20and%20with%20stratification-1.png"><!-- --></p>
-<p>See <a href="https://dl.acm.org/doi/10.1145/218380.218500">Arvo (1995)</a> and Arvo’s notes from <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf">Siggraph 2001</a> for a detailed treatment of this techniquue.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">oldpar</span><span class="op">)</span></pre></div>
+<p>See <a href="https://dl.acm.org/doi/10.1145/218380.218500" class="external-link">Arvo (1995)</a> and Arvo’s notes from <a href="https://www.cs.princeton.edu/courses/archive/fall04/cos526/papers/course29sig01.pdf" class="external-link">Siggraph 2001</a> for a detailed treatment of this technique.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">oldpar</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -153,54 +145,66 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=tdaunif">https://​cloud.r-project.org/​package=tdaunif</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/corybrunson/tdaunif/">https://​github.com/​corybrunson/​tdaunif/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/corybrunson/tdaunif/issues">https://​github.com/​corybrunson/​tdaunif/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=tdaunif" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/tdaverse/tdaunif/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/tdaverse/tdaunif/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing tdaunif</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Jason Cory Brunson <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Brandon Demkowicz <br><small class="roles"> Author </small>  </li>
 <li>Sanmati Choudhary <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/corybrunson/tdaunif"><img src="https://travis-ci.org/corybrunson/tdaunif.svg?branch=main" alt="Travis"></a></li>
+<li><a href="https://cran.r-project.org/package=tdaunif" class="external-link"><img src="http://www.r-pkg.org/badges/version/tdaunif" alt="CRAN"></a></li>
+<li><a href="https://cran.r-project.org/package=tdaunif" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/tdaunif" alt="downloads"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Jason Cory Brunson, Brandon Demkowicz, Sanmati Choudhary.</p>
+  <p></p>
+<p>Developed by Jason Cory Brunson, Brandon Demkowicz, Sanmati Choudhary.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
@@ -208,6 +212,8 @@
 
   
 
+
+  
 
   </body>
 </html>
