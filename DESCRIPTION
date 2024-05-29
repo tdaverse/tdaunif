@@ -4,7 +4,8 @@ Version: 0.1.0.0001
 Authors@R: c(
     person("Jason Cory", "Brunson", email = "cornelioid@gmail.com", role = c("aut", "cre")),
     person("Brandon", "Demkowicz", email = "brandondemkowicz@gmail.com", role = "aut"),
-    person("Sanmati", "Choudhary", email = "20choudharysa@fpsct.org", role = "aut")
+    person("Sanmati", "Choudhary", email = "20choudharysa@fpsct.org", role = "aut"),
+    person("Barry W.", "Brunson", role = "ctb")
     )
 Description: Uniform random samples from simple manifolds, sometimes with noise,
     are commonly used to test topological data analytic (TDA) tools.
@@ -24,5 +25,5 @@ URL: https://corybrunson.github.io/tdaunif/
 BugReports: https://github.com/corybrunson/tdaunif/issues
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)

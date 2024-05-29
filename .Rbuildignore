@@ -6,8 +6,10 @@
 ^\.travis\.yml$
 
 # package infrastructure
+^ignore$
 ^man-roxygen$
 ^docs$
+^doc$
 
 # package files
 ^README\.[Rr]md$
