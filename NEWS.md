@@ -1,4 +1,4 @@
-# tdaunif 0.2.0
+# next release
 
 This minor version provides a new sampler for the rotoid embedding of the Möbius strip in 3-space, which involves computing a Jacobian in two parameters.
 
