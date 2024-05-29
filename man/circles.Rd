@@ -24,7 +24,7 @@ configurations of circles of radius 1 in 2- or 3-dimensional space,
 optionally with noise.
 }
 \details{
-The function \code{sample_circle()} uses the usual sinussoidal parameterization
+The function \code{sample_circle()} uses the usual sinusoidal parameterization
 from the unit interval to the unit circle.
 
 The function \code{sample_circles_interlocked()} effectively samples from a pair

@@ -8,3 +8,5 @@
 
 # ignore
 ignore
+/doc/
+/Meta/

@@ -2,8 +2,8 @@
 % Please edit documentation in R/tdaunif.r
 \docType{package}
 \name{tdaunif}
-\alias{tdaunif-package}
 \alias{tdaunif}
+\alias{tdaunif-package}
 \title{\strong{tdaunif}: Uniform manifold samplers for topological data analysis}
 \description{
 Generate uniform random samples from embedded manifolds,
@@ -52,8 +52,8 @@ honor of Morris L. Eaton}, 102--125. \doi{10.1214/12-IMSCOLL1006}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://corybrunson.github.io/tdaunif/}
-  \item Report bugs at \url{https://github.com/corybrunson/tdaunif/issues}
+  \item \url{https://tdaverse.github.io/tdaunif/}
+  \item Report bugs at \url{https://github.com/tdaverse/tdaunif/issues}
 }
 
 }

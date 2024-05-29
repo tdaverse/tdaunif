@@ -26,3 +26,5 @@
 
 # sandbox
 ^sandbox$
+^doc$
+^Meta$

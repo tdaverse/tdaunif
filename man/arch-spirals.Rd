@@ -42,13 +42,13 @@ optionally with noise.
 \details{
 The archimedean spiral starts at the origin and wraps around itself such that
 radial distances between all the spiral branches are equal. The specific
-parametrization was taken from Koeller (2002). The uniform sample is
+parameterization was taken from Koeller (2002). The uniform sample is
 generated through a rejection sampling process as described by Diaconis,
 Holmes, and Shahshahani (2013).
 
 The swiss roll sampler is patterned after one in
 \href{https://lvdmaaten.github.io/drtoolbox/}{drtoolbox} and extended from the
-archimedian spiral sampler.
+archimedean spiral sampler.
 }
 \examples{
 set.seed(77151L)
@@ -76,7 +76,7 @@ plot(x, asp = 1, pch = 19, cex = .5)
 x <- sample_arch_spiral(360, min_wrap = 2, max_wrap = 5)
 plot(x, asp = 1, pch = 19, cex = .5)
 
-#Uniformly sampled archimedian spiral, from 1 to 2 wraps, with 3 arms
+#Uniformly sampled archimedean spiral, from 1 to 2 wraps, with 3 arms
 x <- sample_arch_spiral(360, arms = 3, min_wrap = 1, max_wrap = 2)
 plot(x, asp = 1, pch = 19, cex = .5)
 
