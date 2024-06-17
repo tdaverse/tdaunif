@@ -6,11 +6,10 @@
 #' @details
 #'
 #' The function `sample_mobius_rotoid()` uses the rotoid Möbius surface
-#' parameterization documented at the [Encyclopédie des Formes Mathématiques
-#' Remarquables](https://mathcurve.com/surfaces.gb/mobiussurface/mobiussurface.shtml).
-#' Uniform samples are generated through a rejection sampling process as
-#' described by Diaconis, Holmes, and Shahshahani (2013).
-#' The Jacobian determinant was symbolically computed and simplified using 
+#' parameterization obtained from the now-defunct Encyclopédie des Formes
+#' Mathématiques Remarquables. Uniform samples are generated through a rejection
+#' sampling process as described by Diaconis, Holmes, and Shahshahani (2013).
+#' The Jacobian determinant was symbolically computed and simplified using
 #' _Mathematica_ v13.3.1.0.
 #' 
 

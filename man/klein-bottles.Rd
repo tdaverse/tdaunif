@@ -26,7 +26,9 @@ These functions generate uniform samples from Klein bottles in
 }
 \details{
 The function \code{sample_klein_tube()} uses the Möbius tube parameterization
-documented at the \href{https://mathcurve.com/surfaces.gb/klein/klein.shtml}{Encyclopédie des Formes Mathématiques Remarquables}.
+obtained from the now-defunct Encyclopédie des Formes
+Mathématiques Remarquables and currently documented on
+\href{https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_.2F_4D_M.C3.B6bius_tube}{Wikipedia}.
 
 The function \code{sample_klein_flat()} uses a flat parameterization based on that
 of the torus, as presented on

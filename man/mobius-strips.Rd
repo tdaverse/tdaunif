@@ -21,9 +21,9 @@ These functions generate uniform samples from Möbius strips in
 }
 \details{
 The function \code{sample_mobius_rotoid()} uses the rotoid Möbius surface
-parameterization documented at the \href{https://mathcurve.com/surfaces.gb/mobiussurface/mobiussurface.shtml}{Encyclopédie des Formes Mathématiques Remarquables}.
-Uniform samples are generated through a rejection sampling process as
-described by Diaconis, Holmes, and Shahshahani (2013).
+parameterization obtained from the now-defunct Encyclopédie des Formes
+Mathématiques Remarquables. Uniform samples are generated through a rejection
+sampling process as described by Diaconis, Holmes, and Shahshahani (2013).
 The Jacobian determinant was symbolically computed and simplified using
 \emph{Mathematica} v13.3.1.0.
 }

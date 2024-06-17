@@ -6,8 +6,9 @@
 #' @details
 #'
 #' The function `sample_klein_tube()` uses the Möbius tube parameterization
-#' documented at the [Encyclopédie des Formes Mathématiques
-#' Remarquables](https://mathcurve.com/surfaces.gb/klein/klein.shtml).
+#' obtained from the now-defunct Encyclopédie des Formes
+#' Mathématiques Remarquables and currently documented on
+#' [Wikipedia](https://en.wikipedia.org/wiki/Klein_bottle#3D_pinched_torus_.2F_4D_M.C3.B6bius_tube).
 #'
 #' The function `sample_klein_flat()` uses a flat parameterization based on that
 #' of the torus, as presented on
@@ -15,7 +16,7 @@
 #'
 #' Both uniform samples are generated through a rejection sampling process as
 #' described by Diaconis, Holmes, and Shahshahani (2013).
-#'
+#' 
 
 #' @template ref-diaconis2013
 #' 
