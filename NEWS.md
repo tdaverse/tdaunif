@@ -1,6 +1,9 @@
-# next release
+# tdaunif 0.2.0
 
-This minor version provides a new sampler for the rotoid embedding of the Möbius strip in 3-space, which involves computing a Jacobian in two parameters.
+This minor version provides two new samplers:
+
+* Annuli in the plane, as a parameterized extension of the disk.
+* The rotoid embedding of the Möbius strip in 3-space, which involves computing a Jacobian in two parameters.
 
 # tdaunif 0.1.1
 
