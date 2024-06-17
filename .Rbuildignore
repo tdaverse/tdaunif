@@ -24,8 +24,10 @@
 ^\.travis\.yml$
 ^cran-comments.md$
 ^CRAN-RELEASE$
+^CRAN-SUBMISSION$
 
 # sandbox
 ^sandbox$
 ^doc$
 ^Meta$
+
