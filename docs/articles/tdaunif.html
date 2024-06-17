@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tdaunif</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1-0001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
       <h1 data-toc-skip>Uniform and Stratified Sampling from Manifolds in Euclidean Space</h1>
                         <h4 data-toc-skip class="author">Cory Brunson</h4>
             
-            <h4 data-toc-skip class="date">2024-05-29</h4>
+            <h4 data-toc-skip class="date">2024-06-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tdaverse/tdaunif/blob/HEAD/vignettes/tdaunif.rmd" class="external-link"><code>vignettes/tdaunif.rmd</code></a></small>
       <div class="hidden name"><code>tdaunif.rmd</code></div>
@@ -104,7 +104,7 @@
 </ul>
 <p>In the best case, the warping map can be inverted and the volume-preserving map, itself a parameterization, extracted as <span class="math inline">\(\psi = \phi \circ \omega^{-1}\)</span>. Then points can be uniformly sampled from the warped parameter space and mapped, without distortion, to the manifold.</p>
 <p>The upper hemisphere of <span class="math inline">\(\mathbb{S}^2\)</span> is such a case. The function <code><a href="../reference/sphere.html">sample_2hemisphere()</a></code> follows Arvo’s procedure (p. 50–51), which begins with a conventional parameterization to spherical coordinates and extracts this area-preserving parameterization from it:</p>
-<p>[<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 \left[\begin{array}{c} u \\ v \end{array}\right]
 &amp; \mapsto
@@ -114,7 +114,7 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 \sqrt{u (2 - u)}\sin{2\pi v} \\
 1 - u
 \end{array}\right]
-\end{align*}\]</span>]</p>
+\end{align*}\]</span></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hemi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sphere.html">sample_2hemisphere</a></span><span class="op">(</span><span class="fl">180L</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">hemi</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
@@ -145,7 +145,7 @@ h : [0,1]\times[0,1] &amp; \to \mathbb{R}^3 \\
 </h2>
 <p>In lieu of an analytic solution to the warping problem, rejection sampling provides a fallback that shifts the burden to additional sampling. The idea, explained in detail by Diaconis, Holmes, and Shahshahani and demonstrated in more detail in <a href="https://corybrunson.github.io/2019/02/01/sampling/" class="external-link">this blog post</a>, is to oversample points throughout the parameter space and discard them with a probability that compensates for local distortions. Since the rejection is probabilistic, we can’t know in advance how large a sample will be necessary, so we repeatedly sample and discard until the total number of points meets or exceeds the desired number (then discard the excess points).</p>
 <p>One application in this package is to sample from a famous class of embeddings of the circle <span class="math inline">\(\mathbb{S}^1\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>: the trefoil, one of many such classes called <a href="https://mathworld.wolfram.com/Knot.html" class="external-link">knots</a> that cannot be continuously deformed in <span class="math inline">\(\mathbb{R}^3\)</span> to a geometric circle (the “unknot”).</p>
-<p>[<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 g : \mathbb{S}^1 &amp; \to \mathbb{R}^3 \\
 \left[\begin{array}{c} \theta \end{array}\right]
 &amp; \mapsto
@@ -155,7 +155,7 @@ g : \mathbb{S}^1 &amp; \to \mathbb{R}^3 \\
 \cos\theta - 2\cos 2\theta \\
 -(\sin 3\theta)
 \end{array}\right]
-\end{align*}\]</span>]</p>
+\end{align*}\]</span></p>
 <p>We generate a sample below using the function <code><a href="../reference/trefoil.html">sample_trefoil()</a></code> and plot it in the three coordinate planes of <span class="math inline">\(\mathbb{R}^3\)</span>. The parameterization above suggests a sort of symmetry within the <span class="math inline">\(xy\)</span>-plane, and the plot shows that the embedding is “knotted” by way of undulations along the <span class="math inline">\(z\)</span>-axis:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trefoil.html">sample_trefoil</a></span><span class="op">(</span><span class="fl">120L</span><span class="op">)</span></span>
@@ -164,17 +164,26 @@ g : \mathbb{S}^1 &amp; \to \mathbb{R}^3 \\
 <div class="section level3">
 <h3 id="making-custom-samplers">Making custom samplers<a class="anchor" aria-label="anchor" href="#making-custom-samplers"></a>
 </h3>
-<p>Currently, <strong>tdaunif</strong> offers one set of <a href="https://adv-r.hadley.nz/function-factories.html" class="external-link">function factories</a> for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disk, which is already implemented using an area-preserving parameterization as <code><a href="../reference/annuli.html">sample_disk()</a></code> (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square (Q=[-1,1]) circumscribing the unit disk into the disk itself:</p>
-<p>[<span class="math display">\[\begin{align*}
+<p>Currently, <strong>tdaunif</strong> offers one set of <a href="https://adv-r.hadley.nz/function-factories.html" class="external-link">function factories</a> for creating samplers of new parameterized manifolds, which generalize the rejection sampling method. As an example, take sampling from the unit disk, which is already implemented using an area-preserving parameterization as <code><a href="../reference/annuli.html">sample_disk()</a></code> (and provides a basis for comparison). We will begin with a more naïve parameterization for the rejection sampler that vertically squeezes the coordinate square <span class="math inline">\(Q=[-1,1]\times[-1,1]\)</span> circumscribing the unit disk into the disk itself:</p>
+<p><span class="math display">\[\begin{align*}
 f : Q &amp; \to \mathbb{R}^2 \\
 \left[\begin{array}{c} s \\ t \end{array}\right]
 &amp; \mapsto
 \left[\begin{array}{c} x \\ y \end{array}\right]
 = \left[\begin{array}{c} s \\ t\sqrt{1 - s^2} \end{array}\right]
-\end{align*}\]</span>]</p>
+\end{align*}\]</span></p>
 <p>This map has a convenient Jacobian matrix for purposes of calculating its determinant:</p>
-<p>[J_f = = = ]</p>
-<p>This Jacobian determinant (j_f = ) maxes out at (j_f = 1) when (s = 0), and we have all the necessary data to build a rejection sampler:</p>
+<p><span class="math display">\[J_f =
+\left[\ \frac{\partial f}{\partial s}\ \frac{\partial f}{\partial t}\ \right]=
+\left[\begin{array}{cc}
+\frac{\partial x}{\partial s} &amp; \frac{\partial x}{\partial t} \\
+\frac{\partial y}{\partial s} &amp; \frac{\partial y}{\partial t}
+\end{array}\right] =
+\left[\begin{array}{cc}
+1 &amp; 0 \\
+\text{who cares} &amp; \sqrt{1 - s^2}
+\end{array}\right]\]</span></p>
+<p>This Jacobian determinant <span class="math inline">\(j_f = \sqrt{1 - s^2}\)</span> maxes out at <span class="math inline">\(j_f = 1\)</span> when <span class="math inline">\(s = 0\)</span>, and we have all the necessary data to build a rejection sampler:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">disk_parameterization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">s</span>,</span>
@@ -204,7 +213,7 @@ f : Q &amp; \to \mathbb{R}^2 \\
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">oldpar</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr>
 <ol>
 <li id="fn1"><p>Any sample size remaining after uniform allocation to the strata is allocated uniformly randomly to the strata.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
