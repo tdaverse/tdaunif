@@ -1,6 +1,7 @@
 # R project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.github$
 
 # Travis-CI
 ^\.travis\.yml$
