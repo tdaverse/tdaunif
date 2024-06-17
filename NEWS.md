@@ -13,7 +13,7 @@ It also addresses an issue related to `_PKGNAME` documentation, which has been a
 
 The key--value pair `LazyData: true` was removed from 'DESCRIPTION', which should resolve the NOTE at the CRAN check results.
 
-Finally, several spelling errors were corrected
+Finally, several spelling errors were corrected.
 
 # tdaunif 0.1.0
 
